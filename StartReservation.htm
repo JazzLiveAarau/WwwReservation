@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html lang=de>
+
+<head>
+<title>JAZZ live AARAU Reservation Start: Eingabe Name, E-Mail und Kommentar</title>
+
+<meta charset="utf-8">
+<meta name="description" content="Reservation of seats for a concert">
+<meta name="author" content="Gunnar Lidén">
+
+<!-- Force the browser not to use the cached web page  Start -->
+<!-- https://www.lifewire.com/force-page-load-from-server-3466696  --> 
+<!-- https://www.w3schools.com/tags/tag_meta.asp  --> 
+<meta http-equiv=“Pragma” content=”no-cache”>
+<meta http-equiv=“Expires” content=”-1″>
+<meta http-equiv=“CACHE-CONTROL” content=”NO-CACHE”>
+<!-- Force the browser not to use the cached web page  End -->
+
+<script type="text/javascript" src="scripts/ReservationSalmen.js"></script>
+<script type="text/javascript" src="scripts/ReservationSalmenEvents.js"></script>
+
+<script type="text/javascript" src="scripts/Reservation.js"></script>
+<script type="text/javascript" src="scripts/ReservationXmlTags.js"></script>
+<script type="text/javascript" src="scripts/ReservationSvg.js"></script>
+<script type="text/javascript" src="scripts/ReservationPremises.js"></script>
+<script type="text/javascript" src="scripts/ReservationStage.js"></script>
+<script type="text/javascript" src="scripts/ReservationDoors.js"></script>
+<script type="text/javascript" src="scripts/ReservationTables.js"></script>
+<script type="text/javascript" src="scripts/ReservationEvents.js"></script>
+<script type="text/javascript" src="scripts/ReservationConcerts.js"></script>
+<script type="text/javascript" src="scripts/ReservationEmail.js"></script>
+<script type="text/javascript" src="scripts/ReservationFiles.js"></script>
+<script type="text/javascript" src="scripts/ReservationStrings.js"></script>
+<script type="text/javascript" src="scripts/ReservationSearch.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<noscript>
+ Um den vollen Funktionsumfang dieser Webseite zu erfahren, benötigen Sie JavaScript.
+ Eine Anleitung wie Sie JavaScript in Ihrem Browser einschalten, befindet sich 
+ <a href="http://www.enable-javascript.com/de/" target="_blank">hier</a>.
+</noscript>
+
+
+<!-- https://www.w3schools.com/css/css_tooltip.asp  --> 
+
+<!-- Style height of dropdown https://www.lugolabs.com/articles/style-select-html-element-with-css  --> 
+
+<style>
+.button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.select {
+  font-size: 16px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+</style>
+
+</head>
+
+<body  onload='loadSeasonProgramXMLDocSetConcertArraysAddConcertsDropdown()' bgcolor='#ff0028' >
+
+<font face="Arial">
+
+	<h1><b>JAZZ <i>live</i> AARAU</b> Reservation</h1>
+	
+    <div id= "id_div_concert_drop_down"> </div>
+
+	<form id="reservation_email_form">
+		<p>Name: *<br><input id="page_start_reservation_name" type="text" size="30" maxlength="40">  &nbsp;&nbsp;
+		<span class="tooltip"><img src="icon_info.png" alt="Information" width="25"><span class="tooltiptext">Vorname und Nachname eingeben</span></span></p>
+		<p>E-Mail: *<br><input id="page_start_reservation_email" type="text" size="30" maxlength="40"> &nbsp;&nbsp;
+		<span class="tooltip"><img src="icon_info.png" alt="Information" width="25"><span class="tooltiptext">Eine Bestätigung wird an diese Adresse gesendet</span></span></p>
+		<p>Bemerkung:<br><input id="page_start_reservation_remark" type="text" size="30" maxlength="90"></p>		
+	</form>
+	
+<table>	
+<tr>
+<td>
+    <button class='button' id='reservation_button_continue' onclick='setNameEmailRemarkFromFormOpenMakeReservation("Salmen")' style='display:block;'>Plätze wählen</button>	
+</td>
+<td>
+&nbsp;&nbsp;
+		<span class="tooltip"><img src="icon_info.png" alt="Information" width="25"><span class="tooltiptext">Ein Tischplan wird gezeigt wo man Plätze wählen kann</span></span></p>
+</td>
+<tr>
+</table>			
+	<div id="reservation_replace_text"> </id>
+
+<p>
+<br>	
+Eintritt: Fr. 25.- / Supporter Fr. 15.-
+<br> 
+Für Reservationen die am Konzerttag nach 12.30 Uhr online gemacht werden, übernehmen wir keine Gewähr.
+</p>
+
+
+<p>
+<br>	
+Reservierte Plätze müssen 10 Minuten vor Konzertbeginn 
+eingenommen werden, sonst werden sie freigegeben.
+</p>
+				
+</font> 
+
+ <font size=1 face="Arial">
+ <p ALIGN=left>
+ <br><br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    http://www.jazzliveaarau.ch/Reservation/StartReservation.htm
+  </p>
+</font> 
+	
+</body>
+</html>

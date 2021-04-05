@@ -1,0 +1,26 @@
+﻿<?xml version= "1.0" encoding="utf-8"?>
+<Reservations>
+<!--  JAZZ live AARAU Spaghetty Factory Salmen Concert reservations -->  
+<Day>1</Day>  
+<Month>12</Month>  
+<Year>2018</Year>
+<BandName>Switalo Jazz</BandName>
+  <Reservation>    
+    <ReservationName>Bruno Lüthy</ReservationName> 
+    <ReservationEmail>brunoluethy@pop.agri.ch</ReservationEmail>
+    <ReservationRemark>Kommt nach Konzertbeginn</ReservationRemark>
+    <Seat>      
+       <SeatTableNumber>67</SeatTableNumber>
+	   <SeatCharacter>D</SeatCharacter>    
+	</Seat>
+  </Reservation> 
+  <Reservation>    
+    <ReservationName>Gunnar Lidén</ReservationName>    
+    <ReservationRemark>NotYetSetNodeValue</ReservationRemark> 
+    <ReservationEmail>gunnar.liden@viewsoncad.ch</ReservationEmail> 	
+       <Seat>      
+	     <SeatTableNumber>57</SeatTableNumber>      
+         <SeatCharacter>B</SeatCharacter>    
+       </Seat>  
+  </Reservation>
+</Reservations>

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang=de>
+
+<head>
+<title>JAZZ live AARAU Print reservations</title>
+
+<meta charset="utf-8">
+<meta name="description" content="Reservation of seats for a concert">
+<meta name="author" content="Gunnar Lidén">
+
+<!-- Force the browser not to use the cached web page  Start -->
+<!-- https://www.lifewire.com/force-page-load-from-server-3466696  --> 
+<!-- https://www.w3schools.com/tags/tag_meta.asp  --> 
+<meta http-equiv=“Pragma” content=”no-cache”>
+<meta http-equiv=“Expires” content=”-1″>
+<meta http-equiv=“CACHE-CONTROL” content=”NO-CACHE”>
+<!-- Force the browser not to use the cached web page  End -->
+
+<script type="text/javascript" src="scripts/ReservationSalmen.js"></script>
+<script type="text/javascript" src="scripts/ReservationSalmenEvents.js"></script>
+
+<script type="text/javascript" src="scripts/Reservation.js"></script>
+<script type="text/javascript" src="scripts/ReservationXmlTags.js"></script>
+<script type="text/javascript" src="scripts/ReservationSvg.js"></script>
+<script type="text/javascript" src="scripts/ReservationPremises.js"></script>
+<script type="text/javascript" src="scripts/ReservationStage.js"></script>
+<script type="text/javascript" src="scripts/ReservationDoors.js"></script>
+<script type="text/javascript" src="scripts/ReservationTables.js"></script>
+<script type="text/javascript" src="scripts/ReservationEvents.js"></script>
+<script type="text/javascript" src="scripts/ReservationConcerts.js"></script>
+<script type="text/javascript" src="scripts/ReservationEmail.js"></script>
+<script type="text/javascript" src="scripts/ReservationFiles.js"></script>
+<script type="text/javascript" src="scripts/ReservationStrings.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<noscript>
+ Um den vollen Funktionsumfang dieser Webseite zu erfahren, benötigen Sie JavaScript.
+ Eine Anleitung wie Sie JavaScript in Ihrem Browser einschalten, befindet sich 
+ <a href="http://www.enable-javascript.com/de/" target="_blank">hier</a>.
+</noscript>
+
+<!--
+https://www.w3schools.com/jsref/prop_style_pagebreakafter.asp
+document.getElementById("footer").style.pageBreakAfter = "always";
+
+https://www.w3schools.com/cssref/pr_print_pageba.asp
+
+@media print {
+    footer {page-break-after: always;}
+}
+
+https://stackoverflow.com/questions/21269836/how-to-define-page-breaks-when-printing-html
+
+<div>Some content BEFORE the page break</div>
+<div class="page-break"></div>
+<div>Some content AFTER the page break</div>
+<div class="page-break"></div>
+<div> ... More content after another page break ... </div>
+-->
+<style>
+
+@media print 
+{
+.page-break { display: block; page-break-before: always; }
+}
+
+@page {
+    margin-top: 0cm;
+    margin-bottom: 0cm;
+    margin-left: 0cm;
+    margin-right: 0cm;
+}
+
+.jazz_live_aarau 
+{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+    text-align: center;
+    color: #ff0028;
+}
+
+.r_name 
+{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+.table_seat 
+{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+    text-align: center;
+    color: black;
+}
+
+table 
+{
+    width: 1000px;
+	align: left;
+}
+
+td 
+{
+    width: 333px;
+	border: 1px solid black;
+}
+
+.r_name_seat
+{
+    font-family: Arial, Helvetica, sans-serif;
+	font-size: 21px;
+	font-weight: bold;
+    text-align: center;
+    color: black;
+	border: none;
+}
+
+.t_table 
+{
+	border: none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<script language="JavaScript">document.write(mainReservationCards())</script>
+
+<!--
+-->
+
+	
+</body>
+</html>

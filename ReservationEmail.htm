@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang=de>
+
+<head>
+<title>JAZZ live AARAU Reservations-E-Mail schicken</title>
+
+<meta charset="utf-8">
+<meta name="description" content="Reservation of seats for a concert">
+<meta name="author" content="Gunnar Lidén">
+
+<!-- Force the browser not to use the cached web page  Start -->
+<!-- https://www.lifewire.com/force-page-load-from-server-3466696  --> 
+<!-- https://www.w3schools.com/tags/tag_meta.asp  --> 
+<meta http-equiv=“Pragma” content=”no-cache”>
+<meta http-equiv=“Expires” content=”-1″>
+<meta http-equiv=“CACHE-CONTROL” content=”NO-CACHE”>
+<!-- Force the browser not to use the cached web page  End -->
+
+<script type="text/javascript" src="scripts/ReservationSalmen.js"></script>
+<script type="text/javascript" src="scripts/ReservationSalmenEvents.js"></script>
+
+<script type="text/javascript" src="scripts/Reservation.js"></script>
+<script type="text/javascript" src="scripts/ReservationXmlTags.js"></script>
+<script type="text/javascript" src="scripts/ReservationSvg.js"></script>
+<script type="text/javascript" src="scripts/ReservationPremises.js"></script>
+<script type="text/javascript" src="scripts/ReservationStage.js"></script>
+<script type="text/javascript" src="scripts/ReservationDoors.js"></script>
+<script type="text/javascript" src="scripts/ReservationTables.js"></script>
+<script type="text/javascript" src="scripts/ReservationEvents.js"></script>
+<script type="text/javascript" src="scripts/ReservationConcerts.js"></script>
+<script type="text/javascript" src="scripts/ReservationEmail.js"></script>
+<script type="text/javascript" src="scripts/ReservationFiles.js"></script>
+<script type="text/javascript" src="scripts/ReservationStrings.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<noscript>
+ Um den vollen Funktionsumfang dieser Webseite zu erfahren, benötigen Sie JavaScript.
+ Eine Anleitung wie Sie JavaScript in Ihrem Browser einschalten, befindet sich 
+ <a href="http://www.enable-javascript.com/de/" target="_blank">hier</a>.
+</noscript>
+
+</head>
+
+<body  bgcolor="#ff0028" link="#ff0028" vlink="#ff0028" alink="#ff0028">
+
+<font face="Arial">
+
+    <script language="JavaScript">checkPassedDataForEmail()</script>
+
+	<h1><b>JAZZ <i>live</i> AARAU</b> Reservation</h1>
+	<h2>Konzert: <script language="JavaScript">document.write(getConcertDateAndBandForPopupWindow())</script></h2>
+		<p>Name:<br><input id="reservation_name" type="text" size="30" maxlength="30"></p>
+		<p>E-Mail:<br><input id="reservation_email" type="text" size="30" maxlength="30"></p>
+		<p>Gewünschte Plätze:<br> <script language="JavaScript">document.write(getAllSelectedSeatsForPopupWindow())</script></p>
+		
+	</form>
+	
+    <button onclick="sendReservationEmail()">Absenden</button>	
+		
+</font> 
+	
+</body>
+</html>
