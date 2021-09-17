@@ -44,7 +44,7 @@
   <TextImageSaveReservation>text_save_reservation.png</TextImageSaveReservation>
   <TextImageSaveReservationWhite>text_save_reservation_white.png</TextImageSaveReservationWhite>
   <!--  Text images End -->  
-  <MaxReservationsProcent>100</MaxReservationsProcent>
+  <MaxReservationsProcent>50</MaxReservationsProcent>
   <Door>  
     <DoorType>right</DoorType>
     <DoorPosition>5300</DoorPosition>
@@ -82,17 +82,45 @@
       <Height>2640</Height>
       <NumberLeftRightSeats>12</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatSixLeft>false</SeatSixLeft>
-      <SeatOneRight>false</SeatOneRight>
+      <SeatSixLeft>true</SeatSixLeft>		
+      <SeatSevenLeft>true</SeatSevenLeft>	
+      <SeatEightLeft>true</SeatEightLeft>
+      <SeatNineLeft>true</SeatNineLeft>
+      <SeatTenLeft>true</SeatTenLeft>
+      <SeatElevenLeft>true</SeatElevenLeft>
+      <SeatTwelveLeft>true</SeatTwelveLeft>
+      <SeatThirteenLeft>true</SeatThirteenLeft>
+      <SeatFourteenLeft>true</SeatFourteenLeft>
+      <SeatFifteenLeft>true</SeatFifteenLeft>
+      <SeatSixteenLeft>true</SeatSixteenLeft>
+      <SeatSeventeenLeft>true</SeatSeventeenLeft>
+      <SeatEighteenLeft>true</SeatEighteenLeft>
+      <SeatNineteenLeft>true</SeatNineteenLeft>
+      <SeatTwentyLeft>true</SeatTwentyLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
       <SeatSixRight>true</SeatSixRight>		
+      <SeatSevenRight>true</SeatSevenRight>	
+      <SeatEightRight>true</SeatEightRight>
+      <SeatNineRight>true</SeatNineRight>
+      <SeatTenRight>true</SeatTenRight>
+      <SeatElevenRight>true</SeatElevenRight>
+      <SeatTwelveRight>true</SeatTwelveRight>
+      <SeatThirteenRight>true</SeatThirteenRight>
+      <SeatFourteenRight>true</SeatFourteenRight>
+      <SeatFifteenRight>true</SeatFifteenRight>
+      <SeatSixteenRight>true</SeatSixteenRight>
+      <SeatSeventeenRight>true</SeatSeventeenRight>
+      <SeatEighteenRight>true</SeatEighteenRight>
+      <SeatNineteenRight>true</SeatNineteenRight>
+      <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
       <SeatLower>false</SeatLower>	  
       <Text>Tisch-Reihe Links Vorne</Text>
@@ -108,17 +136,45 @@
       <Height>2640</Height>
       <NumberLeftRightSeats>12</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatSixLeft>false</SeatSixLeft>		
-      <SeatOneRight>false</SeatOneRight>
+      <SeatSixLeft>true</SeatSixLeft>		
+      <SeatSevenLeft>true</SeatSevenLeft>	
+      <SeatEightLeft>true</SeatEightLeft>
+      <SeatNineLeft>true</SeatNineLeft>
+      <SeatTenLeft>true</SeatTenLeft>
+      <SeatElevenLeft>true</SeatElevenLeft>
+      <SeatTwelveLeft>true</SeatTwelveLeft>
+      <SeatThirteenLeft>true</SeatThirteenLeft>
+      <SeatFourteenLeft>true</SeatFourteenLeft>
+      <SeatFifteenLeft>true</SeatFifteenLeft>
+      <SeatSixteenLeft>true</SeatSixteenLeft>
+      <SeatSeventeenLeft>true</SeatSeventeenLeft>
+      <SeatEighteenLeft>true</SeatEighteenLeft>
+      <SeatNineteenLeft>true</SeatNineteenLeft>
+      <SeatTwentyLeft>true</SeatTwentyLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
-      <SeatSixRight>true</SeatSixRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
+      <SeatSixRight>true</SeatSixRight>		
+      <SeatSevenRight>true</SeatSevenRight>	
+      <SeatEightRight>true</SeatEightRight>
+      <SeatNineRight>true</SeatNineRight>
+      <SeatTenRight>true</SeatTenRight>
+      <SeatElevenRight>true</SeatElevenRight>
+      <SeatTwelveRight>true</SeatTwelveRight>
+      <SeatThirteenRight>true</SeatThirteenRight>
+      <SeatFourteenRight>true</SeatFourteenRight>
+      <SeatFifteenRight>true</SeatFifteenRight>
+      <SeatSixteenRight>true</SeatSixteenRight>
+      <SeatSeventeenRight>true</SeatSeventeenRight>
+      <SeatEighteenRight>true</SeatEighteenRight>
+      <SeatNineteenRight>true</SeatNineteenRight>
+      <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
       <SeatLower>false</SeatLower>	  
       <Text>Tisch Reihe Mitte Vorne</Text>
@@ -134,19 +190,45 @@
       <Height>3080</Height>
       <NumberLeftRightSeats>14</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatSixLeft>false</SeatSixLeft>		
+      <SeatSixLeft>true</SeatSixLeft>		
       <SeatSevenLeft>true</SeatSevenLeft>	
-      <SeatOneRight>false</SeatOneRight>
+      <SeatEightLeft>true</SeatEightLeft>
+      <SeatNineLeft>true</SeatNineLeft>
+      <SeatTenLeft>true</SeatTenLeft>
+      <SeatElevenLeft>true</SeatElevenLeft>
+      <SeatTwelveLeft>true</SeatTwelveLeft>
+      <SeatThirteenLeft>true</SeatThirteenLeft>
+      <SeatFourteenLeft>true</SeatFourteenLeft>
+      <SeatFifteenLeft>true</SeatFifteenLeft>
+      <SeatSixteenLeft>true</SeatSixteenLeft>
+      <SeatSeventeenLeft>true</SeatSeventeenLeft>
+      <SeatEighteenLeft>true</SeatEighteenLeft>
+      <SeatNineteenLeft>true</SeatNineteenLeft>
+      <SeatTwentyLeft>true</SeatTwentyLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
       <SeatSixRight>true</SeatSixRight>		
-      <SeatSevenRight>false</SeatSevenRight>	
+      <SeatSevenRight>true</SeatSevenRight>	
+      <SeatEightRight>true</SeatEightRight>
+      <SeatNineRight>true</SeatNineRight>
+      <SeatTenRight>true</SeatTenRight>
+      <SeatElevenRight>true</SeatElevenRight>
+      <SeatTwelveRight>true</SeatTwelveRight>
+      <SeatThirteenRight>true</SeatThirteenRight>
+      <SeatFourteenRight>true</SeatFourteenRight>
+      <SeatFifteenRight>true</SeatFifteenRight>
+      <SeatSixteenRight>true</SeatSixteenRight>
+      <SeatSeventeenRight>true</SeatSeventeenRight>
+      <SeatEighteenRight>true</SeatEighteenRight>
+      <SeatNineteenRight>true</SeatNineteenRight>
+      <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
       <SeatLower>false</SeatLower>	  
       <Text>Tisch Reihe Rechts Vorne</Text>
@@ -162,21 +244,47 @@
       <Height>3080</Height>
       <NumberLeftRightSeats>14</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatSixLeft>false</SeatSixLeft>		
+      <SeatSixLeft>true</SeatSixLeft>		
       <SeatSevenLeft>true</SeatSevenLeft>	
-      <SeatOneRight>false</SeatOneRight>
+      <SeatEightLeft>true</SeatEightLeft>
+      <SeatNineLeft>true</SeatNineLeft>
+      <SeatTenLeft>true</SeatTenLeft>
+      <SeatElevenLeft>true</SeatElevenLeft>
+      <SeatTwelveLeft>true</SeatTwelveLeft>
+      <SeatThirteenLeft>true</SeatThirteenLeft>
+      <SeatFourteenLeft>true</SeatFourteenLeft>
+      <SeatFifteenLeft>true</SeatFifteenLeft>
+      <SeatSixteenLeft>true</SeatSixteenLeft>
+      <SeatSeventeenLeft>true</SeatSeventeenLeft>
+      <SeatEighteenLeft>true</SeatEighteenLeft>
+      <SeatNineteenLeft>true</SeatNineteenLeft>
+      <SeatTwentyLeft>true</SeatTwentyLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
       <SeatSixRight>true</SeatSixRight>		
-      <SeatSevenRight>false</SeatSevenRight>	
+      <SeatSevenRight>true</SeatSevenRight>	
+      <SeatEightRight>true</SeatEightRight>
+      <SeatNineRight>true</SeatNineRight>
+      <SeatTenRight>true</SeatTenRight>
+      <SeatElevenRight>true</SeatElevenRight>
+      <SeatTwelveRight>true</SeatTwelveRight>
+      <SeatThirteenRight>true</SeatThirteenRight>
+      <SeatFourteenRight>true</SeatFourteenRight>
+      <SeatFifteenRight>true</SeatFifteenRight>
+      <SeatSixteenRight>true</SeatSixteenRight>
+      <SeatSeventeenRight>true</SeatSeventeenRight>
+      <SeatEighteenRight>true</SeatEighteenRight>
+      <SeatNineteenRight>true</SeatNineteenRight>
+      <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
-      <SeatLower>false</SeatLower>	  
+      <SeatLower>true</SeatLower>	  
       <Text>Tisch Reihe Links Mitte</Text>
     </Table>
   </TableGroup> 
@@ -190,21 +298,47 @@
       <Height>3080</Height>
       <NumberLeftRightSeats>14</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatSixLeft>false</SeatSixLeft>		
-      <SeatSevenLeft>true</SeatSevenLeft>
-      <SeatOneRight>false</SeatOneRight>
+      <SeatSixLeft>true</SeatSixLeft>		
+      <SeatSevenLeft>true</SeatSevenLeft>	
+      <SeatEightLeft>true</SeatEightLeft>
+      <SeatNineLeft>true</SeatNineLeft>
+      <SeatTenLeft>true</SeatTenLeft>
+      <SeatElevenLeft>true</SeatElevenLeft>
+      <SeatTwelveLeft>true</SeatTwelveLeft>
+      <SeatThirteenLeft>true</SeatThirteenLeft>
+      <SeatFourteenLeft>true</SeatFourteenLeft>
+      <SeatFifteenLeft>true</SeatFifteenLeft>
+      <SeatSixteenLeft>true</SeatSixteenLeft>
+      <SeatSeventeenLeft>true</SeatSeventeenLeft>
+      <SeatEighteenLeft>true</SeatEighteenLeft>
+      <SeatNineteenLeft>true</SeatNineteenLeft>
+      <SeatTwentyLeft>true</SeatTwentyLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
       <SeatSixRight>true</SeatSixRight>		
-      <SeatSevenRight>false</SeatSevenRight>	
+      <SeatSevenRight>true</SeatSevenRight>	
+      <SeatEightRight>true</SeatEightRight>
+      <SeatNineRight>true</SeatNineRight>
+      <SeatTenRight>true</SeatTenRight>
+      <SeatElevenRight>true</SeatElevenRight>
+      <SeatTwelveRight>true</SeatTwelveRight>
+      <SeatThirteenRight>true</SeatThirteenRight>
+      <SeatFourteenRight>true</SeatFourteenRight>
+      <SeatFifteenRight>true</SeatFifteenRight>
+      <SeatSixteenRight>true</SeatSixteenRight>
+      <SeatSeventeenRight>true</SeatSeventeenRight>
+      <SeatEighteenRight>true</SeatEighteenRight>
+      <SeatNineteenRight>true</SeatNineteenRight>
+      <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
-      <SeatLower>false</SeatLower>	  
+      <SeatLower>true</SeatLower>	  
       <Text>Tisch Reihe Mitte Mitte</Text>
     </Table>
     </TableGroup>  
@@ -217,18 +351,18 @@
       <Width>900</Width>
       <Height>2200</Height>
       <NumberLeftRightSeats>10</NumberLeftRightSeats>
-      <SeatOneLeft>true</SeatOneLeft>
-      <SeatTwoLeft>false</SeatTwoLeft>
+       <SeatOneLeft>true</SeatOneLeft>
+      <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
-      <SeatFourLeft>false</SeatFourLeft>
+      <SeatFourLeft>true</SeatFourLeft>
       <SeatFiveLeft>true</SeatFiveLeft>	
-      <SeatOneRight>false</SeatOneRight>
+      <SeatOneRight>true</SeatOneRight>
       <SeatTwoRight>true</SeatTwoRight>
-      <SeatThreeRight>false</SeatThreeRight>
+      <SeatThreeRight>true</SeatThreeRight>
       <SeatFourRight>true</SeatFourRight>
-      <SeatFiveRight>false</SeatFiveRight>	
+      <SeatFiveRight>true</SeatFiveRight>	
       <SeatUpper>false</SeatUpper>
-      <SeatLower>false</SeatLower>	  
+      <SeatLower>true</SeatLower>	  
       <Text>Tisch Reihe rechts mitte</Text>
     </Table>
   </TableGroup>  
@@ -254,8 +388,8 @@
       <Width>1000</Width>
       <Height>1000</Height>
       <NumberLeftRightSeats>2</NumberLeftRightSeats>
-      <SeatOneLeft>false</SeatOneLeft>
-      <SeatOneRight>false</SeatOneRight>
+      <SeatOneLeft>true</SeatOneLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatUpper>false</SeatUpper>
       <SeatLower>true</SeatLower>	  
       <Text>Hochtisch</Text>
@@ -283,8 +417,8 @@
       <Width>1000</Width>
       <Height>1000</Height>
       <NumberLeftRightSeats>2</NumberLeftRightSeats>
-      <SeatOneLeft>false</SeatOneLeft>
-      <SeatOneRight>false</SeatOneRight>
+      <SeatOneLeft>true</SeatOneLeft>
+      <SeatOneRight>true</SeatOneRight>
       <SeatUpper>false</SeatUpper>
       <SeatLower>true</SeatLower>	  
       <Text>Hochtisch</Text>
