@@ -351,7 +351,7 @@ function sendEmailWithJQueryPostFunction()
     var concert_time = getCoronaTime();
     var reserved_tables = getCoronaTables();
 
-    email_message = email_message + getCoronaFormString(n_rows, concert_date, concert_time, reserved_tables);
+    // 2021-09-20 email_message = email_message + getCoronaFormString(n_rows, concert_date, concert_time, reserved_tables);
 	
     var bcc_email_address = "";
     if (g_add_to_xml_file_name_for_drop_down == "Test")
