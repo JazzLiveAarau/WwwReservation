@@ -50,6 +50,58 @@ $email_message = $_POST['a_msg'];
 $address_to = $_POST['a_to'];
 $address_bcc = $_POST['a_bcc'];
 
+// $email_message_lines = str_replace($email_message, "<br>", "<br>\r\n");
+
+
+// $debug_file = fopen("debug_reservation.txt", "w") or die("Unable to open file");
+// fwrite($debug_file, "email_message= \r\n");
+// fwrite($debug_file, $email_message);
+// fwrite($debug_file, "\r\n");
+
+$email_message_lines = "";
+
+$message_remaining = $email_message;
+
+for ($loop_number=1; $loop_number<100; $loop_number = $loop_number + 1)
+{
+	$pos_br = strpos($message_remaining, "<br>");
+
+	// https://www.php.net/manual/de/function.strpos.php Three '='
+	if ($pos_br === false)
+	{
+		// fwrite($debug_file, "message_remaining Last part \r\n");
+		// fwrite($debug_file, $message_remaining);
+		// fwrite($debug_file, "\r\n");
+
+		$email_message_lines = $email_message_lines . $message_remaining;
+
+		// fwrite($debug_file, "email_message_lines Last part \r\n");
+		// fwrite($debug_file, $email_message_lines);
+		// fwrite($debug_file, "\r\n");
+
+		break;
+	}
+
+	$email_message_lines = $email_message_lines . substr($message_remaining, 0, $pos_br + 4) . "\r\n"; 
+
+	$message_remaining = substr($message_remaining, $pos_br + 4);
+
+	// fwrite($debug_file, "message_remaining pos_br= " . $pos_br . "\r\n");
+	// fwrite($debug_file, $message_remaining);
+	// fwrite($debug_file, "\r\n");
+
+	// fwrite($debug_file, "email_message_lines\r\n");
+	// fwrite($debug_file, $email_message_lines);
+	// fwrite($debug_file, "\r\n");
+}
+
+
+// fwrite($debug_file, "\r\n");
+// fwrite($debug_file, "End result \r\n");
+// fwrite($debug_file, "email_message_lines= \r\n");
+// fwrite($debug_file, $email_message_lines);
+//fclose($debug_file);
+
 // Always set content-type when sending HTML email
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
@@ -61,7 +113,7 @@ $headers .= $address_bcc;
 $headers .=  "\r\n";
 
 // Send the mail
-if (mail($address_to, $email_subject, $email_message, $headers))
+if (mail($address_to, $email_subject, $email_message_lines, $headers))
 {
 	echo 'MailIsSent';	
 }
