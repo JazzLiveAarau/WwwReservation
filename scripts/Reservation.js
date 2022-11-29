@@ -28,6 +28,9 @@ var g_all_selected_tables = null;
 // Array of selected seats
 var g_all_selected_seats = null;
 
+// Modal popup window
+var g_modal_popup_window = null;
+
 // window.sessionStorage keys
 var g_session_storage_list_reservations = "list_reservations_str";
 var g_session_storage_print_reservations = "print_reservations_str";
@@ -433,6 +436,8 @@ function mainSearchReservation(i_add_to_xml_file_name)
     MainAddReservation(i_add_to_xml_file_name);
 	 
     removeElementsForSearchPage();
+
+    g_modal_popup_window = new ReservationModalPopup();
 	
 } // mainSearchReservation
 

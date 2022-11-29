@@ -1242,6 +1242,14 @@ function EventMouseDownAdministrator(i_table_number, i_seat_char)
 		return;
 	}
 
+    if (g_for_web_page_search == "true")
+    {
+
+        g_modal_popup_window.setContentOpenClickSeat(i_table_number);
+
+        return;
+    }
+
 	var seat_free = seatIsFree(i_table_number, i_seat_char);
 	
 	if ("false" == seat_free)
@@ -1255,6 +1263,11 @@ function EventMouseDownAdministrator(i_table_number, i_seat_char)
 	
 	if (g_current_reservation_name.length == 0)
 	{
+        if (g_for_web_page_search == "true")
+        {
+            return;
+        }
+
 		alert(g_error_msg_not_in_select_reservation_mode);
 		return;		
 	}
@@ -1273,6 +1286,7 @@ function EventMouseDownAdministrator(i_table_number, i_seat_char)
     reloadXmlReservationCheckSelectionSetReservations();  // Reservation.js	
 	
 } // EventMouseDownAdministrator
+
 
 // The user that clicked the circle is somebody from the jazz club or restaurant 
 // (an administrator) that will delete a reservation from the XML object (corresponding 
@@ -1417,6 +1431,15 @@ function endDeleteMode()
 // Event: User moved the cursor over the circle
 function EventMouseOver(i_table_number, i_seat_char)
 {
+
+    if (g_for_web_page_search == "true")
+    {
+
+        g_modal_popup_window.setContentOpenOverSeat(i_table_number);
+
+        return;
+    }
+
 	//alert("Table " + i_table_number + " Seat " + i_seat_char);
 	
 } // EventMouseOver
