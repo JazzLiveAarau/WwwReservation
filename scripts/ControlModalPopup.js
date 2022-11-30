@@ -62,9 +62,27 @@ class ReservationModalPopup
     // Set the content of the modal popup window at click of Display Names (Namen zeigen)
     setContentOpenClickDisplayNames()
     {
-        var table_number = '11';
-        
-        var html_str = ReservationModalPopup.getTableHtmlString(table_number);
+        var html_str = '';
+
+        var n_rows = ReservationModalPopup.getNumberOfTableRows();
+
+        for (var row_number=1; row_number <= n_rows; row_number++)
+        {
+            // style="border-collapse:collapse; float:left; margin-left:10px" 
+            html_str = html_str + '<div style="clear:both; padding-bottom:30px; overflow:hidden ">';
+
+            var table_numbers = ReservationModalPopup.getTableRowNumbersAsStrings(row_number);
+
+            for (var table_number=1; table_number <= table_numbers.length; table_number++)
+            {
+                var table_number_str = row_number.toString() + table_number.toString();
+
+                html_str = html_str + ReservationModalPopup.getTableHtmlString(table_number_str);
+
+            }
+
+            html_str = html_str + '</div>';
+        }
 
         this.m_el_div_text.innerHTML = html_str;
 
@@ -149,7 +167,7 @@ class ReservationModalPopup
 
         this.m_el_div_container.appendChild(this.m_el_div_content);
 
-    } // createAppendContentElement
+    } // createAppendContentElement  
 
     // Create close <span> element, add click funcion name and append to the container
     createAppendCloseElement()
@@ -216,6 +234,8 @@ class ReservationModalPopup
 
         this.m_el_div_content.style.width = '85%';
 
+        this.m_el_div_content.style.height = 'auto';
+
     } // appendContentStyles
 
     appendTextStyles()
@@ -223,6 +243,8 @@ class ReservationModalPopup
         this.m_el_div_text.style.clear = 'both';
 
         this.m_el_div_text.style.fontWeight = 'bold';
+
+        this.m_el_div_text.style.overflow = 'hidden';
 
     } // appendTextStyles
 
@@ -356,7 +378,7 @@ class ReservationModalPopup
         var length_right = reservation_table_array_right.length;
 
 
-        ret_html = ret_html + '<table border= "1" style="border-collapse:collapse">';
+        ret_html = ret_html + '<table border= "1" width= "31%" style="border-collapse:collapse; float:left; margin-left:10px" >';
 
         var empty_column = '&nbsp;' + '<br>' + '&nbsp;'
 
@@ -605,6 +627,93 @@ class ReservationModalPopup
         return ret_reservations_table;
 
     } // getReservationsTableArray
+
+   // Get table row numbers as strings
+   static getTableRowNumbersAsStrings(i_row_number)
+   {
+       var ret_row_numbers = [];
+
+       var n_table_rows = ReservationModalPopup.getNumberOfTableRows();
+
+       if (i_row_number < 1 || i_row_number > n_table_rows)
+       {
+            alert('ReservationModalPopup.getTableRowNumbersAsStrings i_row_number ' + i_row_number.toString() + 
+                        ' not between 1 and n_table_rows= ' + n_table_rows.toString());
+            return ret_row_numbers;
+       }
+
+       var row_number_str = i_row_number.toString();
+
+       for (var column_number = 1; column_number < 10; column_number++)
+       {
+            var table_number_str = row_number_str + column_number.toString();
+
+            var b_exists = ReservationModalPopup.tableNumberExists(table_number_str);
+
+            if (b_exists)
+            {
+                ret_row_numbers[column_number - 1] = table_number_str;
+            }
+            else
+            {
+                break;
+            }
+
+       } // column_number
+
+       return ret_row_numbers;
+
+   } // getTableRowNumbersAsStrings
+
+   // Returns true if the table is defined
+   static tableNumberExists(i_table_number_str)
+   {
+        var ret_exists = false;
+
+        var table_number_array = getAvailableSeatsArray("number");
+
+        for (var index_element=0; index_element < table_number_array.length; index_element++)
+        {
+            var table_number_str = table_number_array[index_element];
+
+            if (table_number_str == i_table_number_str)
+            {
+                ret_exists = true;
+
+                break;
+            }
+        }
+ 
+        return ret_exists;
+
+   } // tableNumberExists
+
+   // Get number of table rows
+   static getNumberOfTableRows()
+   {
+       var ret_n_table_rows = 0;
+
+       var table_number_array = getAvailableSeatsArray("number");
+
+       for (var index_element=0; index_element < table_number_array.length; index_element++)
+       {
+            var current_table_number_str = table_number_array[index_element];
+
+            var current_row_str = current_table_number_str.substring(0, 1);
+
+            var current_row = parseInt(current_row_str);
+
+            if (ret_n_table_rows < current_row)
+            {
+                ret_n_table_rows = current_row;
+            }
+
+       } // index_element
+
+
+       return ret_n_table_rows;
+
+   } // getNumberOfTableRows
 
 
 } // ReservationModalPopup
