@@ -245,8 +245,9 @@ function addButtonListReservations()
    
 } // addButtonListReservations
 
-// User clicked button (rectangle) list reservations
-// 1. Reload the XML reservation file, set reserved properties and call openPageListReservations
+// User clicked button (rectangle) list reservations or display names for the web search page
+// 1. Case search web page: Call ReservationModalPopup.setContentOpenClickDisplayNames
+// 2. Reload the XML reservation file, set reserved properties and call openPageListReservations
 //    Other users may have added reservations since this web page was loaded
 //    Call of reloadReservationXMLDocSetReservationPropertiesListOrPrint
 function mouseDownListReservations(  )
@@ -256,6 +257,13 @@ function mouseDownListReservations(  )
 		alert("mouseDownListReservations User is not an administrator");
 		return;
 	}
+
+    if (g_for_web_page_search == "true")
+    {
+        g_modal_popup_window.setContentOpenClickDisplayNames();
+
+        return;
+    }
 	
     reloadReservationXMLDocSetReservationPropertiesListOrPrint("list") // Reservation.js
 	

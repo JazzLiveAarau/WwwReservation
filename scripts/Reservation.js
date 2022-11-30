@@ -28,7 +28,7 @@ var g_all_selected_tables = null;
 // Array of selected seats
 var g_all_selected_seats = null;
 
-// Modal popup window
+// Modal popup window. Instance of ReservationModalPopup
 var g_modal_popup_window = null;
 
 // window.sessionStorage keys
@@ -437,6 +437,8 @@ function mainSearchReservation(i_add_to_xml_file_name)
 	 
     removeElementsForSearchPage();
 
+    replaceImageListReservationsToDisplayNames();
+
     g_modal_popup_window = new ReservationModalPopup();
 	
 } // mainSearchReservation
@@ -447,8 +449,8 @@ function removeElementsForSearchPage()
     removeElement("delete_reservation_mode");
 	removeElement("id_text_image_delete_reservation");	
     // Already removed removeElement("buttonEventList");	
-    removeElement("button_list_reservations");
-    removeElement("id_text_image_reservation_list");
+    //Redefined to Display names (Namen zeigen) removeElement("button_list_reservations");
+    //Redefined to Display names (Namen zeigen) removeElement("id_text_image_reservation_list");
     removeElement("button_print_reservations");
     removeElement("id_text_image_reservation_print");
     removeElement("button_init_reservation");
@@ -459,6 +461,19 @@ function removeElementsForSearchPage()
     // Not yet created removeElement("id_dropdown_concerts");	
 	
 } // removeElementsForSearchPage
+
+function replaceImageListReservationsToDisplayNames()
+{
+    var id_image = 'id_text_image_reservation_list';
+
+    var el_image = document.getElementById(id_image);
+
+    el_image.setAttribute('href', 'text_reservation_display.png');
+ 
+
+    // xlink:href="text_reservation_list.png"
+
+} // replaceImageListReservationsToDisplayNames
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Main Functions //////////////////////////////////////////////

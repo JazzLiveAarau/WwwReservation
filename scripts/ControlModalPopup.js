@@ -1,5 +1,5 @@
 // File: ControlModalPopup.js
-// Date: 2022-05-09
+// Date: 2022-11-30
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -59,11 +59,22 @@ class ReservationModalPopup
     
     } // constructor
 
+    // Set the content of the modal popup window at click of Display Names (Namen zeigen)
+    setContentOpenClickDisplayNames()
+    {
+        var table_number = '11';
+        
+        var html_str = ReservationModalPopup.getTableHtmlString(table_number);
+
+        this.m_el_div_text.innerHTML = html_str;
+
+        this.m_el_div_container.style.display = 'block';
+
+    } // setContentOpenClickDisplayNames
+
     // Set the content of the modal popup window at click of seat
     setContentOpenClickSeat(i_table_number)
     {
-        //QQ var html_str = 'User clicked seat at table ' + i_table_number;
-
         var html_str = ReservationModalPopup.getTableHtmlString(i_table_number);
 
         this.m_el_div_text.innerHTML = html_str;
@@ -75,9 +86,9 @@ class ReservationModalPopup
     // Set the content of the modal popup window for mouse over seat
     setContentOpenOverSeat(i_table_number)
     {
-        var html_str = 'Mouse over seat at table ' + i_table_number;
+        // var html_str = 'Mouse over seat at table ' + i_table_number;
 
-        this.m_el_div_text.innerHTML = html_str;
+        // this.m_el_div_text.innerHTML = html_str;
 
         // this.m_el_div_container.style.display = 'block';
 
@@ -472,7 +483,6 @@ class ReservationModalPopup
     {
         var ret_col_html = '';
 
-        //QQQ ret_col_html = ret_col_html + '<td width= "' + i_width + '" align= "center" colspan="2" style="border:none">';
         ret_col_html = ret_col_html + '<td  align= "center" colspan="2" style="border:none">';
 
         ret_col_html = ret_col_html + i_text;
