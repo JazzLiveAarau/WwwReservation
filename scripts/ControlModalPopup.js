@@ -1,5 +1,5 @@
 // File: ControlModalPopup.js
-// Date: 2022-11-30
+// Date: 2022-12-01
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -15,9 +15,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Class that creates a modal popup window
-// The code that will be generated is 
-// Compulsary input is the identity of the modal window and the container 
-// (normally a <div> element), where the modal window shall be placed 
 // Here is a sample how an object of the class can be created:
 // var modal_popup_window = new ReservationModalPopup()
 class ReservationModalPopup 
@@ -46,12 +43,6 @@ class ReservationModalPopup
         // The text element for the content <div>
         this.m_el_div_text = null;
 
-        // The width of the modal window
-        this.m_width = '';
-
-        // The height of the modal window
-        this.m_height = '';
-
         // Initialization
         // ==============        
 
@@ -62,27 +53,7 @@ class ReservationModalPopup
     // Set the content of the modal popup window at click of Display Names (Namen zeigen)
     setContentOpenClickDisplayNames()
     {
-        var html_str = '';
-
-        var n_rows = ReservationModalPopup.getNumberOfTableRows();
-
-        for (var row_number=1; row_number <= n_rows; row_number++)
-        {
-            // style="border-collapse:collapse; float:left; margin-left:10px" 
-            html_str = html_str + '<div style="clear:both; padding-bottom:30px; overflow:hidden ">';
-
-            var table_numbers = ReservationModalPopup.getTableRowNumbersAsStrings(row_number);
-
-            for (var table_number=1; table_number <= table_numbers.length; table_number++)
-            {
-                var table_number_str = row_number.toString() + table_number.toString();
-
-                html_str = html_str + ReservationModalPopup.getTableHtmlString(table_number_str);
-
-            }
-
-            html_str = html_str + '</div>';
-        }
+        var html_str = ReservationModalPopup.getTablesNamesHtmlString();
 
         this.m_el_div_text.innerHTML = html_str;
 
@@ -90,27 +61,35 @@ class ReservationModalPopup
 
     } // setContentOpenClickDisplayNames
 
-    // Set the content of the modal popup window at click of seat
-    setContentOpenClickSeat(i_table_number)
+    // Get the HTML string with names for all the tables.
+    static getTablesNamesHtmlString()
     {
-        var html_str = ReservationModalPopup.getTableHtmlString(i_table_number);
+        var ret_html_str = '';
 
-        this.m_el_div_text.innerHTML = html_str;
+        var n_rows = ReservationModalPopup.getNumberOfTableRows();
 
-        this.m_el_div_container.style.display = 'block';
+        for (var row_number=1; row_number <= n_rows; row_number++)
+        {
+            // style="border-collapse:collapse; float:left; margin-left:10px" 
+            ret_html_str = ret_html_str + '<div style="clear:both; padding-bottom:30px; overflow:hidden ">';
 
-    } // setContentOpenClickSeat
+            var table_numbers = ReservationModalPopup.getTableRowNumbersAsStrings(row_number);
 
-    // Set the content of the modal popup window for mouse over seat
-    setContentOpenOverSeat(i_table_number)
-    {
-        // var html_str = 'Mouse over seat at table ' + i_table_number;
+            for (var table_number=1; table_number <= table_numbers.length; table_number++)
+            {
+                var table_number_str = row_number.toString() + table_number.toString();
 
-        // this.m_el_div_text.innerHTML = html_str;
+                ret_html_str = ret_html_str + ReservationModalPopup.getTableHtmlString(table_number_str);
 
-        // this.m_el_div_container.style.display = 'block';
+            } // table_number
 
-    } // setContentOpenOverSeat
+            ret_html_str = ret_html_str + '</div>';
+
+        } // row_number
+
+        return ret_html_str;
+
+    } // getTablesNamesHtmlString
 
     // Close the modal popup window
     close()

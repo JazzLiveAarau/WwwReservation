@@ -1250,14 +1250,6 @@ function EventMouseDownAdministrator(i_table_number, i_seat_char)
 		return;
 	}
 
-    if (g_for_web_page_search == "true")
-    {
-
-        g_modal_popup_window.setContentOpenClickSeat(i_table_number);
-
-        return;
-    }
-
 	var seat_free = seatIsFree(i_table_number, i_seat_char);
 	
 	if ("false" == seat_free)
@@ -1435,19 +1427,9 @@ function endDeleteMode()
 	
 } // endDeleteMode
 
-
 // Event: User moved the cursor over the circle
 function EventMouseOver(i_table_number, i_seat_char)
 {
-
-    if (g_for_web_page_search == "true")
-    {
-
-        g_modal_popup_window.setContentOpenOverSeat(i_table_number);
-
-        return;
-    }
-
 	//alert("Table " + i_table_number + " Seat " + i_seat_char);
 	
 } // EventMouseOver
