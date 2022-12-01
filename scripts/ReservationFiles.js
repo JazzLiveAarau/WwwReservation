@@ -989,10 +989,12 @@ function openPageReservationPrint()
         alert(g_error_no_reserved_seats_no_reservation_cards);
         return;
     }
-	
-	all_reservation_cards_str = all_reservation_cards_str + addNewPage(); // New XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-	var name_seat_table = getNameSeatTableHtml();
+	//QQQvar name_seat_table = getNameSeatTableHtml();
+
+    //TODO all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
+
+    var name_seat_table = ''; // TODO DisplayNames.getHtmlString();
 	
 	all_reservation_cards_str = all_reservation_cards_str + name_seat_table;
 	
@@ -1184,13 +1186,14 @@ function addStartTable()
     return '<table>';
 	
 } // addStartTable
-
+/*QQQ
 // Returns start for table name-seat
 function addNameSeatStartTable()
 {
     return '<table class= "t_table">';
 	
 } // addNameSeatStartTable
+QQQ*/
 
 // Returns end table
 function addEndTable()
@@ -1220,12 +1223,14 @@ function addStartColumn()
 	
 } // addStartColumn
 
+/*QQQQ
 // Returns start column for name-seat table
 function addNameSeatStartColumn()
 {
     return '<td class= "r_name_seat">';
 	
 } // addStartColumn
+QQQ*/
 
 // Returns end column
 function addEndColumn()
@@ -1297,6 +1302,7 @@ function getArrayReservationCards(i_case)
 ///////////////////////// Start Print Name-Seat-Table /////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+/*QQQQQ
 // Returns a name-seat-table as HTML <table>
 // 1. Get table numbers for column left (left_tables), mid (mid_tables) and right (right_tables), 
 //    e.g. left_tables = 11, 21, 31, 41
@@ -1394,7 +1400,9 @@ function getNameSeatTableHtml()
 	return ret_name_seat_html;
 	
 } // getNameSeatTableHtml
+QQQ*/
 
+/*QQQQ
 // Returns an array of names and seats for a given array of tables defining a column
 // Input array i_column_tables e.g. for the left column is 11, 21, 31 and 41
 // 1. Set index_column_output = 0
@@ -1443,8 +1451,9 @@ function getColumnSeats(i_column_tables)
 	return ret_column_seats;
 	
 } // getColumnSeats
+QQQ*/
 
-
+/*QQQQQ
 // Returns an array of reservation names (table_number_array)and seats (seat_char_array) for a given table number
 // 1. Get arrays with all available table numbers (table_number_array) and seat characters (seat_char_array).
 //    Calls of getAvailableSeatsArray and getAvailableSeatsArray (with e.g. 89 elements)
@@ -1496,7 +1505,9 @@ function getReservationsTable(i_table_number)
 	return ret_reservations_table;
 	
 } // getReservationsTable
+QQQ*/
 
+/*QQQQ
 // Returns (column of) left tables
 // Hardcoded, but can be created using coordinates of the tables
 function getLeftTables()
@@ -1539,6 +1550,8 @@ function getRightTables()
 	return ret_right_tables;
 	
 } // getRightTables
+
+QQQ*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Print Name-Seat-Table ///////////////////////////////////////
