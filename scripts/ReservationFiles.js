@@ -990,11 +990,11 @@ function openPageReservationPrint()
         return;
     }
 
-	//QQQvar name_seat_table = getNameSeatTableHtml();
-
     //TODO all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
 
-    var name_seat_table = ''; // TODO DisplayNames.getHtmlString();
+    var name_seat_table = ''; // TODO DisplayNames.getPrintHtmlString();
+
+    // console.log(name_seat_table);
 	
 	all_reservation_cards_str = all_reservation_cards_str + name_seat_table;
 	

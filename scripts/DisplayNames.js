@@ -1,5 +1,5 @@
 // File: DisplayNames.js
-// Date: 2022-12-01
+// Date: 2022-12-02
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -16,9 +16,10 @@
 // concert in a modal window or a print page
 class DisplayNames
 {
-    //////////////////////////////////////// Start Main Function //////////////////////////
+    // Main member functions
+    // =====================
 
-    // Get the HTML string with names for all the tables.
+    // Get the modal window HTML string with names for all the tables.
     static getHtmlString()
     {
         var ret_html_str = '';
@@ -27,9 +28,8 @@ class DisplayNames
 
         for (var row_number=1; row_number <= n_rows; row_number++)
         {
-            // style="border-collapse:collapse; float:left; margin-left:10px" 
             ret_html_str = ret_html_str + '<div style="clear:both; padding-bottom:30px; overflow:hidden ">';
-
+ 
             var table_numbers = DisplayNames.getTableRowNumbersAsStrings(row_number);
 
             for (var table_number=1; table_number <= table_numbers.length; table_number++)
@@ -48,7 +48,49 @@ class DisplayNames
 
     } // getHtmlString
 
-    //////////////////////////////////////// End Main Function ////////////////////////////
+    // Get the print (A4) HTML string with names for all the tables.
+    static getPrintHtmlString()
+    {
+        var ret_print_str = '';
+
+        ret_print_str = ret_print_str + '<div border= "1px"  style="width:1000px" >';
+
+        ret_print_str = ret_print_str + DisplayNames.getHtmlString();
+
+        ret_print_str = ret_print_str + '</div>';
+
+        return ret_print_str;
+
+    } // getPrintHtmlString
+
+    //////////////////////////////////////// End Main Functions ////////////////////////////
+
+    // Returns the seat width, the column width for one character
+    static getSeatWidth()
+    {
+        return '13px';
+
+    } // getSeatWidth
+
+    // Returns the name column width
+    static getNameWidth()
+    {
+        return '67px';
+        
+    } // getNameWidth
+
+    // Returns the table column width, i.e. the mid part of the table column
+    static getTableWidth()
+    {
+        return '67px';
+        
+    } // getTableWidth
+
+    static getEmptyColumnString()
+    {
+        return '&nbsp;' + '<br>' + '&nbsp;';
+
+    } // getEmptyColumnString
 
     // Returns the length of the table/seat array used by in the loop creating the table
     static getEndIndexForTableLoop(i_reservation_table_array_left, i_reservation_table_array_right)
@@ -99,13 +141,17 @@ class DisplayNames
 
         var length_right = reservation_table_array_right.length;
 
-        if (length_left == length_right)
+        if (length_left == length_right && 'top' == i_top_bottom_case)
         {
-            return ret_top_bottom_html_str;
+            return DisplayNames.getRowTopTableHtmlString('&nbsp;');
+        }
+        else if (length_left == length_right && 'bottom' == i_top_bottom_case)
+        {
+            return DisplayNames.getRowBottomTableHtmlString('&nbsp;');
         }
         else if (length_left > length_right && 'top' == i_top_bottom_case)
         {
-            return ret_top_bottom_html_str;
+            return DisplayNames.getRowTopTableHtmlString('&nbsp;');
         }
         else if (length_left < length_right && 'bottom' == i_top_bottom_case)
         {
@@ -135,7 +181,9 @@ class DisplayNames
             top_bottom_seat = reservation_table_array_right_seat[end_index];
         }
 
-        ret_top_bottom_html_str = DisplayNames.getRowTopBottomHtmlString(top_bottom_seat, top_bottom_name);
+        //Old ret_top_bottom_html_str = DisplayNames.getRowTopBottomHtmlString(top_bottom_seat, top_bottom_name);
+
+        ret_top_bottom_html_str = DisplayNames.getRowsTableBottom(top_bottom_seat, top_bottom_name);
 
         return ret_top_bottom_html_str;
 
@@ -163,9 +211,10 @@ class DisplayNames
         var length_right = reservation_table_array_right.length;
 
 
-        ret_html = ret_html + '<table border= "1" width= "31%" style="border-collapse:collapse; float:left; margin-left:10px" >';
+        //2022-12-02 ret_html = ret_html + '<table border= "1" width= "31%" style="border-collapse:collapse; float:left; margin-left:10px" >';
+        ret_html = ret_html + '<table  style= "width:248px; float:left; margin-left:10px" >';
 
-        var empty_column = '&nbsp;' + '<br>' + '&nbsp;'
+        var empty_column = DisplayNames.getEmptyColumnString();
 
         ret_html = ret_html + DisplayNames.getTopBottomRowHtmlString(i_table_number, 'top');
 
@@ -212,26 +261,35 @@ class DisplayNames
 
     } // getTableHtmlString
 
+    static getTableBottomHtmlString(i_seat_bottom)
+    {
+        var ret_table_bottom = '';
+
+
+        return ret_table_bottom;
+
+    } // getTableBottomHtmlString
+
     // Get the HTML string for the end seats of the table
     static getRowTopBottomHtmlString(i_seat_2, i_name_2)
     {
         var ret_row_html = '';
 
-        var seat_width = '11px';
+        var seat_width = DisplayNames.getSeatWidth();
 
-        var name_width = '63px';
+        var name_width = DisplayNames.getNameWidth();
 
-        var empty_column = '&nbsp;' + '<br>' + '&nbsp;'
+        var empty_column = DisplayNames.getEmptyColumnString();
 
         ret_row_html = ret_row_html + '<tr>';
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnSpanTwoHtmlString(empty_column);
+        ret_row_html = ret_row_html + DisplayNames.getColumnTableHtmlString(empty_column);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(seat_width, i_seat_2);
+        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(seat_width, i_seat_2);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(name_width, i_name_2);
+        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_2);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnSpanTwoHtmlString(empty_column);
+        ret_row_html = ret_row_html + DisplayNames.getColumnTableHtmlString(empty_column);
 
         ret_row_html = ret_row_html + '</tr>';
 
@@ -239,27 +297,106 @@ class DisplayNames
 
     } // getRowTopBottomHtmlString
 
+    // Get the HTML string for two rows deining the table bottom part
+    static getRowsTableBottom(i_seat_bottom, i_name_bottom)
+    {
+        var ret_rows_html = '';
+
+        var seat_width = DisplayNames.getSeatWidth();
+
+        var name_width = DisplayNames.getNameWidth();
+
+        var tablewidth = DisplayNames.getTableWidth();
+
+        ret_rows_html = ret_rows_html + DisplayNames.getRowBottomTableHtmlString(i_seat_bottom);
+
+        ret_rows_html = ret_rows_html + '<tr>';
+
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptySeatHtmlString(seat_width);
+
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_bottom);
+
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptySeatHtmlString(seat_width);
+
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_rows_html = ret_rows_html + '</tr>';
+
+        return ret_rows_html;
+
+    } // getRowsTableBottom
+
+    static getRowTopTableHtmlString(i_seat_bottom)
+    {
+        var ret_row_bottom_html = '';
+
+        var seat_width = DisplayNames.getSeatWidth();
+
+        ret_row_bottom_html = ret_row_bottom_html + '<tr>';
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnTopHtmlString(seat_width, 'l');
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnTopSeatHtmlString(i_seat_bottom);
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnTopHtmlString(seat_width, 'r');
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_row_bottom_html = ret_row_bottom_html + '</tr>';
+
+        return ret_row_bottom_html;
+     
+    } // getRowTopTableHtmlString
+
+    static getRowBottomTableHtmlString(i_seat_bottom)
+    {
+        var ret_row_bottom_html = '';
+
+        var seat_width = DisplayNames.getSeatWidth();
+
+        ret_row_bottom_html = ret_row_bottom_html + '<tr>';
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnBottomHtmlString(seat_width, 'l');
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnBottomSeatHtmlString(i_seat_bottom);
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnBottomHtmlString(seat_width, 'r');
+
+        ret_row_bottom_html = ret_row_bottom_html + DisplayNames.getColumnEmptyNameHtmlString();
+
+        ret_row_bottom_html = ret_row_bottom_html + '</tr>';
+
+        return ret_row_bottom_html;
+     
+    } // getRowBottomTableHtmlString
+
     // Get the HTML string for the side seats of the table
     // The two mid columns get together and have no boundaries representing the table
-    static getRowColSpanTwoHtmlString(i_seat_1, i_name_1, i_name_2, i_seat_3, i_name_3)
+    static getRowColSpanTwoHtmlString(i_seat_left, i_name_left, i_text_table, i_seat_right, i_name_right)
     {
         var ret_row_html = '';
 
-        var seat_width = '11px';
+        var seat_width = DisplayNames.getSeatWidth();
 
-        var name_width = '63px';
+        var name_width = DisplayNames.getNameWidth();
 
         ret_row_html = ret_row_html + '<tr>';
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(name_width, i_name_1);
+        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_left);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(seat_width, i_seat_1);
+        ret_row_html = ret_row_html + DisplayNames.getColumnSeatHtmlString(seat_width, i_seat_left, 'l');
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnSpanTwoHtmlString(i_name_2);
+        ret_row_html = ret_row_html + DisplayNames.getColumnTableHtmlString(i_text_table);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(seat_width, i_seat_3);
+        ret_row_html = ret_row_html + DisplayNames.getColumnSeatHtmlString(seat_width, i_seat_right, 'r');
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnHtmlString(name_width, i_name_3);
+        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_right);
 
         ret_row_html = ret_row_html + '</tr>';
 
@@ -267,12 +404,12 @@ class DisplayNames
 
     } // getRowColSpanTwoHtmlString
 
-    // Get the column HTML string
-    static getColumnHtmlString(i_width, i_text)
+    // Get the column name HTML string
+    static getColumnNameHtmlString(i_width, i_text)
     {
         var ret_col_html = '';
 
-        ret_col_html = ret_col_html + '<td width= "' + i_width + '" align= "center">';
+        ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border: 1px solid black; border-radius: 10px;" align= "center">';
 
         ret_col_html = ret_col_html + i_text;
 
@@ -280,17 +417,126 @@ class DisplayNames
 
         return ret_col_html;
 
-    } // getColumnHtmlString
+    } // getColumnNameHtmlString
+
+    // Get the empty column name HTML string
+    static getColumnEmptyNameHtmlString()
+    {
+        var ret_col_html = '';
+
+        ret_col_html = ret_col_html + '<td style= "width:' + DisplayNames.getNameWidth() + '; border: none;" align= "center">';
+
+        ret_col_html = ret_col_html + DisplayNames.getEmptyColumnString();
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnEmptyNameHtmlString
+
+    static getColumnSeatHtmlString(i_width, i_text, i_l_r_case)
+    {
+        var ret_col_html = '';
+
+        if (i_l_r_case == 'l')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-left: 3px solid black;" align= "center">';
+
+        }
+        else if (i_l_r_case == 'r')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-right: 3px solid black;" align= "center">';
+        }
+        else
+        {
+            return ret_col_html;
+        }
+
+        ret_col_html = ret_col_html + i_text;
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnSeatHtmlString
+
+    static getColumnEmptySeatHtmlString(i_width)
+    {
+        var ret_col_html = '';
+
+        ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border: none;" align= "center">';
+
+        ret_col_html = ret_col_html + '&nbsp;';
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnEmptySeatHtmlString
+
+    static getColumnTopHtmlString(i_width, i_l_r_case)
+    {
+        var ret_col_html = '';
+
+        if (i_l_r_case == 'l')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-left: 3px solid black; border-top: 3px solid black;" align= "center">';
+
+        }
+        else if (i_l_r_case == 'r')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-right: 3px solid black; border-top: 3px solid black" align= "center">';
+        }
+        else
+        {
+            return ret_col_html;
+        }
+
+        ret_col_html = ret_col_html + '&nbsp;';
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnTopHtmlString
+
+    static getColumnBottomHtmlString(i_width, i_l_r_case)
+    {
+        var ret_col_html = '';
+
+        if (i_l_r_case == 'l')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-left: 3px solid black; border-bottom: 3px solid black;" align= "center">';
+
+        }
+        else if (i_l_r_case == 'r')
+        {
+            ret_col_html = ret_col_html + '<td style= "width:' + i_width + '; border-right: 3px solid black; border-bottom: 3px solid black" align= "center">';
+        }
+        else
+        {
+            return ret_col_html;
+        }
+
+        ret_col_html = ret_col_html + '&nbsp;';
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnBottomHtmlString
 
     // Get the column HTML string where two column strings get together.
     // This column string is used for rows with left and right side seats
     // This column represents the table itself. It has no boundaries
     // The width of this column is determined by surrounding columns
-    static getColumnSpanTwoHtmlString(i_text)
+    static getColumnTableHtmlString(i_text)
     {
         var ret_col_html = '';
 
-        ret_col_html = ret_col_html + '<td  align= "center" colspan="2" style="border:none">';
+        //????ret_col_html = ret_col_html + '<td  align= "center" colspan="2" style="border:none; width:' + DisplayNames.getTableWidth() +'">';
+
+        ret_col_html = ret_col_html + '<td  align= "center" style="border:none; width:' + DisplayNames.getTableWidth() +'">';
 
         ret_col_html = ret_col_html + i_text;
 
@@ -298,7 +544,35 @@ class DisplayNames
 
         return ret_col_html;
 
-    } // getColumnSpanTwoHtmlString
+    } // getColumnTableHtmlString
+
+    static getColumnTopSeatHtmlString(i_seat_bottom)
+    {
+        var ret_col_html = '';
+
+        ret_col_html = ret_col_html + '<td  align= "center" style="border-top: 3px solid black; width:' + DisplayNames.getTableWidth() +'">';
+
+        ret_col_html = ret_col_html + i_seat_bottom;
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnTopSeatHtmlString    
+
+    static getColumnBottomSeatHtmlString(i_seat_bottom)
+    {
+        var ret_col_html = '';
+
+        ret_col_html = ret_col_html + '<td  align= "center" style="border-bottom: 3px solid black; width:' + DisplayNames.getTableWidth() +'">';
+
+        ret_col_html = ret_col_html + i_seat_bottom;
+
+        ret_col_html = ret_col_html + '</td>';
+
+        return ret_col_html;
+
+    } // getColumnBottomSeatHtmlString    
 
     // Returns start index for the input table number
     static getTableStartIndex(i_table_number)
