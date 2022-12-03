@@ -437,7 +437,7 @@ function mainSearchReservation(i_add_to_xml_file_name)
 	 
     removeElementsForSearchPage();
 
-    replaceImageListReservationsToDisplayNames();
+    replaceImagePrintReservationsToDisplayNames();
 
     g_modal_popup_window = new ReservationModalPopup();
 	
@@ -449,10 +449,10 @@ function removeElementsForSearchPage()
     removeElement("delete_reservation_mode");
 	removeElement("id_text_image_delete_reservation");	
     // Already removed removeElement("buttonEventList");	
-    //Redefined to Display names (Namen zeigen) removeElement("button_list_reservations");
-    //Redefined to Display names (Namen zeigen) removeElement("id_text_image_reservation_list");
-    removeElement("button_print_reservations");
-    removeElement("id_text_image_reservation_print");
+    // 2022-12-03 Keep for search removeElement("button_list_reservations");
+    // 2022-12-03 Keep for search removeElement("id_text_image_reservation_list");
+    //Redefined to Display names (Namen zeigen) removeElement("button_print_reservations");
+    //Redefined to Display names (Namen zeigen) removeElement("id_text_image_reservation_print");
     removeElement("button_init_reservation");
     removeElement("id_text_add_reservation_text");
     removeElement("button_save_reservation");
@@ -462,18 +462,16 @@ function removeElementsForSearchPage()
 	
 } // removeElementsForSearchPage
 
-function replaceImageListReservationsToDisplayNames()
+// Replace the image (caption) for the button print reservation cards
+function replaceImagePrintReservationsToDisplayNames()
 {
-    var id_image = 'id_text_image_reservation_list';
+    var id_image = 'id_text_image_reservation_print';
 
     var el_image = document.getElementById(id_image);
 
     el_image.setAttribute('href', 'text_reservation_display.png');
- 
 
-    // xlink:href="text_reservation_list.png"
-
-} // replaceImageListReservationsToDisplayNames
+} // replaceImagePrintReservationsToDisplayNames
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Main Functions //////////////////////////////////////////////

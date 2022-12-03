@@ -258,13 +258,6 @@ function mouseDownListReservations(  )
 		return;
 	}
 
-    if (g_for_web_page_search == "true")
-    {
-        g_modal_popup_window.setContentOpenClickDisplayNames();
-
-        return;
-    }
-	
     reloadReservationXMLDocSetReservationPropertiesListOrPrint("list") // Reservation.js
 	
 } // mouseDownListReservations
@@ -352,6 +345,13 @@ function mouseDownPrintReservations(  )
 		alert("mouseDownPrintReservations User is not an administrator");
 		return;
 	}
+
+    if (g_for_web_page_search == "true")
+    {
+        g_modal_popup_window.setContentOpenClickDisplayNames();
+
+        return;
+    }
 	
     reloadReservationXMLDocSetReservationPropertiesListOrPrint("print") // Reservation.js
 	
