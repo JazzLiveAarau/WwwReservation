@@ -1,5 +1,5 @@
 // File: DisplayNames.js
-// Date: 2022-12-02
+// Date: 2022-12-03
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -181,9 +181,14 @@ class DisplayNames
             top_bottom_seat = reservation_table_array_right_seat[end_index];
         }
 
-        //Old ret_top_bottom_html_str = DisplayNames.getRowTopBottomHtmlString(top_bottom_seat, top_bottom_name);
-
-        ret_top_bottom_html_str = DisplayNames.getRowsTableBottom(top_bottom_seat, top_bottom_name);
+        if ('bottom' == i_top_bottom_case)
+        {
+            ret_top_bottom_html_str = DisplayNames.getRowsTableBottom(top_bottom_seat, top_bottom_name);
+        }
+        else
+        {
+            ret_top_bottom_html_str = DisplayNames.getRowsTableTop(top_bottom_seat, top_bottom_name);
+        }
 
         return ret_top_bottom_html_str;
 
@@ -270,34 +275,39 @@ class DisplayNames
 
     } // getTableBottomHtmlString
 
-    // Get the HTML string for the end seats of the table
-    static getRowTopBottomHtmlString(i_seat_2, i_name_2)
+    // Get the HTML string for two rows defining the table bottom part
+    // This function is not yet tested
+    static getRowsTableTop(i_seat_top, i_name_top)
     {
-        var ret_row_html = '';
+        var ret_rows_html = '';
 
         var seat_width = DisplayNames.getSeatWidth();
 
         var name_width = DisplayNames.getNameWidth();
 
-        var empty_column = DisplayNames.getEmptyColumnString();
+        var tablewidth = DisplayNames.getTableWidth();
 
-        ret_row_html = ret_row_html + '<tr>';
+        ret_rows_html = ret_rows_html + DisplayNames.getRowTopTableHtmlString(i_seat_top);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnTableHtmlString(empty_column);
+        ret_rows_html = ret_rows_html + '<tr>';
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(seat_width, i_seat_2);
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptyNameHtmlString();
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_2);
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptySeatHtmlString(seat_width);
 
-        ret_row_html = ret_row_html + DisplayNames.getColumnTableHtmlString(empty_column);
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnNameHtmlString(name_width, i_name_top);
 
-        ret_row_html = ret_row_html + '</tr>';
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptySeatHtmlString(seat_width);
 
-        return ret_row_html;
+        ret_rows_html = ret_rows_html + DisplayNames.getColumnEmptyNameHtmlString();
 
-    } // getRowTopBottomHtmlString
+        ret_rows_html = ret_rows_html + '</tr>';
 
-    // Get the HTML string for two rows deining the table bottom part
+        return ret_rows_html;
+
+    } // getRowsTableTop
+
+    // Get the HTML string for two rows defining the table bottom part
     static getRowsTableBottom(i_seat_bottom, i_name_bottom)
     {
         var ret_rows_html = '';
