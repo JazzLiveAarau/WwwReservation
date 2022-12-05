@@ -1023,6 +1023,17 @@ function mainReservationCards()
 } // mainReservationCards
 
 // Add all reservation cards as HTML tables
+// 1. Get arrays with reservation cards data. Calls of getArrayReservationCards
+// 2. Loop for all reservation cards
+// 2.1 Add HTML <table> string at start. Call of addStartTable
+// 2.2 Add rear empty row (page) of the folded card. Call of addEmptyRow
+// 2.3 Add front row (page) with reservation data. Call of AddRow
+// 2.4 Add end of table and new page if the page is full.
+//     Call of addEndTable, addNewPage and addStartTable
+// 3. Fill the page with empty (JAZZ live Aarau) cards. Call of getEmptyCardRows
+// 4. Add end of table. Call of addEndTable
+// 5. If less than one empty (JAZZ live AARAU) row add full page with empty rows
+//    Call of getEmptyCardRows
 function getAllReservationCardsHtml()
 {
     // Return string with all reservation cards data in HTML format 
@@ -1039,6 +1050,8 @@ function getAllReservationCardsHtml()
 	var n_rows_per_page = 10;
 	var row_page = 1;
 	var n_columns = 3;
+
+    var n_empty_card_rows = -12345;
 		
     ret_all_reservation_cards_str = ret_all_reservation_cards_str + addStartTable();
 	
@@ -1062,13 +1075,54 @@ function getAllReservationCardsHtml()
 			
             row_page = 1;
         }	
+
+        n_empty_card_rows = parseInt((n_rows_per_page - row_page)/2.0) + 1;
     }
+
+    var b_new_page = false;
+
+    ret_all_reservation_cards_str = ret_all_reservation_cards_str + getEmptyCardRows(n_empty_card_rows, b_new_page);
 	
     ret_all_reservation_cards_str = ret_all_reservation_cards_str + addEndTable();
+
+    if (n_empty_card_rows < 1)
+    {
+        b_new_page = true;
+
+        ret_all_reservation_cards_str = ret_all_reservation_cards_str + getEmptyCardRows(5, b_new_page);
+    }
 	
     return ret_all_reservation_cards_str;	
 
 } // getAllReservationCardsHtml
+
+// Get empty (JAZZ live AARAU) card rows
+function getEmptyCardRows(i_n_empty_card_rows, i_b_new_page)
+{
+    var ret_card_row = '';
+
+    if (i_b_new_page)
+    {
+        ret_card_row = ret_card_row + addNewPage();
+
+        ret_card_row = ret_card_row + addStartTable();
+    }
+
+    for (var card_row= 1; card_row <= i_n_empty_card_rows; card_row++)
+    {
+        ret_card_row = ret_card_row + addEmptyRow();
+
+        ret_card_row = ret_card_row + addJazzLiveAarauRow();
+    }
+
+    if (i_b_new_page)
+    {
+        ret_card_row = ret_card_row + addEndTable();
+    }
+
+    return ret_card_row;
+
+} // getEmptyCardRows
 
 
 // Add new page
@@ -1078,7 +1132,8 @@ function addNewPage()
 	
 } // addNewPage
 
-// Returns one row
+// Returns one row (front page of folded card) with reservation data
+// 
 function addRow(i_index_card_start, i_names_array, i_seats_array)
 {
     var ret_row = '';
@@ -1115,12 +1170,68 @@ function addColumn(i_index_card, i_names_array, i_seats_array)
         ret_column = ret_column + addDateTableSeat(i_seats_array[i_index_card]);
 	
     }
+    else
+    {
+        ret_column = ret_column + addContentJazzLiveAarauColumn();
+    }
 
     ret_column = ret_column + addEndColumn();	
 	
     return ret_column;
 	
 } // addColumn
+
+function addJazzLiveAarauRow()
+{
+    var ret_row = '';
+	
+    ret_row = ret_row + addStartRow();
+	
+    ret_row = ret_row + addJazzLiveAarauColumn();
+	
+	ret_row = ret_row + addJazzLiveAarauColumn();
+	
+	ret_row = ret_row + addJazzLiveAarauColumn();
+	
+    ret_row = ret_row + addEndRow();
+	
+    return ret_row;
+	
+} // addJazzLiveAarauRow
+
+// Returns one column element with the text JAZZ live AARAU
+function addJazzLiveAarauColumn()
+{
+	var ret_column = '';
+
+    ret_column = ret_column + addStartColumn();	
+	
+    ret_column = ret_column + addJazzLiveAarau();
+
+    ret_column = ret_column + addName("&nbsp;");	
+	
+    ret_column = ret_column + addDateTableSeat("&nbsp;");
+    
+    ret_column = ret_column + addEndColumn();	
+	
+    return ret_column;
+	
+} // addJazzLiveAarauColumn
+
+// Returns one column element with the text JAZZ live AARAU
+function addContentJazzLiveAarauColumn()
+{
+	var ret_column = '';
+	
+    ret_column = ret_column + addJazzLiveAarau();
+
+    ret_column = ret_column + addName("&nbsp;");	
+	
+    ret_column = ret_column + addDateTableSeat("&nbsp;");
+	
+    return ret_column;
+	
+} // addContentJazzLiveAarauColumn
 
 // Returns one empty row, i.e. with empty columns
 function addEmptyRow()
