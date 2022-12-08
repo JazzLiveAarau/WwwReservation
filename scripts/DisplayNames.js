@@ -1,5 +1,5 @@
 // File: DisplayNames.js
-// Date: 2022-12-03
+// Date: 2022-12-08
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -53,7 +53,7 @@ class DisplayNames
     {
         var ret_print_str = '';
 
-        ret_print_str = ret_print_str + '<div border= "1px"  style="width:1000px" >';
+        ret_print_str = ret_print_str + '<div border= "1px"  style="width:1000px; margin-top: 2cm; margin-left: 4cm;" >';
 
         ret_print_str = ret_print_str + DisplayNames.getHtmlString();
 

@@ -987,11 +987,9 @@ function openPageReservationPrint()
         return;
     }
 
-    //TODO all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
+    //Implement later TODO all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
 
-    var name_seat_table = ''; // TODO DisplayNames.getPrintHtmlString();
-
-    // console.log(name_seat_table);
+    var name_seat_table = ''; // Implement later TODO DisplayNames.getPrintHtmlString();
 	
 	all_reservation_cards_str = all_reservation_cards_str + name_seat_table;
 	
@@ -1318,7 +1316,12 @@ function addEndRow()
 // Returns start column
 function addStartColumn()
 {
-    return '<td>';
+    return '<td  style= "width: 333px; border: 1px solid black" >';
+
+    // 2022-12-08 
+    // Style for td not defined in ReservationPrint.htm because of
+    // styles set in DisplayNames.js           
+    // return '<td>';
 	
 } // addStartColumn
 
