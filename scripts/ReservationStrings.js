@@ -278,6 +278,11 @@ param_names[92]= "g_error_max_number_seat_reservations_exceeded_close_window";  
 var g_warning_max_number_seat_reservations = "Die Anzahl Reservationen ist limitiert." + "\n" +
                                                     "Die Anzahl Plätze die noch reserviert kann ist ";
 param_names[93]= "g_warning_max_number_seat_reservations";  param_values[93] = "";
+
+var g_warning_max_number_seat_reservations_admin = "Die Anzahl Reservationen ist limitiert." + "\n" +
+                                                    "Bitte keine zusätzliche Reservationen machen." + "\n" +
+                                                    "Anzahl reservierte Plätze über die Grenze ist ";
+param_names[94]= "g_warning_max_number_seat_reservations_admin";  param_values[94] = "";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Titles & Messages ///////////////////////////////////////////

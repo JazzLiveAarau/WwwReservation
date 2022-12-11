@@ -591,7 +591,11 @@ function loadReservationXMLDoc(i_url_file_reservation_concert_xml)
           {
               alert(g_msg_all_available_seats_are_reserved);
           } 
-          else if (number_of_seats_that_can_be_selected <= 0)
+          else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "false")
+          {
+            alert(g_warning_max_number_seat_reservations_admin + (-number_of_seats_that_can_be_selected).toString());
+          }
+          else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "true")
           {
             alert(g_error_max_number_seat_reservations_exceeded_close_window);
           }
