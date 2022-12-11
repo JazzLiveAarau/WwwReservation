@@ -270,7 +270,14 @@ var g_msg_all_available_seats_are_reserved = "Alle Plätze für dieses Konzert s
 												 "Bitte das Fenster schliessen.";
 param_names[91]= "g_msg_all_available_seats_are_reserved";  param_values[91] = "";
 
+var g_error_max_number_seat_reservations_exceeded_close_window = "Die Anzahl Reservationen ist limitiert." + "\n" +
+													"Die freie (weisse) Plätze werden an der Abendkasse verkauft." + "\n" +
+                                                    "Bitte dieses Fenster schliessen.";
+param_names[92]= "g_error_max_number_seat_reservations_exceeded_close_window";  param_values[92] = "";
 
+var g_warning_max_number_seat_reservations = "Die Anzahl Reservationen ist limitiert." + "\n" +
+                                                    "Die Anzahl Plätze die noch reserviert kann ist ";
+param_names[93]= "g_warning_max_number_seat_reservations";  param_values[93] = "";
 	
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Titles & Messages ///////////////////////////////////////////
