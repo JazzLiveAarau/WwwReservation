@@ -262,7 +262,7 @@ var g_bcc_email_address_test = "gunnar@jazzliveaarau.ch";
 param_names[89]= "g_bcc_email_address_test";  param_values[89] = "";
 
 var g_msg_last_seat_that_can_be_reserved = "Die Anzahl Reservationen ist limitiert." + "\n" +
-													"Sie haben den letzen Sitzplatz gewählt." + "\n" 
+													"Sie haben den letzten Sitzplatz gewählt." + "\n" 
 													+ "Bitte die gewählten Plätze jetzt reservieren.";
 param_names[90]= "g_error_max_number_seat_reservations_exceeded";  param_values[90] = "";
 
@@ -276,7 +276,7 @@ var g_error_max_number_seat_reservations_exceeded_close_window = "Die Anzahl Res
 param_names[92]= "g_error_max_number_seat_reservations_exceeded_close_window";  param_values[92] = "";
 
 var g_warning_max_number_seat_reservations = "Die Anzahl Reservationen ist limitiert." + "\n" +
-                                                    "Die Anzahl Plätze die noch reserviert kann ist ";
+                                                    "Die Anzahl Plätze die man noch reservieren kann ist ";
 param_names[93]= "g_warning_max_number_seat_reservations";  param_values[93] = "";
 
 var g_warning_max_number_seat_reservations_admin = "Die Anzahl Reservationen ist limitiert." + "\n" +
