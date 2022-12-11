@@ -369,3 +369,6 @@ FodyWeavers.xsd
 # FTP configuration files
 # ftp-sync.json
 *.json
+
+# For the count of number of source code lines
+/.VSCodeCounter/

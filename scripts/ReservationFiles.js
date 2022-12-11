@@ -987,9 +987,9 @@ function openPageReservationPrint()
         return;
     }
 
-    //Implement later TODO all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
+    all_reservation_cards_str = all_reservation_cards_str + addNewPage(); 
 
-    var name_seat_table = ''; // Implement later TODO DisplayNames.getPrintHtmlString();
+    var name_seat_table = DisplayNames.getPrintHtmlString();
 	
 	all_reservation_cards_str = all_reservation_cards_str + name_seat_table;
 	
