@@ -505,6 +505,12 @@ function twoOrMoreWordsInString(i_string)
 function validEmailAddress(i_email_address)
 {
     var ret_bool_valid = true;
+
+    if (twoOrMoreWordsInString(i_email_address)) // 2022-12-31
+    {
+        ret_bool_valid = false;	
+		return ret_bool_valid;
+    }	
 	
 	var index_pos_end = i_email_address.length;	
     if (index_pos_end <= 5)
