@@ -1308,6 +1308,8 @@ function getConcertTitleText()
 	var concert_year = g_reservations_xml.getElementsByTagName(g_tag_year)[0].childNodes[0].nodeValue; 
 	var concert_band_name = g_reservations_xml.getElementsByTagName(g_tag_band_name)[0].childNodes[0].nodeValue; 
 
+    concert_band_name = replaceInvalidEmailCharacters(concert_band_name);
+
     var concert_text = concert_day + "/" + concert_month + " " + concert_year + " " + concert_band_name;	
 	
 	return concert_text;

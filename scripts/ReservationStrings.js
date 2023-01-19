@@ -574,6 +574,166 @@ function stringContainsIllegalCharacter(i_string, i_string_beschreibung)
 	
 } // stringContainsIllegalCharacter
 
+// Replaces ä, ö, and ü with ae, oe and ue. 
+// These characters are not allowed as email subject
+function replaceInvalidEmailCharacters(i_subject_str)
+{
+    var ret_subject_str = "";
+	
+	for (var index_char = 0; index_char < i_subject_str.length; index_char++)
+	{
+		var current_char = i_subject_str.substring(index_char, index_char + 1);
+
+		if (current_char == " ")
+		{
+			ret_subject_str = ret_subject_str + " ";   // Don't change
+		}
+		else if (current_char == "'")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ʻ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ʼ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ʽ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ʾ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ʿ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ˈ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ˊ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ˋ")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "’")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "\"")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == ",")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "â")
+		{
+			ret_subject_str = ret_subject_str + "a";
+		}
+		else if (current_char == "ā")
+		{
+			ret_subject_str = ret_subject_str + "a";
+		}
+		else if (current_char == "á")
+		{
+			ret_subject_str = ret_subject_str + "a";
+		}
+		else if (current_char == "ê")
+		{
+			ret_subject_str = ret_subject_str + "e";
+		}
+		else if (current_char == "é")
+		{
+			ret_subject_str = ret_subject_str + "e";
+		}
+		else if (current_char == "è")
+		{
+			ret_subject_str = ret_subject_str + "e";
+		}
+		else if (current_char == "ç")
+		{
+			ret_subject_str = ret_subject_str + "c";
+		}
+		else if (current_char == "Ã")
+		{
+			ret_subject_str = ret_subject_str + "A";
+		}
+		else if (current_char == "&")
+		{
+			ret_subject_str = ret_subject_str + "";
+		}
+		else if (current_char == "ä")
+		{
+			ret_subject_str = ret_subject_str + "ae";
+		}
+		else if (current_char == "å")
+		{
+			ret_subject_str = ret_subject_str + "ao";
+		}
+		else if (current_char == "Å")
+		{
+			ret_subject_str = ret_subject_str + "AO";
+		}
+		else if (current_char == "à")
+		{
+			ret_subject_str = ret_subject_str + "a";
+		}
+		else if (current_char == "À")
+		{
+			ret_subject_str = ret_subject_str + "A";
+		}
+		else if (current_char == "ü")
+		{
+			ret_subject_str = ret_subject_str + "ue";
+		}
+		else if (current_char == "ö")
+		{
+			ret_subject_str = ret_subject_str + "oe";
+		}
+		else if (current_char == "ø")
+		{
+			ret_subject_str = ret_subject_str + "oe";
+		}
+		else if (current_char == "Ä")
+		{
+			ret_subject_str = ret_subject_str + "AE";
+		}
+		else if (current_char == "Ü")
+		{
+			ret_subject_str = ret_subject_str + "UE";
+		}
+		else if (current_char == "Ö")
+		{
+			ret_subject_str = ret_subject_str + "OE";
+		}
+		else if (current_char == "Ø")
+		{
+			ret_subject_str = ret_subject_str + "OE";
+		}
+		else if (current_char == "À")
+		{
+			ret_subject_str = ret_subject_str + "A";
+		}
+		else
+		{
+			ret_subject_str = ret_subject_str + current_char;
+		}
+	}
+
+	return ret_subject_str;
+
+} // replaceInvalidEmailCharacters
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End String Functions ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
