@@ -44,7 +44,7 @@
   <TextImageSaveReservation>text_save_reservation.png</TextImageSaveReservation>
   <TextImageSaveReservationWhite>text_save_reservation_white.png</TextImageSaveReservationWhite>
   <!--  Text images End -->  
-  <MaxReservationsProcent>50</MaxReservationsProcent>
+  <MaxReservationsProcent>100</MaxReservationsProcent>
   <Door>  
     <DoorType>right</DoorType>
     <DoorPosition>5300</DoorPosition>
@@ -188,7 +188,7 @@
       <UpperLeftY>2500</UpperLeftY>
       <Width>900</Width>
       <Height>3080</Height>
-      <NumberLeftRightSeats>14</NumberLeftRightSeats>
+      <NumberLeftRightSeats>12</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
       <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
@@ -242,7 +242,7 @@
       <UpperLeftY>6200</UpperLeftY>
       <Width>900</Width>
       <Height>3080</Height>
-      <NumberLeftRightSeats>14</NumberLeftRightSeats>
+      <NumberLeftRightSeats>12</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
       <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
@@ -284,7 +284,7 @@
       <SeatNineteenRight>true</SeatNineteenRight>
       <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
-      <SeatLower>true</SeatLower>	  
+      <SeatLower>false</SeatLower>	  
       <Text>Tisch Reihe Links Mitte</Text>
     </Table>
   </TableGroup> 
@@ -296,7 +296,7 @@
       <UpperLeftY>6200</UpperLeftY>
       <Width>900</Width>
       <Height>3080</Height>
-      <NumberLeftRightSeats>14</NumberLeftRightSeats>
+      <NumberLeftRightSeats>12</NumberLeftRightSeats>
       <SeatOneLeft>true</SeatOneLeft>
       <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
@@ -338,7 +338,7 @@
       <SeatNineteenRight>true</SeatNineteenRight>
       <SeatTwentyRight>true</SeatTwentyRight>	  
       <SeatUpper>false</SeatUpper>
-      <SeatLower>true</SeatLower>	  
+      <SeatLower>false</SeatLower>	  
       <Text>Tisch Reihe Mitte Mitte</Text>
     </Table>
     </TableGroup>  
@@ -350,7 +350,7 @@
       <UpperLeftY>7000</UpperLeftY>
       <Width>900</Width>
       <Height>2200</Height>
-      <NumberLeftRightSeats>10</NumberLeftRightSeats>
+      <NumberLeftRightSeats>8</NumberLeftRightSeats>
        <SeatOneLeft>true</SeatOneLeft>
       <SeatTwoLeft>true</SeatTwoLeft>
       <SeatThreeLeft>true</SeatThreeLeft>
@@ -362,7 +362,7 @@
       <SeatFourRight>true</SeatFourRight>
       <SeatFiveRight>true</SeatFiveRight>	
       <SeatUpper>false</SeatUpper>
-      <SeatLower>true</SeatLower>	  
+      <SeatLower>false</SeatLower>	  
       <Text>Tisch Reihe rechts mitte</Text>
     </Table>
   </TableGroup>  
@@ -391,7 +391,7 @@
       <SeatOneLeft>true</SeatOneLeft>
       <SeatOneRight>true</SeatOneRight>
       <SeatUpper>false</SeatUpper>
-      <SeatLower>true</SeatLower>	  
+      <SeatLower>false</SeatLower>	  
       <Text>Hochtisch</Text>
     </Table>
   </TableGroup> 
@@ -420,7 +420,7 @@
       <SeatOneLeft>true</SeatOneLeft>
       <SeatOneRight>true</SeatOneRight>
       <SeatUpper>false</SeatUpper>
-      <SeatLower>true</SeatLower>	  
+      <SeatLower>false</SeatLower>	  
       <Text>Hochtisch</Text>
     </Table>
   </TableGroup>  

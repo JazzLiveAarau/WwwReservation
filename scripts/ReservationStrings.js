@@ -267,7 +267,7 @@ var g_msg_last_seat_that_can_be_reserved = "Die Anzahl Reservationen ist limitie
 param_names[90]= "g_error_max_number_seat_reservations_exceeded";  param_values[90] = "";
 
 var g_msg_all_available_seats_are_reserved = "Alle Plätze für dieses Konzert sind leider reserviert." + "\n" +
-												 "Bitte das Fenster schliessen.";
+												 "Kommen Sie einfach vorbei - ev. sind Plätze frei geworden.";
 param_names[91]= "g_msg_all_available_seats_are_reserved";  param_values[91] = "";
 
 var g_error_max_number_seat_reservations_exceeded_close_window = "Die Anzahl Reservationen ist limitiert." + "\n" +

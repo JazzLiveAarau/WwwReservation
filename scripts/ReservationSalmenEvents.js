@@ -1,5 +1,3 @@
-// File: Reservation\scripts\ReservationSalmenEvents.js
-
 function setEventFunctions()
 {document.getElementById('11_A').onmousedown = function() {mouseDown11_A()};
 document.getElementById('11_A').onmouseover = function() {mouseOver11_A()};
@@ -73,10 +71,6 @@ document.getElementById('13_K').onmousedown = function() {mouseDown13_K()};
 document.getElementById('13_K').onmouseover = function() {mouseOver13_K()};
 document.getElementById('13_L').onmousedown = function() {mouseDown13_L()};
 document.getElementById('13_L').onmouseover = function() {mouseOver13_L()};
-document.getElementById('13_M').onmousedown = function() {mouseDown13_M()};
-document.getElementById('13_M').onmouseover = function() {mouseOver13_M()};
-document.getElementById('13_N').onmousedown = function() {mouseDown13_N()};
-document.getElementById('13_N').onmouseover = function() {mouseOver13_N()};
 document.getElementById('21_A').onmousedown = function() {mouseDown21_A()};
 document.getElementById('21_A').onmouseover = function() {mouseOver21_A()};
 document.getElementById('21_B').onmousedown = function() {mouseDown21_B()};
@@ -101,12 +95,6 @@ document.getElementById('21_K').onmousedown = function() {mouseDown21_K()};
 document.getElementById('21_K').onmouseover = function() {mouseOver21_K()};
 document.getElementById('21_L').onmousedown = function() {mouseDown21_L()};
 document.getElementById('21_L').onmouseover = function() {mouseOver21_L()};
-document.getElementById('21_M').onmousedown = function() {mouseDown21_M()};
-document.getElementById('21_M').onmouseover = function() {mouseOver21_M()};
-document.getElementById('21_N').onmousedown = function() {mouseDown21_N()};
-document.getElementById('21_N').onmouseover = function() {mouseOver21_N()};
-document.getElementById('21_P').onmousedown = function() {mouseDown21_P()};
-document.getElementById('21_P').onmouseover = function() {mouseOver21_P()};
 document.getElementById('22_A').onmousedown = function() {mouseDown22_A()};
 document.getElementById('22_A').onmouseover = function() {mouseOver22_A()};
 document.getElementById('22_B').onmousedown = function() {mouseDown22_B()};
@@ -131,12 +119,6 @@ document.getElementById('22_K').onmousedown = function() {mouseDown22_K()};
 document.getElementById('22_K').onmouseover = function() {mouseOver22_K()};
 document.getElementById('22_L').onmousedown = function() {mouseDown22_L()};
 document.getElementById('22_L').onmouseover = function() {mouseOver22_L()};
-document.getElementById('22_M').onmousedown = function() {mouseDown22_M()};
-document.getElementById('22_M').onmouseover = function() {mouseOver22_M()};
-document.getElementById('22_N').onmousedown = function() {mouseDown22_N()};
-document.getElementById('22_N').onmouseover = function() {mouseOver22_N()};
-document.getElementById('22_P').onmousedown = function() {mouseDown22_P()};
-document.getElementById('22_P').onmouseover = function() {mouseOver22_P()};
 document.getElementById('23_A').onmousedown = function() {mouseDown23_A()};
 document.getElementById('23_A').onmouseover = function() {mouseOver23_A()};
 document.getElementById('23_B').onmousedown = function() {mouseDown23_B()};
@@ -153,12 +135,6 @@ document.getElementById('23_G').onmousedown = function() {mouseDown23_G()};
 document.getElementById('23_G').onmouseover = function() {mouseOver23_G()};
 document.getElementById('23_H').onmousedown = function() {mouseDown23_H()};
 document.getElementById('23_H').onmouseover = function() {mouseOver23_H()};
-document.getElementById('23_I').onmousedown = function() {mouseDown23_I()};
-document.getElementById('23_I').onmouseover = function() {mouseOver23_I()};
-document.getElementById('23_J').onmousedown = function() {mouseDown23_J()};
-document.getElementById('23_J').onmouseover = function() {mouseOver23_J()};
-document.getElementById('23_L').onmousedown = function() {mouseDown23_L()};
-document.getElementById('23_L').onmouseover = function() {mouseOver23_L()};
 document.getElementById('31_A').onmousedown = function() {mouseDown31_A()};
 document.getElementById('31_A').onmouseover = function() {mouseOver31_A()};
 document.getElementById('31_B').onmousedown = function() {mouseDown31_B()};
@@ -167,8 +143,6 @@ document.getElementById('41_A').onmousedown = function() {mouseDown41_A()};
 document.getElementById('41_A').onmouseover = function() {mouseOver41_A()};
 document.getElementById('41_B').onmousedown = function() {mouseDown41_B()};
 document.getElementById('41_B').onmouseover = function() {mouseOver41_B()};
-document.getElementById('41_D').onmousedown = function() {mouseDown41_D()};
-document.getElementById('41_D').onmouseover = function() {mouseOver41_D()};
 document.getElementById('32_A').onmousedown = function() {mouseDown32_A()};
 document.getElementById('32_A').onmouseover = function() {mouseOver32_A()};
 document.getElementById('32_B').onmousedown = function() {mouseDown32_B()};
@@ -177,8 +151,6 @@ document.getElementById('42_A').onmousedown = function() {mouseDown42_A()};
 document.getElementById('42_A').onmouseover = function() {mouseOver42_A()};
 document.getElementById('42_B').onmousedown = function() {mouseDown42_B()};
 document.getElementById('42_B').onmouseover = function() {mouseOver42_B()};
-document.getElementById('42_D').onmousedown = function() {mouseDown42_D()};
-document.getElementById('42_D').onmouseover = function() {mouseOver42_D()};
 }
 function mouseDown11_A()
 {
@@ -612,30 +584,6 @@ var table_number = 13;
 var seat_char = "L";
 EventMouseOver(table_number, seat_char);
 }
-function mouseDown13_M()
-{
-var table_number = 13;
-var seat_char = "M";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver13_M()
-{
-var table_number = 13;
-var seat_char = "M";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown13_N()
-{
-var table_number = 13;
-var seat_char = "N";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver13_N()
-{
-var table_number = 13;
-var seat_char = "N";
-EventMouseOver(table_number, seat_char);
-}
 function mouseDown21_A()
 {
 var table_number = 21;
@@ -778,42 +726,6 @@ function mouseOver21_L()
 {
 var table_number = 21;
 var seat_char = "L";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown21_M()
-{
-var table_number = 21;
-var seat_char = "M";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver21_M()
-{
-var table_number = 21;
-var seat_char = "M";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown21_N()
-{
-var table_number = 21;
-var seat_char = "N";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver21_N()
-{
-var table_number = 21;
-var seat_char = "N";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown21_P()
-{
-var table_number = 21;
-var seat_char = "P";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver21_P()
-{
-var table_number = 21;
-var seat_char = "P";
 EventMouseOver(table_number, seat_char);
 }
 function mouseDown22_A()
@@ -960,42 +872,6 @@ var table_number = 22;
 var seat_char = "L";
 EventMouseOver(table_number, seat_char);
 }
-function mouseDown22_M()
-{
-var table_number = 22;
-var seat_char = "M";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver22_M()
-{
-var table_number = 22;
-var seat_char = "M";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown22_N()
-{
-var table_number = 22;
-var seat_char = "N";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver22_N()
-{
-var table_number = 22;
-var seat_char = "N";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown22_P()
-{
-var table_number = 22;
-var seat_char = "P";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver22_P()
-{
-var table_number = 22;
-var seat_char = "P";
-EventMouseOver(table_number, seat_char);
-}
 function mouseDown23_A()
 {
 var table_number = 23;
@@ -1092,42 +968,6 @@ var table_number = 23;
 var seat_char = "H";
 EventMouseOver(table_number, seat_char);
 }
-function mouseDown23_I()
-{
-var table_number = 23;
-var seat_char = "I";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver23_I()
-{
-var table_number = 23;
-var seat_char = "I";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown23_J()
-{
-var table_number = 23;
-var seat_char = "J";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver23_J()
-{
-var table_number = 23;
-var seat_char = "J";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown23_L()
-{
-var table_number = 23;
-var seat_char = "L";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver23_L()
-{
-var table_number = 23;
-var seat_char = "L";
-EventMouseOver(table_number, seat_char);
-}
 function mouseDown31_A()
 {
 var table_number = 31;
@@ -1174,18 +1014,6 @@ function mouseOver41_B()
 {
 var table_number = 41;
 var seat_char = "B";
-EventMouseOver(table_number, seat_char);
-}
-function mouseDown41_D()
-{
-var table_number = 41;
-var seat_char = "D";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver41_D()
-{
-var table_number = 41;
-var seat_char = "D";
 EventMouseOver(table_number, seat_char);
 }
 function mouseDown32_A()
@@ -1236,16 +1064,7 @@ var table_number = 42;
 var seat_char = "B";
 EventMouseOver(table_number, seat_char);
 }
-function mouseDown42_D()
-{
-var table_number = 42;
-var seat_char = "D";
-EventMouseDown(table_number, seat_char);
-}
-function mouseOver42_D()
-{
-var table_number = 42;
-var seat_char = "D";
-EventMouseOver(table_number, seat_char);
-}
+
+
+
 
