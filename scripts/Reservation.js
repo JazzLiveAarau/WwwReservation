@@ -570,6 +570,10 @@ function loadLayoutXMLDocSetMaxNumberSeatReservations(i_url_file_layout_xml)
 //   3.1 Set the global variable XML object g_reservations_xml
 //   3.2 Set reservations and init selection arrays. Call of setReservationsAndInitSelectionArrays
 //   3.3 Set the concert title text. Call of setConcertTitleText
+//   3.4 Display error or warning when seats and title has been set.
+//       This should be set with an async (await) function, but here only with setTimeout function,
+//       i.e. wait 500 milliseconds and then call displayReservationErrorOrWarning. Hopefully this
+//       this time is enough long
 function loadReservationXMLDoc(i_url_file_reservation_concert_xml) 
 {
     var reservations_xmlhttp = new XMLHttpRequest();
@@ -585,24 +589,8 @@ function loadReservationXMLDoc(i_url_file_reservation_concert_xml)
 		  
           setConcertTitleText();
 
-          var number_of_seats_that_can_be_selected = getNumberOfAdditionalSeatsThatCanBeSelected();
-          
-          if (allAvailableSeatsAreReserved())
-          {
-              alert(g_msg_all_available_seats_are_reserved);
-          } 
-          else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "false")
-          {
-            alert(g_warning_max_number_seat_reservations_admin + (-number_of_seats_that_can_be_selected).toString());
-          }
-          else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "true")
-          {
-            alert(g_error_max_number_seat_reservations_exceeded_close_window);
-          }
-          else if (number_of_seats_that_can_be_selected <= 5)
-          {
-            alert(g_warning_max_number_seat_reservations + number_of_seats_that_can_be_selected.toString());
-          }
+          setTimeout("displayReservationErrorOrWarning()", 500);
+    
       }
 	
     };
@@ -613,6 +601,30 @@ function loadReservationXMLDoc(i_url_file_reservation_concert_xml)
     reservations_xmlhttp.send();
   
 } // loadReservationXMLDoc
+
+// Display error or warning
+function displayReservationErrorOrWarning()
+{
+    var number_of_seats_that_can_be_selected = getNumberOfAdditionalSeatsThatCanBeSelected();
+
+    if (allAvailableSeatsAreReserved())
+    {
+        alert(g_msg_all_available_seats_are_reserved);
+    } 
+    else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "false")
+    {
+      alert(g_warning_max_number_seat_reservations_admin + (-number_of_seats_that_can_be_selected).toString());
+    }
+    else if (number_of_seats_that_can_be_selected <= 0 && g_user_is_concert_visitor == "true")
+    {
+      alert(g_error_max_number_seat_reservations_exceeded_close_window);
+    }
+    else if (number_of_seats_that_can_be_selected <= 5)
+    {
+      alert(g_warning_max_number_seat_reservations + number_of_seats_that_can_be_selected.toString());
+    }
+
+} // displayReservationErrorOrWarning
 
 // Returns true if all available seats are reserved
 function allAvailableSeatsAreReserved()
