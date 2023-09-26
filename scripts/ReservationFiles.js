@@ -88,7 +88,7 @@ function startPartFileNames(i_add_to_xml_file_name)
 
 // Returns the XML content for every output XML reservations file in one string
 // Input data ist the start part for the XML reservation files and the array of concert nodes
-// 1. Loop for all twelve (12) concert nodes
+// 1. Loop for all concert nodes
 //    1.1 Add the name of XML file. Call of addNameOfXmlFile
 //    1.2 Add the header for the XML file. Call of xmlHeaderAsString
 //    1.3 Add concert data (date and bandname). Call of xmlConcertDataAsString
@@ -97,13 +97,15 @@ function getXmlContentAllFiles(i_start_part_dir_name_xml, i_concert_nodes)
 {
     var ret_xml_content_for_all_files = "";
 	
-	if (i_concert_nodes.length != 12)
-	{
-		alert("getXmlContentAllFiles: Number of concert nodes is not 12");
-		return ret_xml_content_for_all_files;
-	}
+	//20230926 if (i_concert_nodes.length != 12)
+	//20230926{
+    //20230926	alert("getXmlContentAllFiles: Number of concert nodes is not 12");
+    //20230926	return ret_xml_content_for_all_files;
+    //20230926}
+
+    var n_concerts = i_concert_nodes.length;
 	
-    for (concert_number=1; concert_number<=12; concert_number++)
+    for (concert_number=1; concert_number<= n_concerts; concert_number++)
     {
        // Add full name of the XML file
         ret_xml_content_for_all_files = ret_xml_content_for_all_files + addNameOfXmlFile(i_start_part_dir_name_xml, concert_number);
@@ -1406,6 +1408,8 @@ function getArrayReservationCards(i_case)
 function getNextConcertReservationXmlFileName(i_add_to_xml_file_name)
 {
 	ret_file_name = "";
+
+    var n_concerts = getNumberOfSeasonConcerts();
 	
     // Construct the start part of the name for the output XML files
     var start_part_dir_name_xml = startPartFileNames(i_add_to_xml_file_name);	
@@ -1414,7 +1418,7 @@ function getNextConcertReservationXmlFileName(i_add_to_xml_file_name)
     if (number_next_concert < 0)
     {
         alert(g_error_next_season_passed);
-        number_next_concert = 12;
+        number_next_concert = n_concerts;
     }
 	
     ret_file_name = constructXmlFileName(start_part_dir_name_xml, number_next_concert);	
@@ -1427,11 +1431,13 @@ function getNextConcertReservationXmlFileName(i_add_to_xml_file_name)
 function constructXmlFileName(i_start_part_dir_name_xml, i_concert_number)
 {
     var ret_file_name = "";
+
+    var n_concerts = getNumberOfSeasonConcerts();
 	
 	var concert_number_int = parseInt(i_concert_number);
-	if (concert_number_int <= 0 || concert_number_int > 12)
+	if (concert_number_int <= 0 || concert_number_int > n_concerts)
 	{
-		alert("constructXmlFileName Input concert number is not 1, 2, 3, ... or 12");
+		alert("constructXmlFileName Input concert number is not 1, 2, 3, ... or " + n_concerts.toString());
 	}
 
 	var number_str = "";
@@ -1578,6 +1584,25 @@ function DateIsPassed(i_concert_year, i_concert_month, i_concert_day)
 	return ret_boolean;
 	
 }  // DateIsPassed
+
+// Returns the number of concerts
+// 20230926
+function getNumberOfSeasonConcerts()
+{
+	if (null == g_season_program_xml)
+	{
+		alert("getNumberOfConcerts Season program XML object g_season_program_xml is null");
+		return -1;
+	}
+	
+    // Get all concert nodes from the season program
+	var concert_nodes = g_season_program_xml.getElementsByTagName(g_tag_season_program_concert);
+	
+	var ret_n_concerts = concert_nodes.length;
+	
+	return ret_n_concerts;
+	
+} // getNumberOfSeasonConcerts
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Get Next Concert XML File Name //////////////////////////////
