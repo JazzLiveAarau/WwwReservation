@@ -351,9 +351,11 @@ function getCoronaSubtextString()
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 var g_corona_twint_header = "<b>Eintritt mit TWINT zahlen</b>";
-
-var g_corona_twint_text_row_1 = "Wegen Corona wären wir sehr dankbar, wenn Sie die Eintritte mit TWINT im Voraus oder im ";
-var g_corona_twint_text_row_2 = "Konzertsaal bezahlen. Der reguläre Eintritt beträgt Fr. 25.-, Supporter bezahlen Fr. 15.-";
+// TODO The change should not be here. After season end change to UtilPayment.
+// var g_corona_twint_text_row_1 = "Wegen Corona wären wir sehr dankbar, wenn Sie die Eintritte mit TWINT im Voraus oder im ";
+var g_corona_twint_text_row_1 = "Eintritte können mit TWINT im Voraus oder im Konzertsaal bezahlt werden. ";
+// var g_corona_twint_text_row_2 = "Konzertsaal bezahlen. Der reguläre Eintritt beträgt Fr. 25.-, Supporter bezahlen Fr. 15.-";
+var g_corona_twint_text_row_2 = "Der reguläre Eintritt beträgt Fr. 25.-, Supporter bezahlen Fr. 15.-";
 var g_corona_twint_text_row_3 = "";
 var g_corona_twint_text_row_4 = "Bitte geben Sie Ihren Namen und das Konzertdatum bei der Bezahlung an. Empfänger ist Hanni ";
 var g_corona_twint_text_row_5 = "Heller, Telefonnummer +41 79 368 56 93.";
