@@ -50,6 +50,11 @@ function callbackAfterLoadOfXmlLayout()
 {
     debugReservationLayout('callbackAfterLoadOfXmlLayout Enter');
 
+    var stage_data =  getLayoutStageDataFromXml(g_layout_xml);
+
+
+    /*
+
     var premises_width = g_layout_xml.getPremisesWidth();
 
     var premises_width_new_value = '8888';
@@ -81,6 +86,8 @@ function callbackAfterLoadOfXmlLayout()
     g_layout_xml.setTableGroupText(table_group_number_int, "NewTableGroupName");
 
     var table_group_text_new = g_layout_xml.getTableGroupText(table_group_number_int);
+
+    */
 
 
 } // callbackAfterLoadOfXmlLayout
