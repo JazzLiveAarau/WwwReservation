@@ -3,6 +3,9 @@
 <Layout>
   <PremisesWidth>8000</PremisesWidth>
   <PremisesHeight>14000</PremisesHeight>
+  <MaxReservationsProcent>100</MaxReservationsProcent>
+  <MaxWidhtPixel>900</MaxWidhtPixel>
+  <WallThickness>300</WallThickness>
   <TableColor>rgb(179, 202, 239)</TableColor>
   <TableStrokeColor>rgb(106, 156, 237)</TableStrokeColor>
   <TableStrokeWidth>4</TableStrokeWidth>
@@ -44,7 +47,6 @@
   <TextImageSaveReservation>ImagesApp/text_save_reservation.png</TextImageSaveReservation>
   <TextImageSaveReservationWhite>ImagesApp/text_save_reservation_white.png</TextImageSaveReservationWhite>
   <!--  Text images End -->  
-  <MaxReservationsProcent>100</MaxReservationsProcent>
   <Door>  
     <DoorType>right</DoorType>
     <DoorPosition>5300</DoorPosition>

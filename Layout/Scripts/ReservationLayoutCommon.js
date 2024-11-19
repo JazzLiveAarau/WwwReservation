@@ -8,7 +8,6 @@
 // Reservation layout common classes and functions
 //
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// Start Class Premises Data ///////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -35,7 +34,9 @@ class PremisesData
 
        this.m_width = "";
        this.m_height = "";
-       this.m_max_reservation_procent = 100.0;
+       this.m_wall_thickness = -12345;
+       this.m_max_width_pixel = -12345;  
+       this.m_max_reservation_procent = -12345;
 	   
        this.execute();
 
@@ -55,13 +56,33 @@ class PremisesData
 
     } // execute
 
+    // Get and set functions for the member variables
+    getWidth(){ return this.m_width; }
+    setWidth(i_width){ this.m_width = i_width; }
+
+    getHeight(){ return this.m_height; }
+    setHeight(i_height){ this.m_height = i_height; }
+
+    getWallThickness(){ return this.m_wall_thickness; }
+    setWallThickness(i_height){ this.m_wall_thickness = i_wall_thickness; }
+
+    getMaxWidthPixel(){ return this.m_max_width_pixel; }
+    setMaxWidthPixel(i_wall_thickness){ this.m_max_width_pixel = i_max_width_pixel; }
+
+    getMaxReservationPercentage(){ return this.m_max_reservation_procent; }
+    setMaxReservationPercentage(i_max_reservation_procent){ this.m_max_reservation_procent = i_max_reservation_procent; }
+
     // Sets the data from the XML object m_layout_xml
     setDataFromXml()
     {
-        this.m_width = this.m_layout_xml.getPremisesWidth();
-        this.m_height = this.m_layout_xml.getPremisesHeight();
+        this.m_width = parseInt(this.m_layout_xml.getPremisesWidth());
+        this.m_height = parseInt(this.m_layout_xml.getPremisesHeight());
 
-        this.m_max_reservation_procent = parseFloat(this.m_layout_xml.getMaxReservationsProcent());
+        this.m_wall_thickness = parseInt(this.m_layout_xml.getWallThickness());
+
+        this.m_max_width_pixel = parseInt(this.m_layout_xml.getMaxWidhtPixel());
+
+        this.m_max_reservation_procent = parseInt(this.m_layout_xml.getMaxReservationsProcent());
 
     } // setDataFromXml
 

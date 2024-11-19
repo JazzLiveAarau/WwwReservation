@@ -59,6 +59,27 @@ class ReservationLayoutXml
         
     } // getPremisesHeight
 
+    // Returns the wall thickness in mm
+    getWallThickness()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getWallThickness());
+        
+    } // getWallThickness
+
+    // Returns the max  width in pixel. Used to scale from millimeter to pixel
+    getMaxWidhtPixel()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getMaxWidhtPixel());
+        
+    } // getMaxWidhtPixel	
+
+    // Returns the  allowed (max) reservation percentage
+    getMaxReservationsProcent()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getMaxReservationsProcent());
+        
+    } // getMaxReservationsProcent
+
     // Returns the table color
     getTableColor()
     {
@@ -304,13 +325,6 @@ class ReservationLayoutXml
         
     } // getTextImageSaveReservationWhite
 
-    // Returns the  allowed (max) reservation percentage
-    getMaxReservationsProcent()
-    {
-        return this.getLayoutNodeValue(this.m_tags.getMaxReservationsProcent());
-        
-    } // getMaxReservationsProcent
-
     ///////////////////////////////////////////////////////////////////////////
     /////// End Get Layout Functions ///////((/(///////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
@@ -332,6 +346,27 @@ class ReservationLayoutXml
         this.setLayoutNodeValue(this.m_tags.getPremisesHeight(), i_premises_height);
         
     } // setPremisesHeight
+
+    // Sets the wall thickness in mm
+    setWallThickness(i_wall_thickness)
+    {
+        this.setLayoutNodeValue(this.m_tags.getWallThickness(), i_wall_thickness);
+        
+    } // setWallThickness
+
+    // Sets the max  width in pixel. Used to scale from millimeter to pixel
+    setMaxWidhtPixel(i_max_width_pixel)
+    {
+        this.setLayoutNodeValue(this.m_tags.getMaxWidhtPixel(), i_max_width_pixel);
+        
+    } // setMaxWidhtPixel	
+
+    // Sets the allowed (max) reservation percentage
+    setMaxReservationsProcent(i_max_reservation_percentage)
+    {
+        this.setLayoutNodeValue(this.m_tags.getMaxReservationsProcent(), i_max_reservation_percentage);
+        
+    } // setMaxReservationsProcent
 
     // Sets the table color
     setTableColor(i_table_color)
@@ -577,13 +612,6 @@ class ReservationLayoutXml
         this.setLayoutNodeValue(this.m_tags.getTextImageSaveReservationWhite(), i_text_image_save_reservation_white);
         
     } // setTextImageSaveReservationWhite
-
-    // Sets the allowed (max) reservation percentage
-    setMaxReservationsProcent(i_text_max_reservation_percentage)
-    {
-        this.setLayoutNodeValue(this.m_tags.getMaxReservationsProcent(), i_text_max_reservation_percentage);
-        
-    } // setMaxReservationsProcent
 
     ///////////////////////////////////////////////////////////////////////////
     /////// End Set Layout Functions ///////((/(///////////////////////////////
@@ -1922,6 +1950,14 @@ class ReservationLayoutTags
         this.m_tag_premises_width = "PremisesWidth";
         this.m_tag_premises_height = "PremisesHeight";
 
+        this.m_tag_wall_thickness = "WallThickness";
+
+        // Max  width in pixel. Used to scale from millimeter to pixel
+        this.m_tag_max_width_pixel = "MaxWidhtPixel";
+
+        // Allowed (max) reservation percentage
+        this.m_tag_max_reservation_procent = "MaxReservationsProcent";
+
         // General data tables
         this.m_tag_table_color = "TableColor";
         this.m_tag_table_stroke_color = "TableStrokeColor";
@@ -1964,9 +2000,6 @@ class ReservationLayoutTags
         this.m_tag_text_image_reservation_print = "TextImageReservationPrint";
         this.m_tag_text_image_save_reservation = "TextImageSaveReservation";
         this.m_tag_text_image_save_reservation_white = "TextImageSaveReservationWhite";
-
-        // Allowed (max) reservation percentage
-        this.m_tag_max_reservation_procent = "MaxReservationsProcent";
 
         //////////////////////////////////////////////////////////
         ////////////// Door Data /////////////////////////////////
@@ -2051,6 +2084,11 @@ class ReservationLayoutTags
     getPremisesWidth(){return this.m_tag_premises_width;} 
     getPremisesHeight(){return this.m_tag_premises_height;} 
 
+    getWallThickness(){return this.m_tag_wall_thickness;} 
+
+    // Max  width in pixel. Used to scale from millimeter to pixel
+    getMaxWidhtPixel(){return this.m_tag_max_width_pixel;}
+ 
     // Allowed (max) reservation percentage
     getMaxReservationsProcent(){return this.m_tag_max_reservation_procent;}
 

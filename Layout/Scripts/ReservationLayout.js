@@ -72,6 +72,10 @@ function callbackAfterLoadOfXmlLayout()
 
     var table_data_array = getTableDataArrayFromXml(g_layout_xml);
 
+    var layout_svg = new LayoutSvg(g_layout_xml);
+
+    var layout_svg_code = layout_svg.get();
+
 } // callbackAfterLoadOfXmlLayout
 
 ///////////////////////////////////////////////////////////////////////////////////////////
