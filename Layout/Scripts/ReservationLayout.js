@@ -1,5 +1,5 @@
 // File: ReservationLayout.js
-// Date: 2024-11-18
+// Date: 2024-11-19
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -50,49 +50,29 @@ function callbackAfterLoadOfXmlLayout()
 {
     debugReservationLayout('callbackAfterLoadOfXmlLayout Enter');
 
+    var premises_data = getPremisesDataFromXml(g_layout_xml);
+
     var stage_data =  getLayoutStageDataFromXml(g_layout_xml);
 
+    var general_table_data = getGeneralTableDataFromXml(g_layout_xml);
 
-    /*
+    var cashier_data = getCashierDataFromXml(g_layout_xml);
 
-    var premises_width = g_layout_xml.getPremisesWidth();
+    var image_text_data = getTextImageCaptionsFromXml(g_layout_xml);
 
-    var premises_width_new_value = '8888';
+    var door_number = 2;
 
-    g_layout_xml.setPremisesWidth(premises_width_new_value);
+    var door_data = getDoorDataFromXml(g_layout_xml, door_number);
 
-    var premises_width_after_change = g_layout_xml.getPremisesWidth();
+    var door_data_array = getDoorDataArrayFromXml(g_layout_xml);
 
-    var door_number = 2; 
+    var table_number = 1;
 
-    var door_type = g_layout_xml.getDoorType(door_number);
+    var table_data = getTableDataFromXml(g_layout_xml, table_number);
 
-    g_layout_xml.setDoorType(door_number, "Blaha");
-
-    var door_type_new = g_layout_xml.getDoorType(door_number);
-
-    var table_number_int = 4;
-
-    var table_number_str = g_layout_xml.getTableNumber(table_number_int);
-
-    g_layout_xml.setTableNumber(table_number_int, "NyttBordsNamn");
-
-    var table_number_str_new = g_layout_xml.getTableNumber(table_number_int);
-
-    var table_group_number_int = 6;
-
-    var table_group_text = g_layout_xml.getTableGroupText(table_group_number_int);
-
-    g_layout_xml.setTableGroupText(table_group_number_int, "NewTableGroupName");
-
-    var table_group_text_new = g_layout_xml.getTableGroupText(table_group_number_int);
-
-    */
-
+    var table_data_array = getTableDataArrayFromXml(g_layout_xml);
 
 } // callbackAfterLoadOfXmlLayout
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Main Functions //////////////////////////////////////////////

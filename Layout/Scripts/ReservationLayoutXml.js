@@ -1,5 +1,5 @@
 // File: ReservationLayoutXml.js
-// Date: 2024-11-18
+// Date: 2024-11-19
 // Author: Gunnar Lidén
 
 // File content
@@ -1499,9 +1499,9 @@ class ReservationLayoutXml
 
         var index_table = i_table_number - 1;
         
-        var door_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTable())[index_table];
+        var table_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTable())[index_table];
 
-        var table_node_elements = door_node.getElementsByTagName(i_tag_table_element);
+        var table_node_elements = table_node.getElementsByTagName(i_tag_table_element);
 
         if (table_node_elements.length != 1)
         {
@@ -1528,9 +1528,9 @@ class ReservationLayoutXml
 
         var index_table = i_table_number - 1;
         
-        var door_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTable())[index_table];
+        var table_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTable())[index_table];
 
-        var table_node_elements = door_node.getElementsByTagName(i_tag_table_element);
+        var table_node_elements = table_node.getElementsByTagName(i_tag_table_element);
 
         if (table_node_elements.length != 1)
         {
@@ -1557,9 +1557,9 @@ class ReservationLayoutXml
 
         var index_table_group = i_table_group_number - 1;
         
-        var door_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
+        var table_group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
 
-        var table_group_node_elements = door_node.getElementsByTagName(i_tag_table_group_element);
+        var table_group_node_elements = table_group_node.getElementsByTagName(i_tag_table_group_element);
 
         if (table_group_node_elements.length != 1)
         {
@@ -1586,9 +1586,9 @@ class ReservationLayoutXml
 
         var index_table_group = i_table_group_number - 1;
         
-        var door_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
+        var table_group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
 
-        var table_group_node_elements = door_node.getElementsByTagName(i_tag_table_group_element);
+        var table_group_node_elements = table_group_node.getElementsByTagName(i_tag_table_group_element);
 
         if (table_group_node_elements.length != 1)
         {
@@ -2051,6 +2051,9 @@ class ReservationLayoutTags
     getPremisesWidth(){return this.m_tag_premises_width;} 
     getPremisesHeight(){return this.m_tag_premises_height;} 
 
+    // Allowed (max) reservation percentage
+    getMaxReservationsProcent(){return this.m_tag_max_reservation_procent;}
+
     // General data tables
     getTableColor(){return this.m_tag_table_color;} 
     getTableStrokeColor(){return this.m_tag_table_stroke_color;} 
@@ -2093,9 +2096,6 @@ class ReservationLayoutTags
     getTextImageReservationPrint(){return this.m_tag_text_image_reservation_print;}
     getTextImageSaveReservation(){return this.m_tag_text_image_save_reservation;}
     getTextImageSaveReservationWhite(){return this.m_tag_text_image_save_reservation_white;}
-
-    // Allowed (max) reservation percentage
-    getMaxReservationsProcent(){return this.m_tag_max_reservation_procent;}
 
         //////////////////////////////////////////////////////////
         ////////////// Door Data /////////////////////////////////
