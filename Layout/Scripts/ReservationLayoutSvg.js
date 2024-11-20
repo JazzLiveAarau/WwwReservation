@@ -66,6 +66,9 @@ class LayoutSvg
 
         this.m_svg_code = this.m_svg_code + premises_svg.get();
 
+        var stage_svg = new StageSvg(this.m_layout_xml, this.m_scale_dimension);
+
+        this.m_svg_code = this.m_svg_code + stage_svg.get();
 
 
  
@@ -333,3 +336,130 @@ class PremisesSvg
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Class Premises Svg //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// Start Class Stage Svg ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Class that creates all stage SVG code for the reservation layout HTML files
+class StageSvg
+{
+    // Creates the instance of the class
+    // i_layout_xml: Object for a reservation layout XML file. 
+	// i_scale_dimension: The conversion factor mm to pixel
+    constructor(i_layout_xml, i_scale_dimension) 
+    {
+        // Member variables
+        // ================
+
+       // Layout XML object
+       this.m_layout_xml = i_layout_xml;
+
+       // The conversion factor mm to pixel
+       this.m_scale_dimension = i_scale_dimension;
+
+       //QQthis.m_style_wall = ' style="fill:rgb(222, 223, 224);stroke-width:1;stroke:black"';
+      
+
+       // All SVG code from this class
+       this.m_svg_code = '';
+	   
+       // Create (construct) the SVG code
+       this.execute();
+
+    } // constructor
+
+    // Create (construct) the SVG code
+    execute()
+    {
+        if (this.m_layout_xml == null)
+        {
+            alert("StageSvg.execute Layout XML object is null");
+
+            return;
+        }
+
+        var stage_data = getStageDataFromXml(this.m_layout_xml);
+    
+        // Get stage data from the layout XML file    
+        var stage_upper_left_x = stage_data.getUpperLeftX();
+        var stage_upper_left_y = stage_data.getUpperLeftY();
+        var stage_image = stage_data.getImage();
+        var stage_image_width = stage_data.getImageWidth();
+        var stage_image_height = stage_data.getImageHeight()
+        
+        var stage_width = stage_data.getWidth();
+        var stage_height = stage_data.getHeight();
+        var stage_text = stage_data.getText();
+        var stage_color = stage_data.getColor();
+        var stage_stroke_color = stage_data.getStrokeColor();
+        var stage_stroke_width = stage_data.getStrokeWidth();
+        var stage_text_rel_x_procent = stage_data.getTextRelXProcent();
+        var stage_text_rel_y_procent = stage_data.getTextRelYProcent();
+        var stage_text_color = stage_data.getTextColor(); 
+        
+        // Convert from mm to pixel
+        var stage_width_pixel = parseInt(stage_width*this.m_scale_dimension);  
+        var stage_height_pixel = parseInt(stage_height*this.m_scale_dimension); 
+        var stage_upper_left_x_pixel = parseInt(stage_upper_left_x*this.m_scale_dimension); 
+        var stage_upper_left_y_pixel = parseInt(stage_upper_left_y*this.m_scale_dimension);
+
+        var state_svg = '';
+
+        // Draw the rectangle representing the stage defined by a relative value
+        var rect_svg = '<rect ' + ' x=' + stage_upper_left_x_pixel + ' y=' + stage_upper_left_y_pixel
+        + ' width=' + stage_width_pixel + ' height=' + stage_height_pixel     
+        + ' style="fill:' + stage_color + ';stroke-width:' + stage_stroke_width + ';stroke:' + stage_stroke_color + '"' +  ' />';
+        // state_svg = state_svg + rect_svg + '\n';
+
+        // The X position for the stage text defined by a relative value
+        var text_x = stage_width;
+        text_x = text_x*stage_text_rel_x_procent;
+        text_x = text_x/100.0;
+        text_x = text_x + parseInt(stage_upper_left_x);
+
+        // The Y position for the stage text defined by a relative value	
+        var text_y = stage_height;
+        text_y = text_y*stage_text_rel_y_procent;
+        text_y = text_y/100.0;
+        text_y = text_y + parseInt(stage_upper_left_y);
+        
+        // Position converted to pixels
+        var text_x_pixel = parseInt(text_x*this.m_scale_dimension);
+        var text_y_pixel = parseInt(text_y*this.m_scale_dimension);
+
+        // Stage text object
+        var text_svg = '<text x=' + text_x_pixel + ' y=' + text_y_pixel 
+                    + LayoutSvg.fontBig() + stage_text_color + 
+                    '>' + stage_text + '</text>';
+        // state_svg = state_svg + text_svg + '\n';
+        
+        // Stage image object	
+        var image_x_pixel = stage_upper_left_x_pixel + 8;
+        var image_y_pixel = stage_upper_left_y_pixel - 25;
+                        
+        var stage_image_svg = '<image x= ' + image_x_pixel + ' y= ' + image_y_pixel + 
+                        ' width=' + stage_image_width + ' height=' + stage_image_height + 
+                        ' xlink:href=' + stage_image + '>' +
+                        ' <title>Bühne</title> ' + 
+                        ' </image>';
+                        
+        state_svg = state_svg + stage_image_svg + '\n'; 
+
+        this.m_svg_code = state_svg;
+ 
+    } // execute
+
+    // Get all SVG code for the body of the output HTML files
+    get()
+    {
+        return this.m_svg_code;
+
+    } // get
+
+} // StageSvg
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// End Class Stage Svg /////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+

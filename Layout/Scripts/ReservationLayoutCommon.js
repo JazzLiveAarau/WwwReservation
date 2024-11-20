@@ -61,7 +61,7 @@ class PremisesData
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("PremisesData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -233,7 +233,7 @@ class GeneralTableData
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("GeneralTableData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -354,6 +354,49 @@ class StageData
 
     } // execute
 
+    // Get and set functions for the member variables
+    getUpperLeftX(){ return this.m_upper_left_x; }
+    setUpperLeftX(i_upper_left_x){ this.m_upper_left_x = i_upper_left_x; }
+
+    getUpperLeftY(){ return this.m_upper_left_y; }
+    setUpperLeftY(i_upper_left_y){ this.m_upper_left_y = i_upper_left_y; }
+
+    getWidth(){ return this.m_width; }
+    setWidth(i_width){ this.m_width = i_width; }
+
+    getHeight(){ return this.m_height; }
+    setHeight(i_height){ this.m_height = i_height; }
+
+    getText(){ return this.m_text; }
+    setText(i_text){ this.m_text = i_text; }
+
+    getColor(){ return this.m_color; }
+    setColor(i_color){ this.m_color = i_color; }
+
+    getStrokeColor(){ return this.m_stroke_color; }
+    setStrokeColor(i_stroke_color){ this.m_stroke_color = i_stroke_color; }
+
+    getStrokeWidth(){ return this.m_stroke_width; }
+    setStrokeWidth(i_stroke_width){ this.m_stroke_width = i_stroke_width; }
+
+    getTextRelXProcent(){ return this.m_text_rel_x_procent; }
+    setTextRelXProcent(i_text_rel_x_procent){ this.m_text_rel_x_procent = i_text_rel_x_procent; }
+
+    getTextRelYProcent(){ return this.m_text_rel_y_procent; }
+    setTextRelYProcent(i_text_rel_y_procent){ this.m_text_rel_y_procent = i_text_rel_y_procent; }
+
+    getTextColor(){ return this.m_text_color; }
+    setTextColor(i_text_color){ this.m_text_color = i_text_color; }
+
+    getImage(){ return this.m_image; }
+    setImage(i_image){ this.m_image = i_image; }
+
+    getImageWidth(){ return this.m_image_width; }
+    setImageWidth(i_image_width){ this.m_image_width = i_image_width; }
+
+    getImageHeight(){ return this.m_image_height; }
+    setImageHeight(i_image_height){ this.m_image_height = i_image_height; }
+
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
     {
@@ -465,7 +508,7 @@ class CashierData
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("CashierData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -576,7 +619,7 @@ class TextImageCaptions
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("TextImageCaptionData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -690,7 +733,7 @@ class DoorData
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("DoorData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -830,7 +873,7 @@ class TableData
         }
         else
         {
-            alert("StageData.execute Not yet an implemented case " + this.m_case);
+            alert("TableData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -1114,7 +1157,7 @@ function getTableDataArrayFromXml(i_layout_xml)
 ///////////////////////// Start Class Check Input Data ////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// Class holding all data for a stage
+// Class for checking input layout data
 class LayoutDataInput
 {
     // Checks the input data
