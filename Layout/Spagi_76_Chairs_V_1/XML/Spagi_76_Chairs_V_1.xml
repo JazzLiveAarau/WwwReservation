@@ -6,6 +6,16 @@
   <MaxReservationsProcent>100</MaxReservationsProcent>
   <MaxWidhtPixel>900</MaxWidhtPixel>
   <WallThickness>300</WallThickness>
+  <OrganizerName>JAZZ live AARAU</OrganizerName>
+  <OrganizerTextLogo>ImagesLayout/jazz_live_aarau_text_logo.png</OrganizerTextLogo>
+  <OrganizerTextLogoWidth>400px</OrganizerTextLogoWidth>
+  <OrganizerTextLogoHeight>40px</OrganizerTextLogoHeight>
+  <OrganizerLogo>ImagesLayout/jazz_live_aarau_logo.png</OrganizerLogo>
+  <OrganizerLogoWidth>384px</OrganizerLogoWidth>
+  <OrganizerLogoHeight>392px</OrganizerLogoHeight>
+  <SponsorsImage>ImagesLayout/jazz_live_aarau_sponsor_logos.png</SponsorsImage>
+  <SponsorsImageWidth>937px</SponsorsImageWidth>
+  <SponsorsImageHeight>100px</SponsorsImageHeight>
   <TableColor>rgb(179, 202, 239)</TableColor>
   <TableStrokeColor>rgb(106, 156, 237)</TableStrokeColor>
   <TableStrokeWidth>4</TableStrokeWidth>

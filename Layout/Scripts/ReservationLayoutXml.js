@@ -1,5 +1,5 @@
 // File: ReservationLayoutXml.js
-// Date: 2024-11-19
+// Date: 2024-11-20
 // Author: Gunnar Lidén
 
 // File content
@@ -79,6 +79,76 @@ class ReservationLayoutXml
         return this.getLayoutNodeValue(this.m_tags.getMaxReservationsProcent());
         
     } // getMaxReservationsProcent
+
+    // Returns the name of the organizer
+    getOrganizerName()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerName());
+        
+    } // getOrganizerName	
+
+    // Returns the organizer text logo
+    getOrganizerTextLogo()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerTextLogo());
+        
+    } // getOrganizerTextLogo	
+
+    // Returns the organizer text logo width
+    getOrganizerTextLogoWidth()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerTextLogoWidth());
+        
+    } // getOrganizerTextLogoWidth	
+
+    // Returns the organizer text logo height
+    getOrganizerTextLogoHeight()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerTextLogoHeight());
+        
+    } // getOrganizerTextLogoHeight	
+
+    // Returns the organizer logo
+    getOrganizerLogo()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerLogo());
+        
+    } // getOrganizerLogo
+
+    // Returns the organizer logo width
+    getOrganizerLogoWidth()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerLogoWidth());
+        
+    } // getOrganizerLogoWidth			
+
+    // Returns the organizer logo height
+    getOrganizerLogoHeight()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getOrganizerLogoHeight());
+        
+    } // getOrganizerLogoHeight	
+    
+    // Returns the sponors image
+    getSponsorsImage()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getSponsorsImage());
+        
+    } // getSponsorsImage
+
+    // Returns the sponors image width
+    getSponsorsImageWidth()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getSponsorsImageWidth());
+        
+    } // getSponsorsImageWidth
+
+    // Returns the sponors image height
+    getSponsorsImageHeight()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getSponsorsImageHeight());
+        
+    } // getSponsorsImageHeight
 
     // Returns the table color
     getTableColor()
@@ -367,6 +437,76 @@ class ReservationLayoutXml
         this.setLayoutNodeValue(this.m_tags.getMaxReservationsProcent(), i_max_reservation_percentage);
         
     } // setMaxReservationsProcent
+
+    // Sets the name of the organizer
+    setOrganizerName(i_organizer_name)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerName(), i_organizer_name);
+        
+    } // setOrganizerName	
+
+    // Sets the organizer text logo
+    setOrganizerTextLogo(i_organizer_text_logo)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerTextLogo(), i_organizer_text_logo);
+        
+    } // setOrganizerTextLogo	
+
+    // Sets the organizer text logo width
+    setOrganizerTextLogoWidth(i_organizer_logo_width)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerTextLogoWidth(), i_organizer_logo_width);
+        
+    } // setOrganizerTextLogoWidth	
+
+    // Sets tthe organizer text logo height
+    setOrganizerTextLogoHeight(i_organizer_logo_height)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerTextLogoHeight(), i_organizer_logo_height);
+        
+    } // setOrganizerTextLogoHeight	
+
+    // Sets the organizer logo
+    setOrganizerLogo(i_organizer_logo)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerLogo(), i_organizer_logo);
+        
+    } // setOrganizerLogo
+
+    // Sets the organizer logo width
+    setOrganizerLogoWidth(i_organizer_logo_width)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerLogoWidth(), i_organizer_logo_width);
+        
+    } // setOrganizerLogoWidth
+
+    // Sets the organizer logo height
+    setOrganizerLogoHeight(i_organizer_logo_height)
+    {
+        this.setLayoutNodeValue(this.m_tags.getOrganizerLogoHeight(), i_organizer_logo_height);
+        
+    } // setOrganizerLogoHeight
+
+    // Sets the sponors image
+    setSponsorsImage(i_sponsors_image)
+    {
+        this.setLayoutNodeValue(this.m_tags.getSponsorsImage(), i_sponsors_image);
+        
+    } // setSponsorsImage	
+
+    // Sets the sponors image width
+    setSponsorsImageWidth(i_sponsors_image_width)
+    {
+        this.setLayoutNodeValue(this.m_tags.getSponsorsImageWidth(), i_sponsors_image_width);
+        
+    } // setSponsorsImageWidth	
+
+    // Sets the sponors image height
+    setSponsorsImageHeight(i_sponsors_image_height)
+    {
+        this.setLayoutNodeValue(this.m_tags.getSponsorsImageHeight(), i_sponsors_image_height);
+        
+    } // setSponsorsImageHeight	
 
     // Sets the table color
     setTableColor(i_table_color)
@@ -1958,6 +2098,18 @@ class ReservationLayoutTags
         // Allowed (max) reservation percentage
         this.m_tag_max_reservation_procent = "MaxReservationsProcent";
 
+        // Organizer data
+        this.m_tag_organizer_name = "OrganizerName";
+        this.m_tag_organizer_text_logo = "OrganizerTextLogo";
+        this.m_tag_organizer_text_logo_width = "OrganizerTextLogoWidth";
+        this.m_tag_organizer_text_logo_height = "OrganizerTextLogoHeight";
+        this.m_tag_organizer_logo = "OrganizerLogo";
+        this.m_tag_organizer_logo_width = "OrganizerLogoWidth";
+        this.m_tag_organizer_logo_height = "OrganizerLogoHeight";
+        this.m_tag_sponsors_image = "SponsorsImage";
+        this.m_tag_sponsors_image_width = "SponsorsImageWidth";
+        this.m_tag_sponsors_image_height = "SponsorsImageHeight";
+
         // General data tables
         this.m_tag_table_color = "TableColor";
         this.m_tag_table_stroke_color = "TableStrokeColor";
@@ -2091,6 +2243,18 @@ class ReservationLayoutTags
  
     // Allowed (max) reservation percentage
     getMaxReservationsProcent(){return this.m_tag_max_reservation_procent;}
+
+    // Organizer data
+    getOrganizerName(){return this.m_tag_organizer_name;}
+    getOrganizerTextLogo(){return this.m_tag_organizer_text_logo;}
+    getOrganizerTextLogoWidth(){return this.m_tag_organizer_text_logo_width;}
+    getOrganizerTextLogoHeight(){return this.m_tag_organizer_text_logo_height;}
+    getOrganizerLogo(){return this.m_tag_organizer_logo;}
+    getOrganizerLogoWidth(){return this.m_tag_organizer_logo_width;}
+    getOrganizerLogoHeight(){return this.m_tag_organizer_logo_height;}
+    getSponsorsImage(){return this.m_tag_sponsors_image;}
+    getSponsorsImageWidth(){return this.m_tag_sponsors_image_width;}
+    getSponsorsImageHeight(){return this.m_tag_sponsors_image_height;}
 
     // General data tables
     getTableColor(){return this.m_tag_table_color;} 

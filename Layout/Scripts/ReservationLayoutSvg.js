@@ -1,5 +1,5 @@
 // File: ReservationLayoutSvg.js
-// Date: 2024-11-19
+// Date: 2024-11-20
 // Authors: Gunnar Lidén
 
 // Content
@@ -194,6 +194,8 @@ class PremisesSvg
         var premises_width = premises_data.getWidth(); 
         var premises_height = premises_data.getHeight();
         var wall_thickness = premises_data.getHeight();
+        var organizer_name = premises_data.getOrganizerName();
+        var organizer_text_logo = premises_data.getOrganizerTextLogo();
        
         // Convert premises dimensions from mm to pixel
         var premises_width_pixel = parseInt(premises_width*this.m_scale_dimension);
@@ -261,17 +263,17 @@ class PremisesSvg
         // JAZZ live AARAU text object
         var text_svg = '<text x=' + jazz_text_x_pixel + ' y=' + jazz_text_y_pixel + 
                   LayoutSvg.fontBig() + LayoutSvg.colorJazzLiveAarau() + '>' + 
-                  "JAZZ live AARAU" + '</text>';
+                  organizer_name + '</text>';
         // premises_svg = premises_svg + text_svg + '\n';   
         
         var image_width = '400px';
         var image_height = '40px';
-        var image_file = 'reservation_jazz_live_aarau_text_logo.png';
+        var image_file = organizer_text_logo;
         
         var image_svg = '<image x= ' + jazz_text_x_pixel + ' y= ' + jazz_text_y_pixel + 
                         ' width=' + image_width + ' height=' + image_height + 
                         ' xlink:href=' +image_file + '>' +
-                        ' <title>JAZZ live AARAU Text Logo</title> ' + 
+                        ' <title>'+ organizer_name +' Text Logo</title> ' + 
                         ' </image>';	
         premises_svg = premises_svg + image_svg + '\n'; 
 

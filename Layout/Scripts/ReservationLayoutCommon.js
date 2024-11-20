@@ -1,5 +1,5 @@
 // File: ReservationLayoutCommon.js
-// Date: 2024-11-19
+// Date: 2024-11-20
 // Authors: Gunnar Lidén
 
 // Content
@@ -37,6 +37,16 @@ class PremisesData
        this.m_wall_thickness = -12345;
        this.m_max_width_pixel = -12345;  
        this.m_max_reservation_procent = -12345;
+       this.m_organizer_name = "";
+       this.m_organizer_text_logo = "";
+       this.m_organizer_text_logo_width = "";
+       this.m_organizer_text_logo_height = "";
+       this.m_organizer_logo = "";
+       this.m_organizer_logo_width = "";
+       this.m_organizer_logo_height = "";
+       this.m_sponsors_image = "";
+       this.m_sponsors_image_width = "";
+       this.m_sponsors_image_height = "";
 	   
        this.execute();
 
@@ -72,6 +82,43 @@ class PremisesData
     getMaxReservationPercentage(){ return this.m_max_reservation_procent; }
     setMaxReservationPercentage(i_max_reservation_procent){ this.m_max_reservation_procent = i_max_reservation_procent; }
 
+
+    getOrganizerName(){ return this.m_organizer_name; }
+    setOrganizerName(i_organizer_name){ this.m_organizer_name = i_organizer_name; }
+
+    getOrganizerTextLogo(){ return this.m_organizer_text_logo; }
+    setOrganizerTextLogo(i_organizer_text_logo){ this.m_organizer_text_logo = i_organizer_text_logo; }
+
+    getOrganizerTextLogoWidth(){ return this.m_organizer_text_logo_width; }
+    setOrganizerTextLogoWidth(i_organizer_text_logo_width){ this.m_organizer_text_logo_width = i_organizer_text_logo_width; }
+
+    getOrganizerTextLogoHeight(){ return this.m_organizer_text_logo_height; }
+    setOrganizerTextLogoHeight(i_organizer_text_logo_height){ this.m_organizer_text_logo_height = i_organizer_text_logo_height; }
+
+    getOrganizerLogo(){ return this.m_organizer_logo; }
+    setOrganizerLogo(i_organizer_logo){ this.m_organizer_logo = i_organizer_logo; }
+
+    getOrganizerLogoWidth(){ return this.m_organizer_logo_width; }
+    setOrganizerLogoWidth(i_organizer_logo_width){ this.m_organizer_logo_width = i_organizer_logo_width; }
+
+    getOrganizerTextLogoHeight(){ return this.m_organizer_logo_height; }
+    setOrganizerTextLogoHeight(i_organizer_logo_height){ this.m_organizer_logo_height = i_organizer_logo_height; }
+
+    getSponsorsImage(){ return this.m_sponsors_image; }
+    setSponsorsImage(i_sponsors_image){ this.m_sponsors_image = i_sponsors_image; }
+
+    getSponsorsImageWidth(){ return this.m_sponsors_image_width; }
+    setSponsorsImageWidth(i_sponsors_image_width){ this.m_sponsors_image_width = i_sponsors_image_width; }
+
+    getSponsorsImageWidth(){ return this.m_sponsors_image_width; }
+    setSponsorsImageWidth(i_sponsors_image_width){ this.m_sponsors_image_width = i_sponsors_image_width; }
+
+
+    /*
+        this.m_sponsors_image_width = this.m_layout_xml.getSponsorsImageHeight(); 
+    */
+
+
     // Sets the data from the XML object m_layout_xml
     setDataFromXml()
     {
@@ -83,6 +130,17 @@ class PremisesData
         this.m_max_width_pixel = parseInt(this.m_layout_xml.getMaxWidhtPixel());
 
         this.m_max_reservation_procent = parseInt(this.m_layout_xml.getMaxReservationsProcent());
+
+        this.m_organizer_name = this.m_layout_xml.getOrganizerName();
+        this.m_organizer_text_logo = this.m_layout_xml.getOrganizerTextLogo();
+        this.m_organizer_text_logo_width = this.m_layout_xml.getOrganizerTextLogoWidth();
+        this.m_organizer_text_logo_height = this.m_layout_xml.getOrganizerTextLogoHeight();
+        this.m_organizer_logo = this.m_layout_xml.getOrganizerLogo();
+        this.m_organizer_logo_width = this.m_layout_xml.getOrganizerLogoWidth();
+        this.m_organizer_logo_height = this.m_layout_xml.getOrganizerLogoHeight();
+        this.m_sponsors_image = this.m_layout_xml.getSponsorsImage();
+        this.m_sponsors_image_width = this.m_layout_xml.getSponsorsImageWidth();
+        this.m_sponsors_image_height = this.m_layout_xml.getSponsorsImageHeight();
 
     } // setDataFromXml
 
