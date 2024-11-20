@@ -513,6 +513,22 @@ class CashierData
 
     } // execute
 
+    // Get and set functions for the member variables
+    getUpperLeftX(){ return this.m_upper_left_x; }
+    setUpperLeftX(i_upper_left_x){ this.m_upper_left_x = i_upper_left_x; }
+
+    getUpperLeftY(){ return this.m_upper_left_y; }
+    setUpperLeftY(i_upper_left_y){ this.m_upper_left_y = i_upper_left_y; }
+
+    getImage(){ return this.m_image; }
+    setImage(i_image){ this.m_image = i_image; }
+
+    getImageWidth(){ return this.m_image_width; }
+    setImageWidth(i_image_width){ this.m_image_width = i_image_width; }
+
+    getImageHeight(){ return this.m_image_height; }
+    setImageHeight(i_image_height){ this.m_image_height = i_image_height; }
+
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
     {

@@ -70,7 +70,9 @@ class LayoutSvg
 
         this.m_svg_code = this.m_svg_code + stage_svg.get();
 
+        var cashjer_data = new CashierSvg(this.m_layout_xml, this.m_scale_dimension);
 
+        this.m_svg_code = this.m_svg_code + cashjer_data.get();
  
         this.m_svg_code = this.m_svg_code + this.endLineSvg();
 
@@ -358,9 +360,6 @@ class StageSvg
        // The conversion factor mm to pixel
        this.m_scale_dimension = i_scale_dimension;
 
-       //QQthis.m_style_wall = ' style="fill:rgb(222, 223, 224);stroke-width:1;stroke:black"';
-      
-
        // All SVG code from this class
        this.m_svg_code = '';
 	   
@@ -378,10 +377,10 @@ class StageSvg
 
             return;
         }
-
-        var stage_data = getStageDataFromXml(this.m_layout_xml);
     
         // Get stage data from the layout XML file    
+        var stage_data = getStageDataFromXml(this.m_layout_xml);
+
         var stage_upper_left_x = stage_data.getUpperLeftX();
         var stage_upper_left_y = stage_data.getUpperLeftY();
         var stage_image = stage_data.getImage();
@@ -461,5 +460,83 @@ class StageSvg
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Class Stage Svg /////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// Start Class Cashier Svg /////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Class that creates all cashier SVG code for the reservation layout HTML files
+class CashierSvg
+{
+    // Creates the instance of the class
+    // i_layout_xml: Object for a reservation layout XML file. 
+	// i_scale_dimension: The conversion factor mm to pixel
+    constructor(i_layout_xml, i_scale_dimension) 
+    {
+        // Member variables
+        // ================
+
+       // Layout XML object
+       this.m_layout_xml = i_layout_xml;
+
+       // The conversion factor mm to pixel
+       this.m_scale_dimension = i_scale_dimension;
+      
+       // All SVG code from this class
+       this.m_svg_code = '';
+	   
+       // Create (construct) the SVG code
+       this.execute();
+
+    } // constructor
+
+    // Create (construct) the SVG code
+    execute()
+    {
+        if (this.m_layout_xml == null)
+        {
+            alert("CashierSvg.execute Layout XML object is null");
+
+            return;
+        }
+
+       // Get cashier data from the layout XML file    
+        var cashier_data = getCashierDataFromXml(this.m_layout_xml);	
+        var cashier_upper_left_x = cashier_data.getUpperLeftX();
+        var cashier_upper_left_y = cashier_data.getUpperLeftY();
+        var cashier_image =        cashier_data.getImage();		
+        var cashier_image_width =  cashier_data.getImageWidth();
+        var cashier_image_height = cashier_data.getImageHeight();	
+        
+        var cashier_upper_left_x_pixel = parseInt(cashier_upper_left_x*this.m_scale_dimension); 
+        var cashier_upper_left_y_pixel = parseInt(cashier_upper_left_y*this.m_scale_dimension);
+
+        var cashier_svg = '';
+
+        // Cash desk image object	
+        var cashier_image_svg = '<image x= ' + cashier_upper_left_x_pixel + ' y= ' + cashier_upper_left_y_pixel + 
+                        ' width=' + cashier_image_width + ' height=' + cashier_image_height + 
+                        ' xlink:href=' + cashier_image + '>' +
+                        ' <title>Kasse</title> ' + 
+                        ' </image>';
+                        
+        cashier_svg = cashier_svg + cashier_image_svg + '\n'; 
+
+        this.m_svg_code = cashier_svg;
+ 
+    } // execute
+
+    // Get all SVG code for the body of the output HTML files
+    get()
+    {
+        return this.m_svg_code;
+
+    } // get
+
+} // CashierSvg
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// End Class Cashier Svg ///////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
