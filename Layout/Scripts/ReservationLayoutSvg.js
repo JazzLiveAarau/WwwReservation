@@ -29,6 +29,9 @@ class LayoutSvg
        // The conversion factor mm to pixel
        this.m_scale_dimension = -0.123456789;
 
+       // Style for the SVH element
+       this.m_style_block_svg =  ' ' + 'style="fill:rgb(255,255,255);stroke-width:3;stroke:rgb(0,0,0);margin-top:0px; padding:0px" ';
+
        // All SVG code from this class
        this.m_svg_code = '';    
 	   
@@ -39,7 +42,11 @@ class LayoutSvg
 
     // Create (construct) the SVG code
     // 1. Calculate conversion factor mm to pixel. Create premises SVG object.
-    // 2. Add premises SVG to m_svg_code. Call of PremisesSvg.get.
+    // 2. Add SVG start line. Call of PremisesSvg.startLineSvg
+    // 3. Add premises SVG to m_svg_code. Call of PremisesSvg.get.
+
+
+     // n. Add SVG end line. Call of PremisesSvg.endLineSvg
     execute()
     {
         if (this.m_layout_xml == null)
@@ -53,10 +60,16 @@ class LayoutSvg
 
         this.m_svg_code = '';
 
+        this.m_svg_code = this.m_svg_code + this.startLineSvg();
+
         var premises_svg = new PremisesSvg(this.m_layout_xml, this.m_scale_dimension);
 
         this.m_svg_code = this.m_svg_code + premises_svg.get();
+
+
+
  
+        this.m_svg_code = this.m_svg_code + this.endLineSvg();
 
     } // execute
 
@@ -66,6 +79,33 @@ class LayoutSvg
         return this.m_svg_code;
 
     } // get
+
+    // Returns the start line for the SVG element (block) <svg ......>
+    startLineSvg()
+    {
+        var premises_data = getPremisesDataFromXml(this.m_layout_xml);
+        var premises_width = premises_data.getWidth(); 
+        var premises_height = premises_data.getHeight();
+        var premises_width_pixel = parseInt(premises_width*this.m_scale_dimension);
+        var premises_height_pixel = parseInt(premises_height*this.m_scale_dimension);
+
+        var ret_svg = '';
+	
+        var svg_svg = '<svg id= "id_block_svg" height=' + premises_height_pixel + ' width=' + premises_width_pixel 
+                                + this.m_style_block_svg + ' >'
+       
+        ret_svg = ret_svg + svg_svg + '\n';
+       
+        return ret_svg;
+
+    } // startLineSvg
+
+    // Returns the end line for the SVG element (block) </svg>
+    endLineSvg()
+    {
+        return '</svg>';	
+
+    } // startLineSvg
 
     // Fonts, font sizes and colors (styles)
     static fontBig()

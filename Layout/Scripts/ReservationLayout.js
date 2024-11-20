@@ -52,7 +52,7 @@ function callbackAfterLoadOfXmlLayout()
 
     var premises_data = getPremisesDataFromXml(g_layout_xml);
 
-    var stage_data =  getLayoutStageDataFromXml(g_layout_xml);
+    var stage_data =  getStageDataFromXml(g_layout_xml);
 
     var general_table_data = getGeneralTableDataFromXml(g_layout_xml);
 

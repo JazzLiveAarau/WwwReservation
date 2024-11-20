@@ -61,7 +61,7 @@ class PremisesData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -233,7 +233,7 @@ class GeneralTableData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -302,7 +302,7 @@ function getGeneralTableDataFromXml(i_layout_xml)
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Class holding all data for a stage
-class LayoutStageData
+class StageData
 {
     // Creates the instance of the class
     // i_case: get_data_from_xml, get_default_data, set_xml_object, check_data
@@ -349,7 +349,7 @@ class LayoutStageData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -379,7 +379,7 @@ class LayoutStageData
     {
         var ret_b_check = true;
 
-        if(!LayoutDataInput.check(this.m_case, this.m_layout_xml, this.m_input_data_object, "LayoutStageData"))
+        if(!LayoutDataInput.check(this.m_case, this.m_layout_xml, this.m_input_data_object, "StageData"))
         {
             ret_b_check = false;
 
@@ -396,17 +396,17 @@ class LayoutStageData
 
 
 
-} // LayoutStageData
+} // StageData
 
 // Returns a layout stage data object with data retrieved from the 
 // i_layout_xml: Object for a reservation layout XML file
-function getLayoutStageDataFromXml(i_layout_xml)
+function getStageDataFromXml(i_layout_xml)
 {
     var layout_case = "get_data_from_xml";
 
     var input_data_object = null;
 
-    var ret_object = new LayoutStageData(layout_case, i_layout_xml, input_data_object);
+    var ret_object = new StageData(layout_case, i_layout_xml, input_data_object);
 
     if (!ret_object.checkData())
     {
@@ -415,7 +415,7 @@ function getLayoutStageDataFromXml(i_layout_xml)
 
     return ret_object;
 
-} // getLayoutStageDataFromXml
+} // getStageDataFromXml
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -465,7 +465,7 @@ class CashierData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -576,7 +576,7 @@ class TextImageCaptions
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -690,7 +690,7 @@ class DoorData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
@@ -830,7 +830,7 @@ class TableData
         }
         else
         {
-            alert("LayoutStageData.execute Not yet an implemented case " + this.m_case);
+            alert("StageData.execute Not yet an implemented case " + this.m_case);
         }
 
     } // execute
