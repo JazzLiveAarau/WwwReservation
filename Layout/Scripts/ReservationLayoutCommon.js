@@ -754,6 +754,28 @@ class DoorData
 
     } // execute
 
+    // Get and set functions for the member variables
+    getType(){ return this.m_type; }
+    setType(i_type){ this.m_type = i_type; }
+
+    getPosition(){ return this.m_position; }
+    setPosition(i_position){ this.m_position = i_position; }
+
+    getHeight(){ return this.m_height; }
+    setHeight(i_height){ this.m_height = i_height; }
+
+    getText(){ return this.m_text; }
+    setText(i_text){ this.m_text = i_text; }
+
+    getImage(){ return this.m_image; }
+    setImage(i_image){ this.m_image = i_image; }
+
+    getImageWidth(){ return this.m_image_width; }
+    setImageWidth(i_image_width){ this.m_image_width = i_image_width; }
+
+    getImageHeight(){ return this.m_image_height; }
+    setImageHeight(i_image_height){ this.m_image_height = i_image_height; }
+
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
     {

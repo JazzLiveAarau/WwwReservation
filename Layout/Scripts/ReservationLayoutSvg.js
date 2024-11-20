@@ -70,9 +70,16 @@ class LayoutSvg
 
         this.m_svg_code = this.m_svg_code + stage_svg.get();
 
-        var cashjer_data = new CashierSvg(this.m_layout_xml, this.m_scale_dimension);
+        var cashier_data = new CashierSvg(this.m_layout_xml, this.m_scale_dimension);
 
-        this.m_svg_code = this.m_svg_code + cashjer_data.get();
+        this.m_svg_code = this.m_svg_code + cashier_data.get();
+
+        var doors_svg = new DoorSvg(this.m_layout_xml, this.m_scale_dimension);
+
+        this.m_svg_code = this.m_svg_code + doors_svg.get();
+
+
+
  
         this.m_svg_code = this.m_svg_code + this.endLineSvg();
 
@@ -538,5 +545,188 @@ class CashierSvg
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Class Cashier Svg ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// Start Class Door Svg ////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Class that creates all doors SVG code for the reservation layout HTML files
+class DoorSvg
+{
+    // Creates the instance of the class
+    // i_layout_xml: Object for a reservation layout XML file. 
+	// i_scale_dimension: The conversion factor mm to pixel
+    constructor(i_layout_xml, i_scale_dimension) 
+    {
+        // Member variables
+        // ================
+
+       // Layout XML object
+       this.m_layout_xml = i_layout_xml;
+
+       // The conversion factor mm to pixel
+       this.m_scale_dimension = i_scale_dimension;
+
+       //QQthis.m_style_wall = ' style="fill:rgb(222, 223, 224);stroke-width:1;stroke:black"';
+      
+
+       // All SVG code from this class
+       this.m_svg_code = '';
+	   
+       // Create (construct) the SVG code
+       this.execute();
+
+    } // constructor
+
+    // Create (construct) the SVG code
+    execute()
+    {
+        if (this.m_layout_xml == null)
+        {
+            alert("DoorSvg.execute Layout XML object is null");
+
+            return;
+        }
+
+       // Get data for all doors from the layout XML file  
+       var door_data_array = getDoorDataArrayFromXml(this.m_layout_xml);  
+
+       var n_doors = door_data_array.length;
+    
+
+        var all_doors_svg = '';
+
+        for (var door_index=0; door_index < n_doors; door_index++)
+        {
+            var door_data = door_data_array[door_index];
+
+            all_doors_svg = all_doors_svg + this.oneDoor(door_data);
+        }
+
+        this.m_svg_code = all_doors_svg;
+ 
+    } // execute
+
+    // Returns SVG code for one door
+    oneDoor(i_door_data)
+    {
+        // Get door data from the layout XML file 
+        var door_type = i_door_data.getType();
+        var door_position = i_door_data.getPosition();
+        var door_height = i_door_data.getHeight();
+        var door_text = i_door_data.getText();
+        
+        var door_image = i_door_data.getImage();
+        var door_image_width_pixel = i_door_data.getImageWidth();
+        var door_image_height_pixel = i_door_data.getImageHeight();	
+        
+        // Convert door dimensions from mm to pixel
+        var door_position_pixel = parseInt(door_position*this.m_scale_dimension);
+        var door_height_pixel = parseInt(door_height*this.m_scale_dimension);
+
+        // Get premises data from the layout XML file 
+        var premises_data = getPremisesDataFromXml(this.m_layout_xml);
+        var premises_width = premises_data.getWidth(); 
+        var premises_height = premises_data.getHeight();
+        var wall_thickness = premises_data.getWallThickness();
+       
+        // Convert premises dimensions from mm to pixel
+        var premises_width_pixel = parseInt(premises_width*this.m_scale_dimension);
+        var premises_height_pixel = parseInt(premises_height*this.m_scale_dimension);
+        var wall_thickness_pixel = parseInt(wall_thickness*this.m_scale_dimension);        
+
+
+        var door_svg = '';	
+        
+    
+        if ("right" == door_type)
+        {
+            var right_coordinate_x_pixel = premises_width_pixel - wall_thickness_pixel;
+            var right_coordinate_y_pixel = door_position_pixel;
+            var right_width_pixel = premises_width_pixel;
+            var right_height_pixel = door_height_pixel;
+            
+            //var door_right_svg = '<rect ' + ' x=' + right_coordinate_x_pixel + ' y=' + right_coordinate_y_pixel +
+            //                    ' width=' + right_width_pixel + ' height=' + right_height_pixel + 
+            //                    ' style="fill:white;stroke-width:1;stroke:white"' +  ' />';
+                            
+            // door_svg  = door_svg + door_right_svg + '\n';
+    
+            //var right_text_x_pixel	= right_coordinate_x_pixel +  4;
+            //var right_text_y_pixel	= right_coordinate_y_pixel +  4;
+        
+            //var text_right_svg = '<text x=' + right_text_x_pixel + ' y=' + right_text_y_pixel + 
+            //                     ' transform="rotate(90, ' + right_text_x_pixel + ',' + + right_text_y_pixel + ')"' +
+            //                     ' font-family="arial" font-size="25px" fill=' + g_table_text_color + '>' + door_text + '</text>';
+                        
+            // door_svg  = door_svg + text_right_svg + '\n';
+            
+            // Right door image object	
+            var right_image_x_pixel = premises_width_pixel - 2 * wall_thickness_pixel;
+            var right_image_y_pixel = door_position_pixel;
+                        
+            var right_image_svg = '<image x= ' + right_image_x_pixel + ' y= ' + right_image_y_pixel + 
+                        ' width=' + door_image_width_pixel + ' height=' + door_image_height_pixel + 
+                        ' xlink:href=' + door_image + '>' +
+                        ' <title>Tür</title> ' + 
+                        ' </image>';
+                        
+            door_svg = door_svg + right_image_svg + '\n'; 		
+               
+        } // upper
+
+        if ("lower" == door_type)
+        {
+            var lower_coordinate_x_pixel = door_position_pixel;
+            var lower_coordinate_y_pixel = premises_height_pixel - wall_thickness_pixel;
+            var lower_width_pixel = door_height_pixel;
+            var lower_height_pixel = premises_width_pixel;
+            
+            //var door_lower_svg = '<rect ' + ' x=' + lower_coordinate_x_pixel + ' y=' + lower_coordinate_y_pixel
+            //   + ' width=' + lower_width_pixel + ' height=' + lower_height_pixel     
+            //   + ' style="fill:white;stroke-width:1;stroke:white"' +  ' />'
+            
+            // door_svg  = door_svg + door_lower_svg + '\n';		
+    
+            //var lower_text_x_pixel	= lower_coordinate_x_pixel +  4;
+            //var lower_text_y_pixel	= lower_coordinate_y_pixel + wall_thickness_pixel - 4;
+    
+            //var text_lower_svg = '<text x=' + lower_text_x_pixel + ' y=' + lower_text_y_pixel 
+            //+ ' transform="rotate(0, ' + lower_text_x_pixel + ',' + lower_text_y_pixel + ')"' + 
+            //' font-family="arial" font-size="25px" fill=' + g_table_text_color + '>' + door_text + '</text>'
+            
+            // door_svg  = door_svg + text_lower_svg + '\n';	
+    
+            // Lower door image object	
+            var lower_image_x_pixel = lower_coordinate_x_pixel;
+            var lower_image_y_pixel = lower_coordinate_y_pixel - wall_thickness_pixel;
+                        
+            var lower_image_svg = '<image x= ' + lower_image_x_pixel + ' y= ' + lower_image_y_pixel + 
+                        ' width=' + door_image_width_pixel + ' height=' + door_image_height_pixel + 
+                        ' xlink:href=' + door_image + '>' +
+                        ' <title>Tür</title> ' + 
+                        ' </image>';
+                        
+            door_svg = door_svg + lower_image_svg + '\n'; 		
+            
+        } // lower
+
+
+        return door_svg;
+
+    } // oneDoor
+
+    // Get all SVG code for the body of the output HTML files
+    get()
+    {
+        return this.m_svg_code;
+
+    } // get
+
+} // DoorSvg
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// End Class Door Svg //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
