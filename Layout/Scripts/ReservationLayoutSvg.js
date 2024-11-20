@@ -193,7 +193,7 @@ class PremisesSvg
         var premises_data = getPremisesDataFromXml(this.m_layout_xml);
         var premises_width = premises_data.getWidth(); 
         var premises_height = premises_data.getHeight();
-        var wall_thickness = premises_data.getHeight();
+        var wall_thickness = premises_data.getWallThickness();
         var organizer_name = premises_data.getOrganizerName();
         var organizer_text_logo = premises_data.getOrganizerTextLogo();
        
