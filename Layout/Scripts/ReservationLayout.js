@@ -76,6 +76,10 @@ function callbackAfterLoadOfXmlLayout()
 
     var layout_svg_code = layout_svg.get();
 
+    var table_group_number = 4;
+
+    var group_table_array = getGroupTableDataArrayFromXml(g_layout_xml, table_group_number);
+
 } // callbackAfterLoadOfXmlLayout
 
 ///////////////////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,5 @@
 // File: ReservationLayoutXml.js
-// Date: 2024-11-20
+// Date: 2024-11-21
 // Author: Gunnar Lidén
 
 // File content
@@ -1519,33 +1519,33 @@ class ReservationLayoutXml
     ///////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////
-    /////// Start Get Table Group Functions ///////////////////////////////////
+    /////// Start Get Group Functions /////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
-    // Returns the table group text for a given table number
-    getTableGroupText(i_table_number)
+    // Returns the group text for a given group number
+    getGroupText(i_group_number)
     {
-        return this.getTableGroupNodeValue(this.m_tags.getTableGroupText(), i_table_number);
+        return this.getGroupNodeValue(this.m_tags.getGroupText(), i_group_number);
         
-    } // getTableGroupText
+    } // getGroupText
 
     ///////////////////////////////////////////////////////////////////////////
-    /////// End Get Table Group Functions /////////////////////////////////////
+    /////// End Get goup Functions ////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////
-    /////// Start Set Table Group Functions ///////////////////////////////////
+    /////// Start Set Group Functions /////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
-	// Sets the table group text for a given table number
-    setTableGroupText(i_table_number, i_table_group_text)
+	// Sets the group text for a given group number
+    setGroupText(i_group_number, i_group_text)
     {
-        this.setTableGroupNodeValue(this.m_tags.getTableGroupText(), i_table_number, i_table_group_text);
+        this.setGroupNodeValue(this.m_tags.getGroupText(), i_group_number, i_group_text);
         
-    } // setTableGroupText
+    } // setGroupText
 
     ///////////////////////////////////////////////////////////////////////////
-    /////// End Set Table Group Functions /////////////////////////////////////
+    /////// End Set Group Functions ///////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////
@@ -1716,63 +1716,63 @@ class ReservationLayoutXml
         
     } // setTableNodeValue
 
-    // Returns the table group node value for a given tag name and a given table group number
-    getTableGroupNodeValue(i_tag_table_group_element, i_table_group_number)
+    // Returns the group node value for a given tag name and a given group number
+    getGroupNodeValue(i_tag_group_element, i_group_number)
     {
         var ret_node_value = '';
 
-        if(!this.checkTableGroupNumber(i_table_group_number)) { return ret_node_value; }
+        if(!this.checkGroupNumber(i_group_number)) { return ret_node_value; }
 
-        var index_table_group = i_table_group_number - 1;
+        var index_group = i_group_number - 1;
         
-        var table_group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
+        var group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getGroup())[index_group];
 
-        var table_group_node_elements = table_group_node.getElementsByTagName(i_tag_table_group_element);
+        var group_node_elements = group_node.getElementsByTagName(i_tag_group_element);
 
-        if (table_group_node_elements.length != 1)
+        if (group_node_elements.length != 1)
         {
-            alert("ReservationLayoutXml.getTableGroupNodeValue Number of table group node elements is " +  table_group_node_elements.length.toString() + 
-            ".  There must only be one table group element with the tag " + i_tag_table_group_element);
+            alert("ReservationLayoutXml.getGroupNodeValue Number of group node elements is " +  group_node_elements.length.toString() + 
+            ".  There must only be one group element with the tag " + i_tag_group_element);
 
             return ret_node_value; 
         }
 
-        var table_group_node_element = table_group_node_elements[0];
+        var group_node_element = group_node_elements[0];
 
-        var table_element_node_value = table_group_node_element.childNodes[0].nodeValue;
+        var table_element_node_value = group_node_element.childNodes[0].nodeValue;
         
         ret_node_value = this.removeFlagNodeValueNotSet(table_element_node_value);
         
         return ret_node_value;
         
-    } // getTableGroupNodeValue
+    } // getGroupNodeValue
 
-    // Sets the table group node value for a given tag name and a given table group number
-    setTableGroupNodeValue(i_tag_table_group_element, i_table_group_number, i_table_group_elemen_value)
+    // Sets the group node value for a given tag name and a given group number
+    setGroupNodeValue(i_tag_group_element, i_group_number, i_group_elemen_value)
     {
-        if(!this.checkTableGroupNumber(i_table_group_number)) { return; }
+        if(!this.checkGroupNumber(i_group_number)) { return; }
 
-        var index_table_group = i_table_group_number - 1;
+        var index_group = i_group_number - 1;
         
-        var table_group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup())[index_table_group];
+        var group_node = this.getXmlObject().getElementsByTagName(this.m_tags.getGroup())[index_group];
 
-        var table_group_node_elements = table_group_node.getElementsByTagName(i_tag_table_group_element);
+        var group_node_elements = group_node.getElementsByTagName(i_tag_group_element);
 
-        if (table_group_node_elements.length != 1)
+        if (group_node_elements.length != 1)
         {
-            alert("ReservationLayoutXml.setTableGroupNodeValue Number of table group node elements is " +  table_group_node_elements.length.toString() + 
-            ".  There must only be one table group element with the tag " + i_tag_table_group_element);
+            alert("ReservationLayoutXml.setGroupNodeValue Number of group node elements is " +  group_node_elements.length.toString() + 
+            ".  There must only be one group element with the tag " + i_tag_group_element);
 
             return; 
         }
 
-        var table_group_elemen_value = this.setFlagNodeValueIsNotSetForEmptyString(i_table_group_elemen_value);
+        var group_elemen_value = this.setFlagNodeValueIsNotSetForEmptyString(i_group_elemen_value);
 
-        var table_group_node_element = table_group_node_elements[0];
+        var group_node_element = group_node_elements[0];
 
-        table_group_node_element.childNodes[0].nodeValue = table_group_elemen_value;
+        group_node_element.childNodes[0].nodeValue = group_elemen_value;
         
-    } // setTableGroupNodeValue
+    } // setGroupNodeValue
 
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////// Node Node Value Functions ///////////////////////
@@ -1864,46 +1864,123 @@ class ReservationLayoutXml
 
     } // checkTableNumber
 
-    // Returns the number of table group records
-    getNumberOfTableGroups()
+    // Returns the number of group records
+    getNumberOfGroups()
     {
         var ret_n_records = -1;
 
         if (!this.checkLayoutXml()){ return ret_n_records; }
 
-        var table_group_rec_nodes = this.getXmlObject().getElementsByTagName(this.m_tags.getTableGroup());
+        var group_rec_nodes = this.getXmlObject().getElementsByTagName(this.m_tags.getGroup());
 
-        ret_n_records = table_group_rec_nodes.length;
+        ret_n_records = group_rec_nodes.length;
 
         return ret_n_records;
 
-    } // getNumberOfTableGroups
+    } // getNumberOfGroups
 
-    // Return true if the input table group record number exists
-    checkTableGroupNumber(i_table_group_number)
+    // Returns the number of table records for a given group
+    getNumberOTablesInOneGroup(i_group_number)
     {
-        var n_table_groups = this.getNumberOfTableGroups();
+        var ret_n_records = -1;
 
-        if (n_table_groups < 0)
+        if (!this.checkLayoutXml()){ return ret_n_records; }
+
+        var group_rec_nodes = this.getXmlObject().getElementsByTagName(this.m_tags.getGroup());
+
+        if (group_rec_nodes.length == 0)
         {
-            alert("ReservationLayputXml.checkTableGroupNumber Returned nummber of table groups is negative ");
+            alert("ReservationLayoutXml.getNumberOTablesInOneGroups Number of groups is zero (0)");
+
+            return ret_n_records;
+        }
+
+        if (i_group_number < 1 || i_group_number > group_rec_nodes.length)
+        {
+            alert("ReservationLayoutXml.getNumberOTablesInOneGroups Group number " + i_group_number.toString()
+                                + " is not between 1 and " + group_rec_nodes.length,toString());
+
+            return ret_n_records;            
+        }
+
+        var group_rec_node = group_rec_nodes[i_group_number - 1];
+
+        var table_rec_nodes = group_rec_node.getElementsByTagName(this.m_tags.getTable());
+
+        ret_n_records = table_rec_nodes.length;
+
+        return ret_n_records;
+
+    } // getNumberOTablesInOneGroup
+
+    // Returns an array of table numbers for the tables that are in a given group
+    getGroupTableNumbers(i_group_number)
+    {
+        var ret_table_number_array = [];
+
+        if (!this.checkLayoutXml()) { return ret_table_array; }
+
+        if (!this.checkGroupNumber(i_group_number)) { return ret_table_array; }
+
+        var group_rec_nodes = this.getXmlObject().getElementsByTagName(this.m_tags.getGroup());
+
+        var table_number = 0;
+
+        for (var group_number=1; group_number <= i_group_number; group_number++)
+        {
+            var group_node = group_rec_nodes[group_number - 1];
+
+            var group_table_nodes = group_node.getElementsByTagName(this.m_tags.getTable());
+
+            var n_group_tables = group_table_nodes.length;
+
+            if (group_number == i_group_number)
+            {
+                for (var index_out=0; index_out < n_group_tables; index_out++)
+                {
+                    table_number = table_number + 1;
+
+                    ret_table_number_array[index_out] = table_number;
+                }
+
+                break;
+            }
+            else
+            {
+                table_number = table_number + n_group_tables;
+            }
+
+        }
+
+        return ret_table_number_array;
+
+    } // getGroupTableNodes
+
+    // Return true if the input group record number exists
+    checkGroupNumber(i_group_number)
+    {
+        var n_groups = this.getNumberOfGroups();
+
+        if (n_groups < 0)
+        {
+            alert("ReservationLayputXml.checkGroupNumber Returned nummber of groups is negative ");
 
             return false;
         }
 
-        if (i_table_group_number >= 1 && i_table_group_number <= n_table_groups)
+        if (i_group_number >= 1 && i_group_number <= n_groups)
         {
             return true;
         }
         else
         {
-            alert("ReservationLayoutXml.checkTableGroupNumber Input table group number " +  i_table_group_number.toString() + 
-                                " is not between 1 and " + n_table_groups.toString());
+            alert("ReservationLayoutXml.checkGroupNumber Input group number " +  i_group_number.toString() + 
+                                " is not between 1 and " + n_groups.toString());
 
             return false;
         }
 
-    } // checkTableGroupNumber
+    } // checkGroupNumber
 
     ///////////////////////////////////////////////////////////////////////////
     ///////////////////////// End Number Records  /////////////////////////////
@@ -2170,8 +2247,8 @@ class ReservationLayoutTags
         ////////////// Table Data ////////////////////////////////
         //////////////////////////////////////////////////////////
 
-        this.m_tag_table_group = "TableGroup";
-        this.m_tag_table_group_text = "TableGroupText";
+        this.m_tag_group = "TableGroup";
+        this.m_tag_group_text = "TableGroupText";
 
         this.m_tag_table = "Table";
         this.m_tag_table_number = "Number";
@@ -2316,8 +2393,8 @@ class ReservationLayoutTags
         ////////////// Table Data ////////////////////////////////
         //////////////////////////////////////////////////////////
 
-        getTableGroup(){return this.m_tag_table_group;}
-        getTableGroupText(){return this.m_tag_table_group_text;}
+        getGroup(){return this.m_tag_group;}
+        getGroupText(){return this.m_tag_group_text;}
 
         getTable(){return this.m_tag_table;}
 

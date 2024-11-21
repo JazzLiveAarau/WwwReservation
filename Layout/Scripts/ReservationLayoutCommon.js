@@ -1,5 +1,5 @@
 // File: ReservationLayoutCommon.js
-// Date: 2024-11-20
+// Date: 2024-11-21
 // Authors: Gunnar Lidén
 
 // Content
@@ -1181,14 +1181,168 @@ function getTableDataArrayFromXml(i_layout_xml)
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////// Start Class Table Group Data ////////////////////////////////////
+///////////////////////// Start Class Group Data //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-// TODO
-// The table group data is not yet used by the creation of the HTML files
+// Class holding group data
+class GroupData
+{
+    // Creates the instance of the class
+    // i_case: get_data_from_xml, get_default_data, set_xml_object, check_data
+    // i_layout_xml: Object for a reservation layout XML file.
+    constructor(i_case, i_layout_xml, i_input_data_object) 
+    {
+        // Member variables
+        // ================
+
+        // Constructor case
+        this.m_case = i_case;
+
+       // Layout XML object
+       this.m_layout_xml = i_layout_xml;
+
+       // An instance of this class to be used for case set_xml_object
+       this.m_input_data_object = i_input_data_object;
+
+       this.m_type = "";
+       this.m_position = "";
+	   this.m_height = "";
+	   this.m_text = "";
+	   this.m_image = "";
+	   this.m_image_width = "";
+	   this.m_image_height = "";
+
+/*
+        getGroup(){return this.m_tag_group;}
+        getGroupText(){return this.m_tag_group_text;}
+*/
+	   
+       this.execute();
+
+    } // constructor
+
+    // Execute
+    execute()
+    {
+        if (this.m_case == "get_data_from_xml")
+        {
+            this.setDataFromXml();
+        }
+        else
+        {
+            alert("GroupData.execute Not yet an implemented case " + this.m_case);
+        }
+
+    } // execute
+
+    // Get and set functions for the member variables
+    getType(){ return this.m_type; }
+    setType(i_type){ this.m_type = i_type; }
+
+
+    // Sets the dat from the XML object m_layout_xml
+    setDataFromXml()
+    {
+       this.m_type = this.m_layout_xml.getDoorType(this.m_door_number);
+ 
+
+    } // setDataFromXml
+
+    // Checks the data
+    checkData()
+    {
+        var ret_b_check = true;
+
+        if(!LayoutDataInput.check(this.m_case, this.m_layout_xml, this.m_input_data_object, "GroupData"))
+        {
+            ret_b_check = false;
+
+            return ret_b_check;
+        }
+
+        // TODO Add checks of member variables
+
+
+
+        return ret_b_check;
+
+    } // checkData
+
+} // GroupData
+
+// Returns an object with door data. Data is retrieved from the 
+// i_layout_xml: Object for a reservation layout XML file
+function getGroupDataFromXml(i_layout_xml, i_door_number)
+{
+    var layout_case = "get_data_from_xml";
+
+    var input_data_object = null;
+
+    var ret_object = new GroupData(layout_case, i_layout_xml, input_data_object, i_door_number);
+
+    if (!ret_object.checkData())
+    {
+        return null;
+    }
+
+    return ret_object;
+
+} // getGroupDataFromXml
+
+// Returns an array of GroupData objects
+function getGroupDataArrayFromXml(i_layout_xml)
+{
+    var ret_table_group_array = [];
+
+    var n_table_groups = i_layout_xml.getNumberOfGroups();
+
+    for (var group_number=1; group_number <=  n_table_groups; group_number++)
+    {
+        var table_group_data = getGroupDataFromXml(i_layout_xml, group_number);
+
+        ret_table_group_array[group_number - 1] = table_group_data;
+    }
+
+    return ret_table_group_array;
+ 
+} // getGroupDataArrayFromXml
+
+// Returns an array of Table objects for a given group
+function getGroupTableDataArrayFromXml(i_layout_xml, i_group_number)
+{
+    var ret_table_array = [];
+
+    var table_number_array = i_layout_xml.getGroupTableNumbers(i_group_number);
+
+    var n_numbers = table_number_array.length;
+
+    if (n_numbers <= 0)
+    {
+        alert("");
+
+        return ret_table_array;
+    }
+
+
+    for (var index_number=0; index_number < n_numbers; index_number++)
+    {
+        var table_number = table_number_array[index_number];
+
+        var layout_case = "get_data_from_xml";
+
+        var input_data_object = null;
+    
+        var table_data = new TableData(layout_case, i_layout_xml, input_data_object, table_number);
+
+        ret_table_array[index_number] = table_data;
+    }
+
+    return ret_table_array;
+ 
+} // getGroupTableDataArrayFromXml
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////// End Class Table Group Data //////////////////////////////////////
+///////////////////////// End Class Group Data ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////
