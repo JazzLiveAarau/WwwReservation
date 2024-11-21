@@ -1190,7 +1190,7 @@ class GroupData
     // Creates the instance of the class
     // i_case: get_data_from_xml, get_default_data, set_xml_object, check_data
     // i_layout_xml: Object for a reservation layout XML file.
-    constructor(i_case, i_layout_xml, i_input_data_object) 
+    constructor(i_case, i_layout_xml, i_input_data_object, i_group_number) 
     {
         // Member variables
         // ================
@@ -1204,18 +1204,11 @@ class GroupData
        // An instance of this class to be used for case set_xml_object
        this.m_input_data_object = i_input_data_object;
 
-       this.m_type = "";
-       this.m_position = "";
-	   this.m_height = "";
-	   this.m_text = "";
-	   this.m_image = "";
-	   this.m_image_width = "";
-	   this.m_image_height = "";
+       // Input group number
+       this.m_group_number = i_group_number;
 
-/*
-        getGroup(){return this.m_tag_group;}
-        getGroupText(){return this.m_tag_group_text;}
-*/
+       this.m_text = "";
+       this.m_tables = [];
 	   
        this.execute();
 
@@ -1236,17 +1229,54 @@ class GroupData
     } // execute
 
     // Get and set functions for the member variables
-    getType(){ return this.m_type; }
-    setType(i_type){ this.m_type = i_type; }
+    getText(){ return this.m_text; }
+    setText(i_text){ this.m_text = i_text; }
+
+    getTables(){ return this.m_tables; }
+    getTables(i_tables){ this.m_tables = i_tables; }
 
 
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
     {
-       this.m_type = this.m_layout_xml.getDoorType(this.m_door_number);
+       this.m_text = this.m_layout_xml.getGroupText(this.m_group_number);
  
+       this.m_tables = this.getGroupTableDataArrayFromXml(this.m_layout_xml, this.m_group_number);
 
     } // setDataFromXml
+
+    // Returns an array of TableData objects for a given group
+    getGroupTableDataArrayFromXml(i_layout_xml, i_group_number)
+    {
+        var ret_table_array = [];
+
+        var table_number_array = i_layout_xml.getGroupTableNumbers(i_group_number);
+
+        var n_numbers = table_number_array.length;
+
+        if (n_numbers <= 0)
+        {
+            alert("GroupData.getGroupTableDataArrayFromXml");
+
+            return ret_table_array;
+        }
+
+        for (var index_number=0; index_number < n_numbers; index_number++)
+        {
+            var table_number = table_number_array[index_number];
+
+            var layout_case = "get_data_from_xml";
+
+            var input_data_object = null;
+        
+            var table_data = new TableData(layout_case, i_layout_xml, input_data_object, table_number);
+
+            ret_table_array[index_number] = table_data;
+        }
+
+        return ret_table_array;
+    
+    } // getGroupTableDataArrayFromXml
 
     // Checks the data
     checkData()
@@ -1272,13 +1302,13 @@ class GroupData
 
 // Returns an object with door data. Data is retrieved from the 
 // i_layout_xml: Object for a reservation layout XML file
-function getGroupDataFromXml(i_layout_xml, i_door_number)
+function getGroupDataFromXml(i_layout_xml, i_group_number)
 {
     var layout_case = "get_data_from_xml";
 
     var input_data_object = null;
 
-    var ret_object = new GroupData(layout_case, i_layout_xml, input_data_object, i_door_number);
+    var ret_object = new GroupData(layout_case, i_layout_xml, input_data_object, i_group_number);
 
     if (!ret_object.checkData())
     {
@@ -1307,7 +1337,9 @@ function getGroupDataArrayFromXml(i_layout_xml)
  
 } // getGroupDataArrayFromXml
 
-// Returns an array of Table objects for a given group
+/*QQQQQQQQQ
+// Returns an array of TableData objects for a given group
+// Perhaps delete. Same data is available from GroupData
 function getGroupTableDataArrayFromXml(i_layout_xml, i_group_number)
 {
     var ret_table_array = [];
@@ -1340,6 +1372,7 @@ function getGroupTableDataArrayFromXml(i_layout_xml, i_group_number)
     return ret_table_array;
  
 } // getGroupTableDataArrayFromXml
+QQQQ*/
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Class Group Data ////////////////////////////////////////////
