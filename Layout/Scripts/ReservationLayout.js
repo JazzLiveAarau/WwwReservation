@@ -80,7 +80,6 @@ function callbackAfterLoadOfXmlLayout()
 
     var group_data = getGroupDataFromXml(g_layout_xml, group_number);
 
-    //QQQ var group_table_array = getGroupTableDataArrayFromXml(g_layout_xml, group_number);
 
 } // callbackAfterLoadOfXmlLayout
 

@@ -1337,43 +1337,6 @@ function getGroupDataArrayFromXml(i_layout_xml)
  
 } // getGroupDataArrayFromXml
 
-/*QQQQQQQQQ
-// Returns an array of TableData objects for a given group
-// Perhaps delete. Same data is available from GroupData
-function getGroupTableDataArrayFromXml(i_layout_xml, i_group_number)
-{
-    var ret_table_array = [];
-
-    var table_number_array = i_layout_xml.getGroupTableNumbers(i_group_number);
-
-    var n_numbers = table_number_array.length;
-
-    if (n_numbers <= 0)
-    {
-        alert("");
-
-        return ret_table_array;
-    }
-
-
-    for (var index_number=0; index_number < n_numbers; index_number++)
-    {
-        var table_number = table_number_array[index_number];
-
-        var layout_case = "get_data_from_xml";
-
-        var input_data_object = null;
-    
-        var table_data = new TableData(layout_case, i_layout_xml, input_data_object, table_number);
-
-        ret_table_array[index_number] = table_data;
-    }
-
-    return ret_table_array;
- 
-} // getGroupTableDataArrayFromXml
-QQQQ*/
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////// End Class Group Data ////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
