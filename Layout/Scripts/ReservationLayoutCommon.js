@@ -1,5 +1,5 @@
 // File: ReservationLayoutCommon.js
-// Date: 2024-11-21
+// Date: 2024-11-22
 // Authors: Gunnar Lidén
 
 // Content
@@ -237,6 +237,25 @@ class GeneralTableData
         }
 
     } // execute
+
+    // Get and set functions for the member variables
+    getColor(){ return this.m_color; }
+    setColor(i_color){ this.m_color = i_color; }
+
+    getStrokeColor(){ return this.m_stroke_color; }
+    setStrokeColor(i_stroke_color){ this.m_stroke_color = i_stroke_color; }
+
+    getStrokeWidth(){ return this.m_stroke_width; }
+    setStrokeWidth(i_stroke_width){ this.m_stroke_width = i_stroke_width; }
+
+    getTextRelXProcent(){ return this.m_text_rel_x_procent; }
+    setTextRelXProcent(i_text_rel_x_procent){ this.m_text_rel_x_procent = i_text_rel_x_procent; }
+
+    getTextRelYProcent(){ return this.m_text_rel_y_procent; }
+    setTextRelYProcent(i_text_rel_y_procent){ this.m_text_rel_y_procent = i_text_rel_y_procent; }
+
+    getTextColor(){ return this.m_text_color; }
+    setTextColor(i_text_color){ this.m_text_color = i_text_color; }
 
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
@@ -916,6 +935,34 @@ class TableData
 
     } // execute
 
+    // Get and set functions for the member variables
+    getNumber(){ return this.m_number; }
+    setNumber(i_number){ this.m_number = i_number; }
+
+    getUpperLeftX(){ return this.m_upper_left_x; }
+    setUpperLeftX(i_upper_left_x){ this.m_upper_left_x = i_upper_left_x; }
+
+    getUpperLeftY(){ return this.m_upper_left_y; }
+    setUpperLeftY(i_upper_left_y){ this.m_upper_left_y = i_upper_left_y; }
+
+    getWidth(){ return this.m_width; }
+    setWidth(i_width){ this.m_width = i_width; }
+
+    getHeight(){ return this.m_height; }
+    setHeight(i_height){ this.m_height = i_height; }
+
+    getNumberLeftRightSeats(){ return this.m_number_left_right_seats; }
+    setNumberLeftRightSeats(i_number_left_right_seats){ this.m_number_left_right_seats = i_number_left_right_seats; }
+
+    getSeatUpper(){ return this.m_seat_upper; }
+    setSeatUpper(i_seat_upper){ this.m_seat_upper = i_seat_upper; }
+
+    getSeatLower(){ return this.m_seat_lower; }
+    getSeatLower(i_seat_lower){ this.m_seat_lower = i_seat_lower; }
+
+    getText(){ return this.m_text; }
+    setText(i_text){ this.m_text = i_text; }
+
     // Sets the dat from the XML object m_layout_xml
     setDataFromXml()
     {
@@ -1233,7 +1280,7 @@ class GroupData
     setText(i_text){ this.m_text = i_text; }
 
     getTables(){ return this.m_tables; }
-    getTables(i_tables){ this.m_tables = i_tables; }
+    setTables(i_tables){ this.m_tables = i_tables; }
 
 
     // Sets the dat from the XML object m_layout_xml

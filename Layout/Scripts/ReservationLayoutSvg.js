@@ -1,5 +1,5 @@
 // File: ReservationLayoutSvg.js
-// Date: 2024-11-20
+// Date: 2024-11-22
 // Authors: Gunnar Lidén
 
 // Content
@@ -78,6 +78,9 @@ class LayoutSvg
 
         this.m_svg_code = this.m_svg_code + doors_svg.get();
 
+        var tables_svg = new TableSvg(this.m_layout_xml, this.m_scale_dimension);
+
+        this.m_svg_code = this.m_svg_code + tables_svg.get();
 
 
  
@@ -730,3 +733,204 @@ class DoorSvg
 ///////////////////////// End Class Door Svg //////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// Start Class Table Svg ///////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+// Class that creates all table SVG code for the reservation layout HTML files
+class TableSvg
+{
+    // Creates the instance of the class
+    // i_layout_xml: Object for a reservation layout XML file. 
+	// i_scale_dimension: The conversion factor mm to pixel
+    constructor(i_layout_xml, i_scale_dimension) 
+    {
+        // Member variables
+        // ================
+
+       // Layout XML object
+       this.m_layout_xml = i_layout_xml;
+
+       // The conversion factor mm to pixel
+       this.m_scale_dimension = i_scale_dimension;
+
+       this.m_color = '';
+       this.m_stroke_color = '';
+       this.m_stroke_width  = '';
+       this.m_text_rel_x_procent  = '';
+       this.m_text_rel_y_procent = '';
+       this.m_text_color  = '';
+      
+
+       // All SVG code from this class
+       this.m_svg_code = '';
+	   
+       // Create (construct) the SVG code
+       this.execute();
+
+    } // constructor
+
+    // Create (construct) the SVG code
+    // 1. Set the general table properties. Call of TableSvg.setGeneralData
+    // 2. Get all groups. Call of getGroupDataArrayFromXml.
+    // 3. Loop for all groups
+    // 3.1 Get tables for the current group. Call of GroupData.get Tables
+    // 3.2 Loop for all group tables
+    // 3.2.1 Get and add code to m_svg_code. Call of TableSvg.oneTable
+    //
+    // Please note that the group information not yet is used, i.e. no group
+    // SVG elemnts are created. This means that it right now would be possible
+    // to use the function getTableDataArrayFromXml and make one loop for all
+    // tables.
+    // The implemented two loops (groups and tables) is a preparation for the
+    // future. Geometry (SVG) elements may be implemnted that shows the groups-
+    // For instance group of tables and groups of seat rows.
+    execute()
+    {
+        if (this.m_layout_xml == null)
+        {
+            alert("TableSvg.execute Layout XML object is null");
+
+            return;
+        }
+
+        var all_tables_svg = '';
+
+        this.setGeneralData();
+
+        var group_data_array = getGroupDataArrayFromXml(this.m_layout_xml);
+
+        var n_groups = group_data_array.length;
+
+        for (var index_group=0; index_group < n_groups; index_group++)
+        {
+            var group_data = group_data_array[index_group];
+
+            var table_array = group_data.getTables();
+
+            var n_tables = table_array.length;
+
+            for (var index_table=0; index_table < n_tables; index_table++)
+            {
+                var table_data = table_array[index_table];
+
+                all_tables_svg = all_tables_svg + this.oneTable(table_data);
+
+            } // index_table
+
+        } // index_group
+
+
+        this.m_svg_code = all_tables_svg;
+ 
+    } // execute
+
+    // Set the general table properties from the layout XML file
+    setGeneralData()
+    {
+        var general_data = getGeneralTableDataFromXml(this.m_layout_xml);
+        this.m_color =              general_data.getColor();
+        this.m_stroke_color =       general_data.getStrokeColor();
+        this.m_stroke_width =       general_data.getStrokeWidth();
+        this.m_text_rel_x_procent = general_data.getTextRelXProcent();
+        this.m_text_rel_y_procent = general_data.getTextRelYProcent();
+        this.m_text_color =         general_data.getTextColor(); 
+
+    } // setGeneralData
+
+
+    // Returns SVG code for one table
+    oneTable(i_table_data)
+    {
+        // Get table data from the layout XML file 
+        var table_number =            i_table_data.getNumber();
+        var upper_left_x =            i_table_data.getUpperLeftX();
+        var upper_left_y =            i_table_data.getUpperLeftY();
+        var table_width =             i_table_data.getWidth();
+        var table_height =            i_table_data.getHeight();
+        var table_text =              i_table_data.getText();
+        var number_left_right_seats = i_table_data.getNumberLeftRightSeats();
+        var seat_upper =              i_table_data.getSeatUpper();
+        var seat_lower =              i_table_data.getSeatLower();
+
+
+		var table_svg = '';
+
+        table_svg = table_svg + this.tableRectangle(table_width, table_height, upper_left_x, upper_left_y);
+
+        table_svg = table_svg + this.tableText(table_width, table_height, upper_left_x, upper_left_y, table_number);
+
+        return table_svg;
+
+    } // oneTable
+
+    // Returns SVG code for a table rectanle
+    tableRectangle(i_table_width, i_table_height, i_upper_left_x, i_upper_left_y)
+    {
+        var ret_table_rect_svg = '';
+        
+        var table_width_pixel = parseInt(i_table_width*this.m_scale_dimension);  
+        var table_height_pixel = parseInt(i_table_height*this.m_scale_dimension); 
+        var table_upper_left_x_pixel = parseInt(i_upper_left_x*this.m_scale_dimension); 
+        var table_upper_left_y_pixel = parseInt(i_upper_left_y*this.m_scale_dimension);
+    
+        var rect_svg = '<rect ' + ' x=' + table_upper_left_x_pixel + ' y=' + table_upper_left_y_pixel
+                        + ' width=' + table_width_pixel + ' height=' + table_height_pixel     
+                        + ' style="fill:' + this.m_color + ';stroke-width:' + this.m_stroke_width + ';stroke:' + this.m_stroke_color + '"' +  ' />';
+
+        ret_table_rect_svg = ret_table_rect_svg + rect_svg;
+
+        ret_table_rect_svg = ret_table_rect_svg + '\n';
+        
+        return ret_table_rect_svg;
+        
+    } // tableRectangle
+
+
+    // Returns SVG code for the table text
+    tableText(i_table_width, i_table_height, i_upper_left_x, i_upper_left_y, i_table_number)
+    {
+        var ret_table_text = '';
+        
+        var text_x = i_table_width;
+        text_x = text_x*this.m_text_rel_x_procent;
+        text_x = text_x/100.0;
+        text_x = text_x + parseInt(i_upper_left_x);
+       
+        var text_y = i_table_height;
+        text_y = text_y*this.m_text_rel_y_procent;
+        text_y = text_y/100.0;
+        text_y = text_y + parseInt(i_upper_left_y);
+        
+        var text_x_pixel = parseInt(text_x*this.m_scale_dimension);
+        var text_y_pixel = parseInt(text_y*this.m_scale_dimension);
+    
+        var text_svg = '<text x=' + text_x_pixel + ' y=' + text_y_pixel + ' fill=' + 
+            this.m_text_color + '>' + i_table_number + '</text>';
+
+        ret_table_text = ret_table_text + text_svg;
+
+        ret_table_text = ret_table_text + '\n';
+        
+        return ret_table_text;
+        
+    } // tableText
+
+    // Returns SVG code for all the table seats (circles)
+    allSeats()
+    {
+
+    } // allSeats
+
+    // Get all SVG code for the body of the output HTML files
+    get()
+    {
+        return this.m_svg_code;
+
+    } // get
+
+} // TableSvg
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// End Class Table Svg /////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
