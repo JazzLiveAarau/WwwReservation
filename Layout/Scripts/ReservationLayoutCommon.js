@@ -1,5 +1,5 @@
 // File: ReservationLayoutCommon.js
-// Date: 2024-11-22
+// Date: 2024-11-25
 // Authors: Gunnar Lidén
 
 // Content
@@ -905,9 +905,9 @@ class TableData
 	   this.m_height = "";
 	   this.m_number_left_right_seats = "0";
 	   
-	   
+	   // The array defines the left seats that shall be defined (that shall be available)
 	   this.m_left_seats = [];
-	   
+	   // The array defines the right seats that shall be defined (that shall be available)
 	   this.m_right_seats = [];
 	   
 	   
@@ -954,11 +954,21 @@ class TableData
     getNumberLeftRightSeats(){ return this.m_number_left_right_seats; }
     setNumberLeftRightSeats(i_number_left_right_seats){ this.m_number_left_right_seats = i_number_left_right_seats; }
 
+    // The array defines the left seats that shall be defined (that shall be available)
+    getSeatLeftArray(){ return this.m_left_seats; }
+    setSeatLeftArray(i_left_seats){ this.m_left_seats = i_left_seats; }
+
+    // The array defines the right seats that shall be defined (that shall be available)
+    getSeatRightArray(){ return this.m_right_seats; }
+    setSeatRightArray(i_right_seats){ this.m_right_seats = i_right_seats; }
+
+    // Defines if the upper seat shall be defined (shall be available)
     getSeatUpper(){ return this.m_seat_upper; }
     setSeatUpper(i_seat_upper){ this.m_seat_upper = i_seat_upper; }
 
+    // Defines if the lower seat shall be defined (shall be available)
     getSeatLower(){ return this.m_seat_lower; }
-    getSeatLower(i_seat_lower){ this.m_seat_lower = i_seat_lower; }
+    setSeatLower(i_seat_lower){ this.m_seat_lower = i_seat_lower; }
 
     getText(){ return this.m_text; }
     setText(i_text){ this.m_text = i_text; }
@@ -984,6 +994,10 @@ class TableData
     // Sets the seat arrays m_left_seats and m_right_seats from the XML object m_layout_xml
     setSeatDataFromXml(i_left_right_seats, i_table_number)
     {
+        this.m_left_seats = [];
+
+        this.m_right_seats = [];
+
         var left_right_seats_int = parseInt(i_left_right_seats);
 
         if (left_right_seats_int == 0)

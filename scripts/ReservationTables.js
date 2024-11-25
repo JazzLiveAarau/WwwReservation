@@ -240,7 +240,7 @@ function addTwoCircles(i_circles_exist_left, i_circles_exist_right, i_circle_coo
 	}
   
     var character_left  = getSeatCharacterLeft(i_row_number, i_circles_exist_left.length);
-	var character_right  = getSeatCharacterRight(i_row_number, i_circles_exist_left.length);
+	var character_right  = getSeatCharacterRight(i_row_number, i_circles_exist_right.length); // Bug fix 20241122 i_circles_exist_left was used
 	
     var index_y = parseInt(i_row_number) - 1;
 	
@@ -677,7 +677,7 @@ function getCirclePixelCoordinatesY(i_table_height, i_upper_left_y, i_number_lef
    
 
    var circle_coordinates_y_pixel = new Array();
-   for (position_index=0; position_index<number_seat_rows; position_index++)
+   for (var position_index=0; position_index<number_seat_rows; position_index++) // 20241122 'var' was missing ????
    {
 	   circle_coordinates_y_pixel[position_index] = table_upper_left_y_pixel + delta_y_pixel + position_index*2.0*delta_y_pixel;	   
    }

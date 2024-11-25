@@ -1,5 +1,5 @@
 // File: ReservationLayoutSvg.js
-// Date: 2024-11-22
+// Date: 2024-11-25
 // Authors: Gunnar Lidén
 
 // Content
@@ -147,6 +147,12 @@ class LayoutSvg
 
     } // colorJazzLiveAarau
 
+    static styleCursorPointer()
+    {
+        return ' ' + 'style="cursor: pointer; " ';
+
+    } // styleCursorPinter
+
 /*
 // Fonts, font sizes and colors (styles)
 
@@ -155,7 +161,6 @@ var g_font_button = ' font-family="arial" font-size="22px" ';
 var g_style_button = ' style="cursor: pointer;fill:white;stroke-width:1;stroke:black" ';
 var g_style_button_blue = ' style="fill:blue;stroke-width:1;stroke:black" ';
 var g_style_button_purple = ' style="fill:purple;stroke-width:1;stroke:black" ';
-var g_style_cursor_pointer = ' style="cursor: pointer; "';
 
 var g_prompt_text_color = "yellow";
 var g_active_mode_color = "magenta";
@@ -661,7 +666,7 @@ class DoorSvg
         
             //var text_right_svg = '<text x=' + right_text_x_pixel + ' y=' + right_text_y_pixel + 
             //                     ' transform="rotate(90, ' + right_text_x_pixel + ',' + + right_text_y_pixel + ')"' +
-            //                     ' font-family="arial" font-size="25px" fill=' + g_table_text_color + '>' + door_text + '</text>';
+            //                     ' font-family="arial" font-size="25px" fill=' + TableSvg.tableText + '>' + door_text + '</text>';
                         
             // door_svg  = door_svg + text_right_svg + '\n';
             
@@ -697,7 +702,7 @@ class DoorSvg
     
             //var text_lower_svg = '<text x=' + lower_text_x_pixel + ' y=' + lower_text_y_pixel 
             //+ ' transform="rotate(0, ' + lower_text_x_pixel + ',' + lower_text_y_pixel + ')"' + 
-            //' font-family="arial" font-size="25px" fill=' + g_table_text_color + '>' + door_text + '</text>'
+            //' font-family="arial" font-size="25px" fill=' + TableSvg.tableText + '>' + door_text + '</text>'
             
             // door_svg  = door_svg + text_lower_svg + '\n';	
     
@@ -754,6 +759,13 @@ class TableSvg
        // The conversion factor mm to pixel
        this.m_scale_dimension = i_scale_dimension;
 
+       // Circle line color
+       this.m_color_seat_circle = "black";
+
+       // Circle fill color for the creation of the layout HTML files
+       // Reserved and unreserved colors are defined elsewhere
+       this.m_fill_color_circle = "yellow";
+
        this.m_color = '';
        this.m_stroke_color = '';
        this.m_stroke_width  = '';
@@ -802,6 +814,8 @@ class TableSvg
 
         var n_groups = group_data_array.length;
 
+        n_groups = 3; // QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ  Temp
+
         for (var index_group=0; index_group < n_groups; index_group++)
         {
             var group_data = group_data_array[index_group];
@@ -840,6 +854,12 @@ class TableSvg
 
 
     // Returns SVG code for one table
+    // 1. Get table data from the input TableData object.
+    //    General table data (object GeneralTableData) is also used. These data
+    //    are member variables of class TableSvg
+    // 2. Add SVG code for the table rectangle. Call of TableSvg.tableRectabgle.
+    // 3. Add SVG code for the table text (table number). Call of TableSvg.tableText.
+    // 4. Add SVG code for all the table seats (circles). Call of TableSvg.allSeats
     oneTable(i_table_data)
     {
         // Get table data from the layout XML file 
@@ -849,9 +869,8 @@ class TableSvg
         var table_width =             i_table_data.getWidth();
         var table_height =            i_table_data.getHeight();
         var table_text =              i_table_data.getText();
-        var number_left_right_seats = i_table_data.getNumberLeftRightSeats();
-        var seat_upper =              i_table_data.getSeatUpper();
-        var seat_lower =              i_table_data.getSeatLower();
+
+    
 
 
 		var table_svg = '';
@@ -859,6 +878,8 @@ class TableSvg
         table_svg = table_svg + this.tableRectangle(table_width, table_height, upper_left_x, upper_left_y);
 
         table_svg = table_svg + this.tableText(table_width, table_height, upper_left_x, upper_left_y, table_number);
+
+        table_svg = table_svg + this.allSeats(i_table_data);
 
         return table_svg;
 
@@ -890,7 +911,7 @@ class TableSvg
     // Returns SVG code for the table text
     tableText(i_table_width, i_table_height, i_upper_left_x, i_upper_left_y, i_table_number)
     {
-        var ret_table_text = '';
+        var table_text_svg = '';
         
         var text_x = i_table_width;
         text_x = text_x*this.m_text_rel_x_procent;
@@ -908,19 +929,585 @@ class TableSvg
         var text_svg = '<text x=' + text_x_pixel + ' y=' + text_y_pixel + ' fill=' + 
             this.m_text_color + '>' + i_table_number + '</text>';
 
-        ret_table_text = ret_table_text + text_svg;
+        table_text_svg = table_text_svg + text_svg;
 
-        ret_table_text = ret_table_text + '\n';
+        table_text_svg = table_text_svg + '\n';
         
-        return ret_table_text;
+        return table_text_svg;
         
     } // tableText
 
     // Returns SVG code for all the table seats (circles)
-    allSeats()
+    // 1. Get table data from the input TableData object.
+    // 2. Calculate the cirle radius. Call of calculateCircle. 
+    // 3. Get an array of X pixel coordinates for the left  seats and the upper seat (last element)
+    //    Call of TableSvg.getCirclePixelCoordinatesX
+    // 4. Get an array of Y pixel coordinates for the right seats and the lower seat (last element)
+    //    Call of TableSvg.getCirclePixelCoordinatesY
+    // 5. Set a 'exist' boolean array for the left  seats plust the upper seat (last element)
+    //    The array defines the seats (circles) that shall be created
+    // 6. Set a 'exist' boolean array for the right seats plust the lower seat (last element)
+    //    The array defines the seats (circles) that shall be created
+    allSeats(i_table_data)
     {
+        var table_number =            i_table_data.getNumber();
+        var upper_left_x =            i_table_data.getUpperLeftX();
+        var upper_left_y =            i_table_data.getUpperLeftY();
+        var table_width =             i_table_data.getWidth();
+        var table_height =            i_table_data.getHeight();
+        var number_left_right_seats = i_table_data.getNumberLeftRightSeats();
+        var seat_left_array =         i_table_data.getSeatLeftArray();
+        var seat_right_array =        i_table_data.getSeatRightArray();
+        var seat_upper =              i_table_data.getSeatUpper();
+        var seat_lower =              i_table_data.getSeatLower();
+
+        var circle_radius = this.circleRadius(table_width);
+
+        var circle_radius_pixel = parseInt(circle_radius*this.m_scale_dimension); 
+
+        var circle_coordinates_x_pixel_array = this.getCirclePixelCoordinatesX(table_width, upper_left_x, circle_radius);
+
+        var circle_coordinates_y_pixel_array = this.getCirclePixelCoordinatesY(table_height, upper_left_y, number_left_right_seats, circle_radius);
+
+        var circles_exist_left_array = seat_left_array;
+
+        var circles_exist_right_array = seat_right_array;
+
+        var index_last_element = circles_exist_left_array.length;
+
+        circles_exist_left_array[index_last_element] = seat_upper;
+
+        circles_exist_right_array[index_last_element] = seat_lower;
+
+
+        var all_cirles_svg = '';
+
+        // Please note that the end 'row' is the upper and lower seat
+        var n_rows = circles_exist_left_array.length - 1;
+
+        var row_number= -12345;
+
+        for (var index_row=0; index_row < n_rows; index_row++)
+        {
+            row_number= index_row + 1;
+
+            all_cirles_svg = all_cirles_svg +
+                this.twoSeats(circles_exist_left_array, circles_exist_right_array, 
+                            circle_coordinates_x_pixel_array, circle_coordinates_y_pixel_array, 
+                            row_number, circle_radius_pixel, table_number);
+
+        } // index_row
+
+        var character_left  = this.getSeatCharacterLeft(row_number + 1, circles_exist_left_array.length);
+        var character_right  = this.getSeatCharacterRight(row_number + 1, circles_exist_right_array.length);
+
+        var index_y = parseInt(row_number);
+
+        var one_cir_svg = this.oneSeat(circles_exist_left_array[index_y], circle_coordinates_x_pixel_array[2], circle_coordinates_y_pixel_array[index_y], 
+                            circle_radius_pixel, character_left, "upper", table_number);
+
+        all_cirles_svg = all_cirles_svg + one_cir_svg + '\n';
+
+        index_y = index_y;
+
+        one_cir_svg = this.oneSeat(circles_exist_right_array[index_y], circle_coordinates_x_pixel_array[3], circle_coordinates_y_pixel_array[index_y + 1], 
+                                    circle_radius_pixel, character_right, "lower", table_number);
+
+        all_cirles_svg = all_cirles_svg + one_cir_svg + '\n';
+
+        return all_cirles_svg;
 
     } // allSeats
+
+    // Returns SVG code for two seats (circles). The left and the right seat or the upper and lower seat (last elements in the input arrays)
+    twoSeats(i_circles_exist_left_array, i_circles_exist_right_array, i_circle_coordinates_x_pixel, i_circle_coordinates_y_pixel, i_row_number, i_circle_radius_pixel, i_table_number)
+    {		
+        var ret_two_cir_svg = '';
+        
+        if (parseInt(i_row_number) < 1 || parseInt(i_row_number) > 20)
+        {
+            return ret_two_cir_svg;
+        }
+    
+        var character_left  = this.getSeatCharacterLeft(i_row_number, i_circles_exist_left_array.length);
+        var character_right  = this.getSeatCharacterRight(i_row_number, i_circles_exist_right_array.length);
+        
+        var index_y = parseInt(i_row_number) - 1;
+        
+        var one_cir_svg = this.oneSeat(i_circles_exist_left_array[index_y], i_circle_coordinates_x_pixel[0], i_circle_coordinates_y_pixel[index_y], 
+                        i_circle_radius_pixel, character_left, "left", i_table_number);
+
+        ret_two_cir_svg = ret_two_cir_svg + one_cir_svg + '\n';
+        
+        one_cir_svg = this.oneSeat(i_circles_exist_right_array[index_y], i_circle_coordinates_x_pixel[1], i_circle_coordinates_y_pixel[index_y], 
+                    i_circle_radius_pixel, character_right, "right", i_table_number);
+
+        ret_two_cir_svg = ret_two_cir_svg + one_cir_svg + '\n';
+        
+        return ret_two_cir_svg;
+        
+    } // twoSeats
+
+    // Returns SVG code for one seat (circle) if it shall be created
+    oneSeat(i_b_create_seat, i_circle_coordinate_x_pixel, i_circle_coordinate_y_pixel, i_circle_radius_pixel, i_seat_character, i_table_side, i_table_number)
+    {
+        var one_cir_svg = '';
+        
+        if (!i_b_create_seat)
+        {
+            return one_cir_svg;
+        }
+        
+        var circle_id_str =  i_table_number + "_" + i_seat_character;
+            
+        var cir_svg = '<circle ' + ' cx=' + i_circle_coordinate_x_pixel + ' cy=' + i_circle_coordinate_y_pixel + ' r=' + i_circle_radius_pixel 
+                    + ' id="' + circle_id_str + '" ' + LayoutSvg.styleCursorPointer() 
+                    + '  stroke=' + this.m_color_seat_circle +' stroke-width="4"  fill="' + this.m_fill_color_circle + '"/>';
+
+        one_cir_svg = one_cir_svg + cir_svg + '\n';
+        
+        var text_x_pixel = i_circle_coordinate_x_pixel;
+        var text_y_pixel = i_circle_coordinate_y_pixel;
+        if ("left" == i_table_side)
+        {
+            text_x_pixel = text_x_pixel + 2*i_circle_radius_pixel;
+            text_y_pixel = text_y_pixel + 4
+        }
+        else if ("right" == i_table_side)
+        {
+            text_x_pixel = text_x_pixel - 2*i_circle_radius_pixel - 8;
+            text_y_pixel = text_y_pixel + 4
+        }
+        else if ("upper" == i_table_side)
+        {
+            text_x_pixel = text_x_pixel - 4;
+            text_y_pixel = text_y_pixel + 2*i_circle_radius_pixel + 6;
+        }	   
+        else if ("lower" == i_table_side)
+        {
+            text_x_pixel = text_x_pixel - 2;
+            text_y_pixel = text_y_pixel - 2*i_circle_radius_pixel;
+        }	   	   
+        
+        var circle_text_id_str =  "cir_text_" + i_table_number + "_" + i_seat_character;
+        
+        var text_svg = '<text x=' + text_x_pixel + ' y=' + text_y_pixel + ' id="' + circle_text_id_str + '" ' + 
+                        ' fill=' + TableSvg.tableText + '>' + i_seat_character + '</text>';
+
+        one_cir_svg = one_cir_svg + text_svg + '\n';
+            
+        return one_cir_svg;
+	
+    } // oneSeat
+
+    // Return the circle (seat) radius. 
+    // The value is dependent on the current table width, i.e. with different table widths the syze will vary
+    // TODO Calculate it differently as average of all table widths or add it to GeneralTableData, i.e. define
+    // the value in the layout XML file
+    circleRadius(i_table_width)
+    {
+        return i_table_width/6.0;
+
+    } // circleRadius
+
+    // Returns the circle (seat) color for the creation of the layout HTML files
+    // Reserved and not reserved circle colors are defined elsewhere
+    circleFillColorLayout()
+    {
+        return 'blue';
+
+    } // circleFillColorLayout
+
+    // Returns an array of X coordinates as pixels for the left, right, top and bottom circles
+    getCirclePixelCoordinatesX(i_table_width, i_upper_left_x, i_circle_radius)
+    {
+        
+        var table_width_pixel = parseInt(i_table_width*this.m_scale_dimension);  
+        var table_upper_left_x_pixel = parseInt(i_upper_left_x*this.m_scale_dimension); 
+            
+        var circle_radius_pixel = parseInt(i_circle_radius*this.m_scale_dimension);
+        var delta_x_pixel = parseInt(this.m_stroke_width) + 2 + circle_radius_pixel;
+        delta_x_pixel = - delta_x_pixel; 
+        var circle_left_x_pixel = table_upper_left_x_pixel + delta_x_pixel;
+        var circle_right_x_pixel = table_upper_left_x_pixel + table_width_pixel - delta_x_pixel;
+        
+        var circle_top_x_pixel = table_upper_left_x_pixel +  parseInt(table_width_pixel/2.0);
+        var circle_bottom_x_pixel = circle_top_x_pixel;
+
+        var ret_coordinates_x = new Array();  
+        
+        ret_coordinates_x[0] =  circle_left_x_pixel;
+        ret_coordinates_x[1] =  circle_right_x_pixel;
+        ret_coordinates_x[2] =  circle_top_x_pixel;
+        ret_coordinates_x[3] =  circle_bottom_x_pixel;
+            
+        return ret_coordinates_x;	
+        
+    } // getCirclePixelCoordinatesX
+
+    // Returns an array of Y coordinates as pixels for all left and right circles and for the top and bottom circles
+    getCirclePixelCoordinatesY(i_table_height, i_upper_left_y, i_number_left_right_seats, i_circle_radius)
+    { 
+        if (parseInt(i_number_left_right_seats) < 2)
+        {
+            return null;
+        }	
+        
+        var number_seat_rows = parseInt(i_number_left_right_seats/2.0);
+        var delta_n = number_seat_rows + 1.0 + 1.0*(number_seat_rows-1);
+        var delta_y = i_table_height/delta_n;
+        delta_y_pixel = -delta_y_pixel; 
+        var delta_y_pixel = parseInt(delta_y*this.m_scale_dimension);
+        
+        var table_upper_left_y_pixel = parseInt(i_upper_left_y*this.m_scale_dimension); 
+        
+
+        var circle_coordinates_y_pixel = new Array();
+        for (var position_index=0; position_index<number_seat_rows; position_index++)
+        {
+            circle_coordinates_y_pixel[position_index] = table_upper_left_y_pixel + delta_y_pixel + position_index*2.0*delta_y_pixel;	   
+        }
+        
+        var circle_radius_pixel = parseInt(i_circle_radius*this.m_scale_dimension);
+        var delta_y_pixel = parseInt(this.m_stroke_width) + 2 + circle_radius_pixel;
+        delta_y_pixel = -delta_y_pixel; 
+        var table_height_pixel = parseInt(i_table_height*this.m_scale_dimension);
+        
+        var circle_top_y_pixel = table_upper_left_y_pixel + delta_y_pixel;
+        var circle_bottom_y_pixel = table_upper_left_y_pixel + table_height_pixel - delta_y_pixel;
+        
+        circle_coordinates_y_pixel[number_seat_rows] = circle_top_y_pixel;
+        circle_coordinates_y_pixel[number_seat_rows + 1] = circle_bottom_y_pixel;
+        
+    return circle_coordinates_y_pixel;
+    
+    } // getCirclePixelCoordinatesY
+
+	// Get seat character for a left seat or for the upper seat
+	getSeatCharacterLeft(i_row_number, i_number_rows)
+	{
+		var character_left = "Undefined";
+		if (1 == parseInt(i_row_number))
+		{
+			character_left = "A";
+		}
+		else if (2 == parseInt(i_row_number))
+		{
+			character_left = "C";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "C";
+			}
+		}
+		else if (3 == parseInt(i_row_number))
+		{
+			character_left = "E";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "E";
+			}
+		}
+		else if (4 == parseInt(i_row_number))
+		{
+			character_left = "G";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "G";
+			}
+		}
+		else if (5 == parseInt(i_row_number))
+		{
+			character_left = "I";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "I";
+			}
+		}
+		else if (6 == parseInt(i_row_number))
+		{
+			character_left = "K";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "K";
+			}
+		}	
+		else if (7 == parseInt(i_row_number))
+		{
+			character_left = "M";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "M";
+			}
+		}		
+		else if (8 == parseInt(i_row_number))
+		{
+			character_left = "O";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "O";
+			}
+		}
+		else if (9 == parseInt(i_row_number))
+		{
+			character_left = "Q";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "Q";
+			}
+		}	
+		else if (10 == parseInt(i_row_number))
+		{
+			character_left = "S";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "S";
+			}
+		}	
+		else if (11 == parseInt(i_row_number))
+		{
+			character_left = "U";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "U";
+			}
+		}	
+		else if (12 == parseInt(i_row_number))
+		{
+			character_left = "X";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "X";
+			}
+		}
+		else if (13 == parseInt(i_row_number))
+		{
+			character_left = "Z";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "Z";
+			}
+		}	
+		else if (14 == parseInt(i_row_number))
+		{
+			character_left = "a";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "a";
+			}
+		}	
+		else if (15 == parseInt(i_row_number))
+		{
+			character_left = "c";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "c";
+			}
+		}
+		else if (16 == parseInt(i_row_number))
+		{
+			character_left = "e";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "e";
+			}
+		}
+		else if (17 == parseInt(i_row_number))
+		{
+			character_left = "g";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "g";
+			}
+		}
+		else if (18 == parseInt(i_row_number))
+		{
+			character_left = "i";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "i";
+			}
+		}	
+		else if (19 == parseInt(i_row_number))
+		{
+			character_left = "k";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_left = "k";
+			}
+		}	
+		else if (parseInt(i_row_number) == parseInt(i_number_rows))
+		{
+			character_left = "m";
+
+		}
+			
+		return character_left;
+		
+	} // getSeatCharacterLeft
+
+	// Get seat character for a right seat or for the lower seat
+	getSeatCharacterRight(i_row_number, i_number_rows)
+	{
+		var character_right = "Undefined";
+		if (1 == parseInt(i_row_number))
+		{
+			character_right = "B";
+		}
+		else if (2 == parseInt(i_row_number))
+		{
+			character_right = "D";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "D";
+			}
+		}
+		else if (3 == parseInt(i_row_number))
+		{
+			character_right = "F";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "F";
+			}
+		}
+		else if (4 == parseInt(i_row_number))
+		{
+			character_right = "H";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "H";
+			}
+		}
+		else if (5 == parseInt(i_row_number))
+		{
+			character_right = "J";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "J";
+			}
+		}
+		else if (6 == parseInt(i_row_number))
+		{
+			character_right = "L";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "L";
+			}
+		}	
+		else if (7 == parseInt(i_row_number))
+		{
+			character_right = "N";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "N";
+			}
+		}		
+		else if (8 == parseInt(i_row_number))
+		{
+			character_right = "P";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "P";
+			}
+		}
+		else if (9 == parseInt(i_row_number))
+		{
+			character_right = "R";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "R";
+			}
+		}	
+		else if (10 == parseInt(i_row_number))
+		{
+			character_right = "T";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "T";
+			}
+		}	
+		else if (11 == parseInt(i_row_number))
+		{
+			character_right = "V";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "V";
+			}
+		}	
+		else if (12 == parseInt(i_row_number))
+		{
+			character_right = "Y";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "Y";
+			}
+		}
+		else if (13 == parseInt(i_row_number))
+		{
+			character_right = "Ä";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "Ä";
+			}
+		}	
+		else if (14 == parseInt(i_row_number))
+		{
+			character_right = "b";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "b";
+			}
+		}	
+		else if (15 == parseInt(i_row_number))
+		{
+			character_right = "d";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "d";
+			}
+		}
+		else if (16 == parseInt(i_row_number))
+		{
+			character_right = "f";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "f";
+			}
+		}
+		else if (17 == parseInt(i_row_number))
+		{
+			character_right = "h";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "h";
+			}
+		}
+		else if (18 == parseInt(i_row_number))
+		{
+			character_right = "j";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "j";
+			}
+		}	
+		else if (19 == parseInt(i_row_number))
+		{
+			character_right = "l";
+			if (parseInt(i_row_number) == parseInt(i_number_rows))
+			{
+				character_right = "l";
+			}
+		}	
+		else if (parseInt(i_row_number) == parseInt(i_number_rows))
+		{
+			character_right = "n";
+
+		}
+			
+		return character_right;
+		
+	} // getSeatCharacterRight
+
+
 
     // Get all SVG code for the body of the output HTML files
     get()
