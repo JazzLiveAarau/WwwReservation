@@ -50,39 +50,11 @@ function callbackAfterLoadOfXmlLayout()
 {
     debugReservationLayout('callbackAfterLoadOfXmlLayout Enter');
 
-    var premises_data = getPremisesDataFromXml(g_layout_xml);
-
-    var stage_data =  getStageDataFromXml(g_layout_xml);
-
-    var general_table_data = getGeneralTableDataFromXml(g_layout_xml);
-
-    var cashier_data = getCashierDataFromXml(g_layout_xml);
-
-    var image_text_data = getTextImageCaptionsFromXml(g_layout_xml);
-
-    var door_number = 2;
-
-    var door_data = getDoorDataFromXml(g_layout_xml, door_number);
-
-    var door_data_array = getDoorDataArrayFromXml(g_layout_xml);
-
-    var table_number = 1;
-
-    var table_data = getTableDataFromXml(g_layout_xml, table_number);
-
-    var table_data_array = getTableDataArrayFromXml(g_layout_xml);
-
-    var layout_svg = new LayoutSvg(g_layout_xml);
-
-    var layout_svg_code = layout_svg.get();
-
     var layout_html = new LayoutHtml(g_layout_xml, 'MakeReservation');
 
     var layout_html_code = layout_html.get();
 
-    var group_number = 4;
-
-    var group_data = getGroupDataFromXml(g_layout_xml, group_number);
+    var dum_int = 1;
 
 
 } // callbackAfterLoadOfXmlLayout

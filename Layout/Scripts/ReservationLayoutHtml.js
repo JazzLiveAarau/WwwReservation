@@ -96,23 +96,24 @@ class LayoutHtml
 
     } // endRow
 
-    static tabOne()
+    // Returns tabs as spaces
+    static tab(i_n_tab)
     {
-        return '  ';
+        var ret_tab_str = '';
 
-    } // tabOne
+        var n_tab = parseInt(i_n_tab);
 
-    static tabTwo()
-    {
-        return '    ';
+        var tab_str = '    ';
 
-    } // tabTwo
+        for (var tab_number=1; tab_number <= n_tab; tab_number++)
+        {
+            ret_tab_str = ret_tab_str + tab_str;
 
-    static tabThree()
-    {
-        return '      ';
+        }
 
-    } // tabThree
+        return ret_tab_str;
+
+    } // tab
 
     // Returns true if it is a valid layout case
     validLayoutCase()
@@ -162,7 +163,7 @@ class LayoutHeader
 
         this.m_html_header_code = ''; 
 
-        this.m_html_header_code = this.m_html_header_code + LayoutHtml.tabOne() + LayoutHeader.startString() + LayoutHtml.endRow();
+        this.m_html_header_code = this.m_html_header_code + LayoutHtml.tab(1) + LayoutHeader.startString() + LayoutHtml.endRow();
 
         this.m_html_header_code = this.m_html_header_code + this.meta() + LayoutHtml.endRow();
 
@@ -170,7 +171,7 @@ class LayoutHeader
 
 
 
-        this.m_html_header_code = this.m_html_header_code + LayoutHtml.tabOne() + LayoutHeader.endString() + LayoutHtml.endRow();
+        this.m_html_header_code = this.m_html_header_code + LayoutHtml.tab(1) + LayoutHeader.endString() + LayoutHtml.endRow();
 
 
     } // execute
@@ -188,23 +189,23 @@ class LayoutHeader
     {
         var meta_str = '';
  
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'charset="utf-8"' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'charset="utf-8"' + '>' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'name="description" content="Reservation of seats for a concert"' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'name="description" content="Reservation of seats for a concert"' + '>' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'name="author" content="Gunnar Lidén"' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'name="author" content="Gunnar Lidén"' + '>' + LayoutHtml.endRow();
 
         meta_str = meta_str +  LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<!-- Force the browser not to use the cached web page  Start -->' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<!-- Force the browser not to use the cached web page  Start -->' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'http-equiv=“Pragma” content=”no-cache”' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'http-equiv=“Pragma” content=”no-cache”' + '>' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'http-equiv=“Expires” content=”-1″' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'http-equiv=“Expires” content=”-1″' + '>' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<meta ' + 'http-equiv=“CACHE-CONTROL” content=”NO-CACHE”' + '>' + LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<meta ' + 'http-equiv=“CACHE-CONTROL” content=”NO-CACHE”' + '>' + LayoutHtml.endRow();
 
-        meta_str = meta_str + LayoutHtml.tabTwo() + '<!-- Force the browser not to use the cached web page  End -->' +  LayoutHtml.endRow();
+        meta_str = meta_str + LayoutHtml.tab(2) + '<!-- Force the browser not to use the cached web page  End -->' +  LayoutHtml.endRow();
 
         meta_str = meta_str +  LayoutHtml.endRow();
 
@@ -217,7 +218,7 @@ class LayoutHeader
     {
         var premises_data = getPremisesDataFromXml(this.m_layout_xml);
 
-        return LayoutHtml.tabTwo() + '<title>'+ premises_data.getOrganizerName() +  ' Reservation ' + premises_data.getName() + ' </title>' +  LayoutHtml.endRow();
+        return LayoutHtml.tab(2) + '<title>'+ premises_data.getOrganizerName() +  ' Reservation ' + premises_data.getName() + ' </title>' +  LayoutHtml.endRow();
 
     } // title
 
@@ -264,7 +265,7 @@ class LayoutBody
     {
         this.m_html_body_code = ''; 
 
-        this.m_html_body_code = this.m_html_body_code + LayoutHtml.tabOne() + LayoutBody.startString() + LayoutHtml.endRow();
+        this.m_html_body_code = this.m_html_body_code + LayoutHtml.tab(1) + LayoutBody.startString() + LayoutHtml.endRow();
 
 
         var layout_svg = new LayoutSvg(this.m_layout_xml);
@@ -275,7 +276,7 @@ class LayoutBody
 
 
 
-        this.m_html_body_code = this.m_html_body_code + LayoutHtml.tabOne() + LayoutBody.endString() + LayoutHtml.endRow();        
+        this.m_html_body_code = this.m_html_body_code + LayoutHtml.tab(1) + LayoutBody.endString() + LayoutHtml.endRow();        
 
 
     } // execute
