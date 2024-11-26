@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--  JAZZ live AARAU Layout Restaurant Spagi by Marcello -->
 <Layout>
+  <PremisesName>SPAGI by Marcello</PremisesName>
   <PremisesWidth>8000</PremisesWidth>
   <PremisesHeight>14000</PremisesHeight>
   <MaxReservationsProcent>100</MaxReservationsProcent>

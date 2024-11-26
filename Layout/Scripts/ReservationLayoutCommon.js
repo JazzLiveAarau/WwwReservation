@@ -1,5 +1,5 @@
 // File: ReservationLayoutCommon.js
-// Date: 2024-11-25
+// Date: 2024-11-26
 // Authors: Gunnar Lidén
 
 // Content
@@ -32,8 +32,9 @@ class PremisesData
        // An instance of this class to be used for case set_xml_object
        this.m_input_data_object = i_input_data_object;
 
-       this.m_width = "";
-       this.m_height = "";
+       this.m_name = "";
+       this.m_width = -12345;
+       this.m_height = -12345;
        this.m_wall_thickness = -12345;
        this.m_max_width_pixel = -12345;  
        this.m_max_reservation_procent = -12345;
@@ -67,6 +68,9 @@ class PremisesData
     } // execute
 
     // Get and set functions for the member variables
+    getName(){ return this.m_name; }
+    setName(i_name){ this.m_name = i_name; }
+
     getWidth(){ return this.m_width; }
     setWidth(i_width){ this.m_width = i_width; }
 
@@ -122,6 +126,7 @@ class PremisesData
     // Sets the data from the XML object m_layout_xml
     setDataFromXml()
     {
+        this.m_name = this.m_layout_xml.getPremisesName();
         this.m_width = parseInt(this.m_layout_xml.getPremisesWidth());
         this.m_height = parseInt(this.m_layout_xml.getPremisesHeight());
 

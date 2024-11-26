@@ -1,5 +1,5 @@
 // File: ReservationLayout.js
-// Date: 2024-11-19
+// Date: 2024-11-26
 // Author: Gunnar Lidén
 
 // Inhalt
@@ -75,6 +75,10 @@ function callbackAfterLoadOfXmlLayout()
     var layout_svg = new LayoutSvg(g_layout_xml);
 
     var layout_svg_code = layout_svg.get();
+
+    var layout_html = new LayoutHtml(g_layout_xml, 'MakeReservation');
+
+    var layout_html_code = layout_html.get();
 
     var group_number = 4;
 

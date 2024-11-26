@@ -1,5 +1,5 @@
 // File: ReservationLayoutXml.js
-// Date: 2024-11-21
+// Date: 2024-11-26
 // Author: Gunnar Lidén
 
 // File content
@@ -44,6 +44,13 @@ class ReservationLayoutXml
     ///////////////////////////////////////////////////////////////////////////
     /////// Start Get Layout Functions ////////(///////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
+
+    // Returns the premises name
+    getPremisesName()
+    {
+        return this.getLayoutNodeValue(this.m_tags.getPremisesName());
+        
+    } // getPremisesName
 
     // Returns the premises width
     getPremisesWidth()
@@ -402,6 +409,13 @@ class ReservationLayoutXml
     ///////////////////////////////////////////////////////////////////////////
     /////// Start Set Layout Functions ////////(///////////////////////////////
     ///////////////////////////////////////////////////////////////////////////
+
+    // Sets the premises name
+    setPremisesName(i_premises_name)
+    {
+        this.setLayoutNodeValue(this.m_tags.getPremisesName(), i_premises_name);
+        
+    } // setPremisesName
 
     // Sets the premises width
     setPremisesWidth(i_premises_width)
@@ -2164,6 +2178,7 @@ class ReservationLayoutTags
         ////////////// General Data //////////////////////////////
         //////////////////////////////////////////////////////////
 
+        this.m_tag_premises_name = "PremisesName";
         this.m_tag_premises_width = "PremisesWidth";
         this.m_tag_premises_height = "PremisesHeight";
 
@@ -2310,6 +2325,7 @@ class ReservationLayoutTags
     // Get member variable functions
     // =============================
 
+    getPremisesName(){return this.m_tag_premises_name;} 
     getPremisesWidth(){return this.m_tag_premises_width;} 
     getPremisesHeight(){return this.m_tag_premises_height;} 
 
